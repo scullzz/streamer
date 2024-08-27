@@ -5,20 +5,20 @@ import { StreamerPreview } from "../streamer_preview/StreamerPreview";
 import { FormInput } from "../form_input/FormInput";
 import { useNavigate } from "react-router-dom";
 
-interface GetUserProfile {
-  id: number;
-  tgId: string;
-  email: string | null;
-  firstName: string;
-  lastName: string | null;
-  imageUrl: string | null;
-}
+// interface GetUserProfile {
+//   id: number;
+//   tgId: string;
+//   email: string | null;
+//   firstName: string;
+//   lastName: string | null;
+//   imageUrl: string | null;
+// }
 
 const UserProfile = () => {
   const nav = useNavigate();
 
   //need to create endpoint to take userData
-  const [user, setUser] = useState<GetUserProfile | null>(null);
+  // const [user, setUser] = useState<GetUserProfile | null>(null);
 
   const [trc, setTrc] = useState<string | null | undefined>(undefined);
   const [erc, setErc] = useState<string | null | undefined>(undefined);
@@ -41,7 +41,7 @@ const UserProfile = () => {
         url={
           "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiE26ff46aKpfHCPy88HJkziodR9zd2jFhlg&s"
         }
-        name={user?.firstName ?? "Пользователь"}
+        name={"Пользователь"}
         isLive={false}
       ></StreamerPreview>
       <div

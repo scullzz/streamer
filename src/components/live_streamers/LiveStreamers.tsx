@@ -4,20 +4,21 @@ import searchIcon from "./image/search.svg";
 import style from "./style.module.css";
 import LiveStreamerItem from "../live_streamers_item/LiveStreamerItem";
 
-interface GetOneActiveStreamer {
-  id: number;
-  tgId: string;
-  imageUrl: string | null;
-  name: string | null;
-  subscribers: number | null;
-  isSubscribed: boolean | null;
-  liveYoutube: number | null;
-  liveTwitch: number | null;
-  liveKick: number | null;
-}
+// interface GetOneActiveStreamer {
+//   id: number;
+//   tgId: string;
+//   imageUrl: string | null;
+//   name: string | null;
+//   subscribers: number | null;
+//   isSubscribed: boolean | null;
+//   liveYoutube: number | null;
+//   liveTwitch: number | null;
+//   liveKick: number | null;
+// }
 
 const LiveStreamers = () => {
   const [search, setSearch] = useState<null | string>(null);
+  console.log(search);
   return (
     <div className={style.LiveStreamers}>
       <div className={style.searchContainer}>
