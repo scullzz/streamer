@@ -1,0 +1,34 @@
+.form_ceil {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  margin: 0px 10px;
+}
+
+.form_ceil .line {
+  width: calc(100% - 20px);
+  background-color: #c6c6c8;
+  height: 1px;
+  margin-left: 20px;
+}
+
+.form_ceil .info {
+  display: flex;
+  justify-content: space-between;
+  padding: 9px;
+  padding-inline: 20px 15px;
+  column-gap: 15px;
+  align-items: center;
+}
+
+.form_ceil .info input {
+  width: 100%;
+  border: none;
+  padding-right: 10px;
+  padding-left: 5px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 400;
+  color: #c8c8cd;
+  height: 20px;
+}

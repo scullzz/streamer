@@ -1,0 +1,25 @@
+.streamer__info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.streamer_info-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.streamer__info .details_text {
+  font-weight: 400;
+  font-size: 16px;
+  margin-top: 12px;
+}
+
+.streamer__info .header_text {
+  font-weight: 500;
+  font-size: 24px;
+  text-align: center;
+  margin-top: 11px;
+}

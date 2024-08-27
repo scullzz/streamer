@@ -1,0 +1,63 @@
+.LiveStreamers {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  padding-top: 10px;
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 58px;
+  height: calc(100% - 58px);
+  overflow-y: auto;
+}
+
+.searchContainer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 38px;
+  background-color: #f0f0f0;
+  border-radius: 10px;
+  padding: 0 10px;
+}
+
+.searchInput {
+  border: none;
+  outline: none;
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  background-color: transparent;
+  color: #808080;
+  padding-left: 10px;
+}
+
+.searchInput::placeholder {
+  color: #808080;
+}
+
+.searchContainer img {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+.StreamersListHeader {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+.StreamersListHeader span {
+  font-weight: bold;
+  font-size: 22px;
+  line-height: 20px;
+}
+.StreamersListHeader img {
+  width: 20px;
+  height: 18px;
+}

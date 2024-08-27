@@ -1,0 +1,26 @@
+.section_header {
+  padding-top: 15px;
+  margin: 0 15px;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+}
+
+.section_header_left {
+  font-size: 16px;
+  font-weight: 400;
+  color:#007AFF;
+  cursor: pointer;
+}
+
+.section_header_center {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.section_header_right {
+  font-size: 16px;
+  font-weight: 400;
+  color: #007AFF;
+  cursor: pointer;
+}

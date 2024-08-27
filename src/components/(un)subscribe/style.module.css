@@ -1,0 +1,108 @@
+.subscribeBlock {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  position: fixed;
+  bottom: -100%;
+  left: 0;
+  width: 100%;
+  height: 85%;
+  padding-top: 10px;
+  padding-left: 16px;
+  padding-right: 16px;
+  background-color: white;
+  transition: bottom 0.3s ease-in-out;
+  z-index: 2000;
+}
+.subscribeBlock.show {
+  bottom: 0;
+}
+.subscribeBlock.close {
+  bottom: -100%;
+}
+
+.exitImg {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.streamerAva {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+}
+.ava_text {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  text-align: center;
+}
+
+.CheckerListFirstItem {
+  width: 100%;
+  margin-top: 16px;
+  background-color: white;
+  border-radius: 14px;
+  padding: 12px;
+  margin-bottom: 10px;
+}
+.CheckerListSecondItem {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 14px;
+  background-color: white;
+  padding: 12px;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.line {
+  width: 100%;
+  height: 1px;
+  background-color: #c6c6c866;
+}
+
+.actionButtonSub {
+  margin-top: 15px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 49px;
+  border-radius: 14px;
+  width: 100%;
+  background-color: #007aff;
+}
+.actionButtonUnSub {
+  margin-top: 15px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 49px;
+  border-radius: 14px;
+  width: 100%;
+  background-color: #ff4f4d;
+}
+
+.sub_text {
+  font-size: 16px;
+  color: white;
+  line-height: 18px;
+  font-weight: bold;
+}
+
+.un_sub_text {
+  font-size: 16px;
+  color: black;
+  line-height: 18px;
+  font-weight: bold;
+}
