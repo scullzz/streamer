@@ -6,11 +6,11 @@ import friends from "./image/bt_friengs.svg";
 import menu from "./image/bt_menu.svg";
 import play from "./image/bt_play.svg";
 
-import active_champ from "./image/bt_champ_active.svg"
+import active_champ from "./image/bt_champ_active.svg";
 import active_energy from "./image/bt_energi_active.svg";
-import friends_active from "./image/bt_friengs_active.svg"
-import menu_active from "./image/bt_close_active.svg"
-import play_active from "./image/bt_play_active.svg"
+import friends_active from "./image/bt_friengs_active.svg";
+import menu_active from "./image/bt_close_active.svg";
+import play_active from "./image/bt_play_active.svg";
 import { useLocation } from "react-router-dom";
 import MenuItem from "../menuItem/MenuItem";
 const Menu = () => {
@@ -22,7 +22,7 @@ const Menu = () => {
         className={style.menu}
         style={{
           borderTop: "1px solid #e6e6e6",
-          backgroundColor: "var(--menu-color)",
+          backgroundColor: "#FFFFFF",
         }}
       >
         <MenuItem
@@ -30,7 +30,9 @@ const Menu = () => {
           label="Меню"
           icon={menu}
           onIcon={menu_active}
-          onClick={() => navigate("/menu")}
+          onClick={() => {
+            location.pathname == "/menu" ? navigate("/") : navigate("/menu");
+          }}
         ></MenuItem>
         <MenuItem
           active={location.pathname == "/energy"}

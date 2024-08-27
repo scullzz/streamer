@@ -20,7 +20,7 @@ const LiveStreamers = () => {
   const [search, setSearch] = useState<null | string>(null);
   console.log(search);
   return (
-    <div className={style.LiveStreamers}>
+    <div className={`${style.LiveStreamers} ${style.section}`}>
       <div className={style.searchContainer}>
         <img src={searchIcon} alt="#" />
         <input

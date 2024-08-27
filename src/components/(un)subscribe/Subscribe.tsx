@@ -10,7 +10,7 @@ interface ISubscribe {
 }
 
 const Subscribe = ({ isSubscribed, onClose }: ISubscribe) => {
-  const [getNotification, setNotification] = useState(false);
+  const [getNotification, setNotification] = useState(true);
   const [youtubeNotification, setYoutubeNotification] = useState(true);
   const [twitchNotification, setTwitchNotification] = useState(false);
   const [kickNotification, setKickNotification] = useState(false);
@@ -48,7 +48,8 @@ const Subscribe = ({ isSubscribed, onClose }: ISubscribe) => {
       </div>
       <div className={style.CheckerListFirstItem}>
         <Checker
-          offColor="#4A4A4A"
+          status={true}
+          color="#000000"
           text="Получать сообщения от стримера (через бота)"
           value={getNotification}
           onChange={setNotification}
@@ -57,18 +58,21 @@ const Subscribe = ({ isSubscribed, onClose }: ISubscribe) => {
 
       <div className={style.CheckerListSecondItem}>
         <Checker
+          status={false}
           text="Оповещать о начале стримов на YouTube.com"
           value={youtubeNotification}
           onChange={setYoutubeNotification}
         />
         <div className={style.line}></div>
         <Checker
+          status={false}
           text="Оповещать о начале стримов на Twitch.tv"
           value={twitchNotification}
           onChange={setTwitchNotification}
         />
         <div className={style.line}></div>
         <Checker
+          status={false}
           text="Оповещать о начале стримов на Kick.com"
           value={kickNotification}
           onChange={setKickNotification}
@@ -77,6 +81,7 @@ const Subscribe = ({ isSubscribed, onClose }: ISubscribe) => {
 
       <div className={style.CheckerListFirstItem}>
         <Checker
+          status={false}
           text="Оповещать о розыгрышах в боте"
           value={raffleNotification}
           onChange={setRaffleNotification}

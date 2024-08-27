@@ -7,18 +7,25 @@ export interface IParameterPickerElementProps {
 
 interface ICheckerProps extends IParameterPickerElementProps {
   text: string;
-  offColor?: string;
+  color?: string;
+  status: boolean;
 }
 
-export const Checker = ({ value, onChange, text, offColor }: ICheckerProps) => {
+export const Checker = ({
+  value,
+  onChange,
+  text,
+  color,
+  status,
+}: ICheckerProps) => {
   return (
     <div className={style.CheckerBlock}>
       <span className={style.checker_text}>{text}</span>
       <Switch
         onChange={onChange}
         checked={value}
-        onColor="#35C759"
-        offColor={offColor || "#B0B0B0"}
+        onColor={color || "#35C759"}
+        offColor="#B0B0B0"
         onHandleColor="#fff"
         offHandleColor="#fff"
         handleDiameter={26}
@@ -26,9 +33,9 @@ export const Checker = ({ value, onChange, text, offColor }: ICheckerProps) => {
         checkedIcon={false}
         height={30}
         width={49}
-        className="react-switch"
         activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
         borderRadius={20}
+        disabled={status}
       />
     </div>
   );
