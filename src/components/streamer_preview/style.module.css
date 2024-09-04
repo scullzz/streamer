@@ -14,7 +14,8 @@
 .streamer__info .details_text {
   font-weight: 400;
   font-size: 16px;
-  margin-top: 12px;
+  margin-top: 3px;
+  line-height: 18.75px;
 }
 
 .streamer__info .header_text {

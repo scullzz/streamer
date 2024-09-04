@@ -7,10 +7,8 @@ export const WithMenu = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
   useEffect(() => {
     const elem = document.querySelector(".footer") as HTMLDivElement;
-    console.log("Footer element:", elem);
     if (elem != null) {
       const section = document.querySelector(".section") as HTMLDivElement;
-      console.log("Section element:", section);
       if (section != null) {
         section.style.minHeight = `calc(100vh - ${elem.offsetHeight}px)`;
         const padding = location.pathname == "/streamers" ? 0 : 15;

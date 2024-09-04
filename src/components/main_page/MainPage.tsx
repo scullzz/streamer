@@ -52,9 +52,14 @@ const MainPage = () => {
     },
   ];
 
-  const handleClick = () => {
+  const handleClickMe = () => {
     nav("/me");
   };
+
+  const handleClickStreamer = () => {
+    nav("/streamer");
+  };
+
   const HandleListItem = (id: number) => {
     if (id === 1) {
       nav("/");
@@ -65,7 +70,7 @@ const MainPage = () => {
     <div className={style.MainPageBlock}>
       <div className={style.MainPageFlexItem}>
         <p className={style.page_title}>Ваш личный аккаунт</p>
-        <div className={style.flexBlock} onClick={() => handleClick()}>
+        <div className={style.flexBlock} onClick={() => handleClickMe()}>
           <div className={style.MainPage_Item}>
             <Avatar
               size={26}
@@ -88,7 +93,10 @@ const MainPage = () => {
       <div className={style.MainPageFlexItem}>
         <p className={style.page_title}>Аккаунт аффилейта</p>
         <div className={style.flexBlock}>
-          <div className={style.MainPage_Item}>
+          <div
+            className={style.MainPage_Item}
+            onClick={() => handleClickStreamer()}
+          >
             <Avatar
               size={26}
               isLive={false}

@@ -1,0 +1,19 @@
+.live {
+  position: absolute;
+  left: 50%;
+  height: auto;
+  transform: translateX(-50%);
+  bottom: -1px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 15px;
+  width: auto;
+  min-width: 70px;
+  text-align: center;
+  padding: 2px;
+  padding-inline: 6px;
+  background-color: #eb0400;
+  color: white;
+}

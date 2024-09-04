@@ -1,0 +1,168 @@
+.MainPrizeBlock {
+  border-radius: 8px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: white;
+  padding: 0px 14px;
+  padding-bottom: 20px;
+}
+
+.PrizeDescription {
+  width: 100%;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.PrizeDescription_title {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 22px;
+  text-align: center;
+}
+.PrizeDescription_description {
+  width: 100%;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: left;
+}
+.prize_condition {
+  width: 100%;
+  text-decoration: none;
+  text-align: left;
+}
+.header_text {
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 22px;
+  text-align: center;
+  margin-top: 19px;
+  margin-bottom: 4px;
+}
+
+.IsNotParticipantBlock {
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.IsNotParticipantBlock_numberOfPrize {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 4px;
+}
+.numberOfPrize_text {
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  text-align: center;
+  color: #8a8a8e;
+}
+.numberOfPrize_number {
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: center;
+  color: black;
+}
+
+.attention_btn {
+  border: none;
+  border-radius: 14px;
+  height: 49px;
+  background-color: #007aff;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  text-align: center;
+}
+
+.buttonsFlex {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+.attention_opacity_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 17px;
+  height: 49px;
+}
+
+.buy_extra_one_bt {
+  height: 49px;
+  background-color: #007aff;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  text-align: center;
+  border: none;
+  border-radius: 14px;
+}
+
+.extra_one_price {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 18.75px;
+  text-align: center;
+}
+
+.attention_opacity_btn {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 49px;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  border: none;
+  border-radius: 13px;
+}
+
+.line {
+  height: 44px;
+  width: 1px;
+  background-color: rgb(138, 138, 143, 0.2);
+}
+
+.attention_opacity_btn {
+  height: 49px;
+  background-color: #007aff;
+  width: 100%;
+  text-align: center;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  text-align: center;
+  border: none;
+  border-radius: 14px;
+}
