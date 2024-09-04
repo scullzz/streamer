@@ -1,11 +1,12 @@
+.back{
+  background-color: #efeff3;
+}
 .StreamerProfile {
   width: 100%;
   display: flex;
   flex-direction: column;
   padding: 0px 16px;
-  min-height: 100vh - 60px;
   padding-bottom: 60px;
-  overflow: scroll;
   background-color: #efeff3;
 }
 .actionButtonSub {

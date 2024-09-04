@@ -20,13 +20,13 @@ const StreamerProfile = () => {
     arrows: false,
   };
   return (
-    <>
+    <div className={style.back}>
+      <SectionHeader
+        left={<span>Назад</span>}
+        center={<span>Clash of Slots</span>}
+        right={<img src={reply} alt="#" />}
+      />
       <div className={style.StreamerProfile}>
-        <SectionHeader
-          left={<span>Назад</span>}
-          center={<span>Clash of Slots</span>}
-          right={<img src={reply} alt="#" />}
-        />
         <div className="mt" style={{ marginTop: "25px" }}></div>
         <StreamerPreview
           headerStyles={{ marginTop: "15px", lineHeight: "23px" }}
@@ -92,7 +92,7 @@ const StreamerProfile = () => {
           />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
