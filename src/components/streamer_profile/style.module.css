@@ -5,7 +5,7 @@
   padding: 0px 16px;
   min-height: 100vh - 60px;
   padding-bottom: 60px;
-  overflow-y: auto;
+  overflow: scroll;
   background-color: #efeff3;
 }
 .actionButtonSub {
