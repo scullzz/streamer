@@ -7,6 +7,7 @@ import LiveStreamers from "./components/live_streamers/LiveStreamers";
 import MainPage from "./components/main_page/MainPage";
 import UserProfile from "./components/user_profile/UserProfile";
 import StreamerProfile from "./components/streamer_profile/StreamerProfile";
+import Post from "./components/create_post/Post";
 export const tg = Telegram.WebApp;
 function App() {
   useDisableBounces("parker");
@@ -23,6 +24,7 @@ function App() {
               path="/streamer"
               element={<StreamerProfile></StreamerProfile>}
             ></Route>
+            <Route path="/create-post" element={<Post></Post>}></Route>
           </Routes>
         </WithMenu>
       </Router>

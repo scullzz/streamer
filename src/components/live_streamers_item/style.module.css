@@ -56,7 +56,13 @@
   border-radius: 4px;
   font-size: 10px;
 }
-
+.greenBadge {
+  background-color: #53fc19;
+  color: #ffffff;
+  padding: 3px 3px;
+  border-radius: 4px;
+  font-size: 10px;
+}
 .subscribedButton {
   display: flex;
   align-items: center;

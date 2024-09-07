@@ -8,13 +8,21 @@ interface ILiveStreamerItemProps {
   imgUrl: string;
   name: string;
   subscribers: number;
-  youtubeOnline: number;
-  twitchOnline: number;
-  kickOnline: number;
+  youtubeOnline?: number;
+  twitchOnline?: number;
+  kickOnline?: number;
   is_subscribed: boolean;
 }
 
-const LiveStreamerItem = ({ is_subscribed }: ILiveStreamerItemProps) => {
+const LiveStreamerItem = ({
+  imgUrl,
+  name,
+  subscribers,
+  youtubeOnline,
+  twitchOnline,
+  kickOnline,
+  is_subscribed,
+}: ILiveStreamerItemProps) => {
   const [isSubscribeModalOpen, setSubscribeModalOpen] = useState(false);
 
   const OpenModal = () => {
@@ -28,20 +36,24 @@ const LiveStreamerItem = ({ is_subscribed }: ILiveStreamerItemProps) => {
   return (
     <div className={styles.profileContainer}>
       <div className={styles.profileImage}>
-        <Avatar
-          size={64}
-          isLive={false}
-          url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiE26ff46aKpfHCPy88HJkziodR9zd2jFhlg&s"
-        />
+        <Avatar size={64} isLive={false} url={imgUrl} />
       </div>
       <div className={styles.profileInfoBlock}>
         <div className={styles.profileInfo}>
           <div>
-            <div className={styles.name}>Casino_Malaya</div>
-            <div className={styles.subscribers}>777 подписчиков</div>
+            <div className={styles.name}>{name}</div>
+            <div className={styles.subscribers}>{subscribers} подписчиков</div>
             <div className={styles.online}>
-              Онлайн: <span className={styles.redBadge}>1253</span>{" "}
-              <span className={styles.purpleBadge}>51</span>
+              Онлайн:
+              {youtubeOnline !== null ? (
+                <span className={styles.redBadge}>{youtubeOnline}</span>
+              ) : null}
+              {twitchOnline !== null ? (
+                <span className={styles.purpleBadge}>{twitchOnline}</span>
+              ) : null}
+              {kickOnline !== null ? (
+                <span className={styles.greenBadge}>{kickOnline}</span>
+              ) : null}
             </div>
           </div>
           {is_subscribed ? (

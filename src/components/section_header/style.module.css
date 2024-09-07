@@ -1,26 +1,41 @@
 .section_header {
-  padding-top: 15px;
-  margin: 0 15px;
+  padding-top: 30px;
+  margin: 0px 15px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   position: relative;
 }
 
 .section_header_left {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: auto;
+
   font-size: 16px;
+  left: 0px;
   font-weight: 400;
-  color:#007AFF;
-  cursor: pointer;
+  color: #007aff;
 }
 
 .section_header_center {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: auto;
+
   font-size: 16px;
   font-weight: 500;
 }
 
 .section_header_right {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: auto;
+
   font-size: 16px;
+  right: 0px;
   font-weight: 400;
-  color: #007AFF;
-  cursor: pointer;
+  color: #007aff;
 }

@@ -1,24 +1,84 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import reply from "./image/reply.svg";
 import searchIcon from "./image/search.svg";
 import style from "./style.module.css";
 import LiveStreamerItem from "../live_streamers_item/LiveStreamerItem";
 
-// interface GetOneActiveStreamer {
-//   id: number;
-//   tgId: string;
-//   imageUrl: string | null;
-//   name: string | null;
-//   subscribers: number | null;
-//   isSubscribed: boolean | null;
-//   liveYoutube: number | null;
-//   liveTwitch: number | null;
-//   liveKick: number | null;
-// }
+interface Video {
+  video_id: string;
+  title: string;
+  viewers: number;
+  thumbnail: string;
+  author: string;
+  link: string;
+  platform: string;
+  is_subscribed: boolean;
+  subscribers: number;
+}
+
+interface StreamingPlatforms {
+  youtube: Video[];
+  twitch: Video[];
+  kick: Video[];
+}
 
 const LiveStreamers = () => {
-  const [search, setSearch] = useState<null | string>(null);
-  console.log(search);
+  const [search, setSearch] = useState<string>("");
+  const [listStreamer, setListStreamers] = useState<StreamingPlatforms | null>(
+    null
+  );
+  const [filteredStreamers, setFilteredStreamers] =
+    useState<StreamingPlatforms | null>(null);
+
+  useEffect(() => {
+    getListOfLiveStreamers();
+  }, []);
+
+  useEffect(() => {
+    if (listStreamer) {
+      filterStreamersBySearch();
+    }
+  }, [search, listStreamer]);
+
+  const getListOfLiveStreamers = async () => {
+    try {
+      const response = await fetch(
+        "https://api.bigstreamerbot.io/live-streams/",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      const res = await response.json();
+      setListStreamers(res);
+      setFilteredStreamers(res); // Изначально показываем все стримы
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const filterStreamersBySearch = () => {
+    if (!listStreamer) return;
+
+    const filteredYouTube = listStreamer.youtube.filter((item) =>
+      item.title.toLowerCase().includes(search.toLowerCase())
+    );
+    const filteredTwitch = listStreamer.twitch.filter((item) =>
+      item.title.toLowerCase().includes(search.toLowerCase())
+    );
+    const filteredKick = listStreamer.kick.filter((item) =>
+      item.title.toLowerCase().includes(search.toLowerCase())
+    );
+
+    setFilteredStreamers({
+      youtube: filteredYouTube,
+      twitch: filteredTwitch,
+      kick: filteredKick,
+    });
+  };
 
   return (
     <div className={style.LiveStreamers}>
@@ -37,96 +97,42 @@ const LiveStreamers = () => {
         <img src={reply} alt="#" />
       </div>
 
-      <LiveStreamerItem
-        is_subscribed={true}
-        imgUrl={""}
-        name={""}
-        subscribers={0}
-        youtubeOnline={0}
-        twitchOnline={0}
-        kickOnline={0}
-      ></LiveStreamerItem>
-      <LiveStreamerItem
-        imgUrl={""}
-        name={""}
-        subscribers={0}
-        youtubeOnline={0}
-        twitchOnline={0}
-        kickOnline={0}
-        is_subscribed={true}
-      ></LiveStreamerItem>
-      <LiveStreamerItem
-        imgUrl={""}
-        name={""}
-        subscribers={0}
-        youtubeOnline={0}
-        twitchOnline={0}
-        kickOnline={0}
-        is_subscribed={false}
-      ></LiveStreamerItem>
-      <LiveStreamerItem
-        imgUrl={""}
-        name={""}
-        subscribers={0}
-        youtubeOnline={0}
-        twitchOnline={0}
-        kickOnline={0}
-        is_subscribed={true}
-      ></LiveStreamerItem>
-      <LiveStreamerItem
-        imgUrl={""}
-        name={""}
-        subscribers={0}
-        youtubeOnline={0}
-        twitchOnline={0}
-        kickOnline={0}
-        is_subscribed={false}
-      ></LiveStreamerItem>
-      <LiveStreamerItem
-        imgUrl={""}
-        name={""}
-        subscribers={0}
-        youtubeOnline={0}
-        twitchOnline={0}
-        kickOnline={0}
-        is_subscribed={false}
-      ></LiveStreamerItem>
-      <LiveStreamerItem
-        imgUrl={""}
-        name={""}
-        subscribers={0}
-        youtubeOnline={0}
-        twitchOnline={0}
-        kickOnline={0}
-        is_subscribed={false}
-      ></LiveStreamerItem>
-      <LiveStreamerItem
-        imgUrl={""}
-        name={""}
-        subscribers={0}
-        youtubeOnline={0}
-        twitchOnline={0}
-        kickOnline={0}
-        is_subscribed={false}
-      ></LiveStreamerItem>
-      <LiveStreamerItem
-        imgUrl={""}
-        name={""}
-        subscribers={0}
-        youtubeOnline={0}
-        twitchOnline={0}
-        kickOnline={0}
-        is_subscribed={false}
-      ></LiveStreamerItem>
-      <LiveStreamerItem
-        imgUrl={""}
-        name={""}
-        subscribers={0}
-        youtubeOnline={0}
-        twitchOnline={0}
-        kickOnline={0}
-        is_subscribed={false}
-      ></LiveStreamerItem>
+      {filteredStreamers?.youtube.map((item) => {
+        return (
+          <LiveStreamerItem
+            key={item.video_id}
+            is_subscribed={item.is_subscribed}
+            imgUrl={item.thumbnail}
+            name={item.title}
+            subscribers={item.subscribers}
+            youtubeOnline={item.viewers}
+          />
+        );
+      })}
+      {filteredStreamers?.twitch.map((item) => {
+        return (
+          <LiveStreamerItem
+            key={item.video_id}
+            is_subscribed={item.is_subscribed}
+            imgUrl={item.thumbnail}
+            name={item.title}
+            subscribers={item.subscribers}
+            twitchOnline={item.viewers}
+          />
+        );
+      })}
+      {filteredStreamers?.kick.map((item) => {
+        return (
+          <LiveStreamerItem
+            key={item.video_id}
+            is_subscribed={item.is_subscribed}
+            imgUrl={item.thumbnail}
+            name={item.title}
+            subscribers={item.subscribers}
+            kickOnline={item.viewers}
+          />
+        );
+      })}
     </div>
   );
 };
