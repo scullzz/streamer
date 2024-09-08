@@ -86,58 +86,60 @@ const LiveStreamers = () => {
   };
 
   return (
-    <div className={style.LiveStreamers}>
-      <div className={style.searchContainer}>
-        <img src={searchIcon} alt="#" />
-        <input
-          type="text"
-          className={style.searchInput}
-          placeholder="Поиск"
-          onChange={(e) => setSearch(e.currentTarget.value)}
-        />
-      </div>
+    <div className={style.back}>
+      <div className={style.LiveStreamers}>
+        <div className={style.searchContainer}>
+          <img src={searchIcon} alt="#" />
+          <input
+            type="text"
+            className={style.searchInput}
+            placeholder="Поиск"
+            onChange={(e) => setSearch(e.currentTarget.value)}
+          />
+        </div>
 
-      <div className={style.StreamersListHeader}>
-        <span>Стримеры</span>
-        <img src={reply} alt="#" />
-      </div>
+        <div className={style.StreamersListHeader}>
+          <span>Стримеры</span>
+          <img src={reply} alt="#" />
+        </div>
 
-      {filteredStreamers?.youtube.map((item) => {
-        return (
-          <LiveStreamerItem
-            streamer_id={item.streamer_id}
-            is_subscribed={item.is_subscribed}
-            imgUrl={item.thumbnail}
-            name={item.streamer_name}
-            subscriptions_count={item.subscriptions_count}
-            youtubeOnline={item.viewers}
-          />
-        );
-      })}
-      {filteredStreamers?.twitch.map((item) => {
-        return (
-          <LiveStreamerItem
-            streamer_id={item.streamer_id}
-            is_subscribed={item.is_subscribed}
-            imgUrl={item.thumbnail}
-            name={item.streamer_name}
-            subscriptions_count={item.subscriptions_count}
-            twitchOnline={item.viewers}
-          />
-        );
-      })}
-      {filteredStreamers?.kick.map((item) => {
-        return (
-          <LiveStreamerItem
-            streamer_id={item.streamer_id}
-            is_subscribed={item.is_subscribed}
-            imgUrl={item.thumbnail}
-            name={item.streamer_name}
-            subscriptions_count={item.subscriptions_count}
-            kickOnline={item.viewers}
-          />
-        );
-      })}
+        {filteredStreamers?.youtube.map((item) => {
+          return (
+            <LiveStreamerItem
+              streamer_id={item.streamer_id}
+              is_subscribed={item.is_subscribed}
+              imgUrl={item.thumbnail}
+              name={item.streamer_name}
+              subscriptions_count={item.subscriptions_count}
+              youtubeOnline={item.viewers}
+            />
+          );
+        })}
+        {filteredStreamers?.twitch.map((item) => {
+          return (
+            <LiveStreamerItem
+              streamer_id={item.streamer_id}
+              is_subscribed={item.is_subscribed}
+              imgUrl={item.thumbnail}
+              name={item.streamer_name}
+              subscriptions_count={item.subscriptions_count}
+              twitchOnline={item.viewers}
+            />
+          );
+        })}
+        {filteredStreamers?.kick.map((item) => {
+          return (
+            <LiveStreamerItem
+              streamer_id={item.streamer_id}
+              is_subscribed={item.is_subscribed}
+              imgUrl={item.thumbnail}
+              name={item.streamer_name}
+              subscriptions_count={item.subscriptions_count}
+              kickOnline={item.viewers}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 };

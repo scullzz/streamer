@@ -1,3 +1,7 @@
+.back{
+  height: 100vh;
+  background-color: white;
+}
 .LiveStreamers {
   display: flex;
   align-items: center;
@@ -7,7 +11,6 @@
   padding-top: 10px;
   padding-left: 16px;
   padding-right: 16px;
-  min-height: 100vh - 60px;
   padding-bottom: 60px;
   overflow-y: auto;
   background-color: white;
