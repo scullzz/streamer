@@ -24,7 +24,7 @@ interface StreamingPlatforms {
 }
 
 const LiveStreamers = () => {
-  const init = tg.initData;
+  // const init = tg.initData;
   const [search, setSearch] = useState<string>("");
   const [listStreamer, setListStreamers] = useState<StreamingPlatforms | null>(
     null

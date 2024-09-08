@@ -11,6 +11,7 @@ interface ISubscribe {
 }
 
 const Subscribe = ({ isSubscribed, onClose, streamerId }: ISubscribe) => {
+  
   const [getNotification, setNotification] = useState(true);
   const [youtubeNotification, setYoutubeNotification] = useState(true);
   const [twitchNotification, setTwitchNotification] = useState(false);
@@ -36,21 +37,21 @@ const Subscribe = ({ isSubscribed, onClose, streamerId }: ISubscribe) => {
 
   const SubscribeButton = async () => {
     try {
-      const response = await fetch(
-        "https://api.bigstreamerbot.io/subscriptions",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Telegram-User-ID": "235519518",
-            Auth: "M1bCSx92W6",
-          },
-          body: JSON.stringify({
-            streamer: streamerId,
-            is_sub: true,
-          }),
-        }
-      );
+      // const response = await fetch(
+      //   "https://api.bigstreamerbot.io/subscriptions",
+      //   {
+      //     method: "POST",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //       "Telegram-User-ID": "235519518",
+      //       Auth: "M1bCSx92W6",
+      //     },
+      //     body: JSON.stringify({
+      //       streamer: streamerId,
+      //       is_sub: true,
+      //     }),
+      //   }
+      // );
 
       // if (response.ok) {
       //   const res = await response.json();
@@ -62,22 +63,22 @@ const Subscribe = ({ isSubscribed, onClose, streamerId }: ISubscribe) => {
 
   const UnSubscribeButton = async () => {
     try {
-      const response = await fetch(
-        "https://api.bigstreamerbot.io/subscriptions",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "Telegram-User-ID": "235519518",
-            Auth: "M1bCSx92W6",
-          },
-          body: JSON.stringify({
-            streamer: streamerId,
-            is_sub: true,
-            date_unsubscribe: new Date(),
-          }),
-        }
-      );
+      // const response = await fetch(
+      //   "https://api.bigstreamerbot.io/subscriptions",
+      //   {
+      //     method: "POST",
+      //     headers: {
+      //       "Content-Type": "application/json",
+      //       "Telegram-User-ID": "235519518",
+      //       Auth: "M1bCSx92W6",
+      //     },
+      //     body: JSON.stringify({
+      //       streamer: streamerId,
+      //       is_sub: true,
+      //       date_unsubscribe: new Date(),
+      //     }),
+      //   }
+      // );
     } catch (err) {
       console.log(err);
     }
