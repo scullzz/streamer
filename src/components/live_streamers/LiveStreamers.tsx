@@ -3,17 +3,18 @@ import reply from "./image/reply.svg";
 import searchIcon from "./image/search.svg";
 import style from "./style.module.css";
 import LiveStreamerItem from "../live_streamers_item/LiveStreamerItem";
-
+import { tg } from "../../App";
 interface Video {
   video_id: string;
-  title: string;
+  streamer_id: number;
+  streamer_name: string;
   viewers: number;
   thumbnail: string;
   author: string;
   link: string;
   platform: string;
   is_subscribed: boolean;
-  subscribers: number;
+  subscriptions_count: number;
 }
 
 interface StreamingPlatforms {
@@ -23,6 +24,7 @@ interface StreamingPlatforms {
 }
 
 const LiveStreamers = () => {
+  const init = tg.initData;
   const [search, setSearch] = useState<string>("");
   const [listStreamer, setListStreamers] = useState<StreamingPlatforms | null>(
     null
@@ -48,13 +50,16 @@ const LiveStreamers = () => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
+            "Telegram-User-ID": "235519518",
+            Auth: "M1bCSx92W6",
           },
         }
       );
 
       const res = await response.json();
+      console.log(res);
       setListStreamers(res);
-      setFilteredStreamers(res); // Изначально показываем все стримы
+      setFilteredStreamers(res);
     } catch (err) {
       console.log(err);
     }
@@ -64,13 +69,13 @@ const LiveStreamers = () => {
     if (!listStreamer) return;
 
     const filteredYouTube = listStreamer.youtube.filter((item) =>
-      item.title.toLowerCase().includes(search.toLowerCase())
+      item.streamer_name.toLowerCase().includes(search.toLowerCase())
     );
     const filteredTwitch = listStreamer.twitch.filter((item) =>
-      item.title.toLowerCase().includes(search.toLowerCase())
+      item.streamer_name.toLowerCase().includes(search.toLowerCase())
     );
     const filteredKick = listStreamer.kick.filter((item) =>
-      item.title.toLowerCase().includes(search.toLowerCase())
+      item.streamer_name.toLowerCase().includes(search.toLowerCase())
     );
 
     setFilteredStreamers({
@@ -100,11 +105,11 @@ const LiveStreamers = () => {
       {filteredStreamers?.youtube.map((item) => {
         return (
           <LiveStreamerItem
-            key={item.video_id}
+            streamer_id={item.streamer_id}
             is_subscribed={item.is_subscribed}
             imgUrl={item.thumbnail}
-            name={item.title}
-            subscribers={item.subscribers}
+            name={item.streamer_name}
+            subscriptions_count={item.subscriptions_count}
             youtubeOnline={item.viewers}
           />
         );
@@ -112,11 +117,11 @@ const LiveStreamers = () => {
       {filteredStreamers?.twitch.map((item) => {
         return (
           <LiveStreamerItem
-            key={item.video_id}
+            streamer_id={item.streamer_id}
             is_subscribed={item.is_subscribed}
             imgUrl={item.thumbnail}
-            name={item.title}
-            subscribers={item.subscribers}
+            name={item.streamer_name}
+            subscriptions_count={item.subscriptions_count}
             twitchOnline={item.viewers}
           />
         );
@@ -124,11 +129,11 @@ const LiveStreamers = () => {
       {filteredStreamers?.kick.map((item) => {
         return (
           <LiveStreamerItem
-            key={item.video_id}
+            streamer_id={item.streamer_id}
             is_subscribed={item.is_subscribed}
             imgUrl={item.thumbnail}
-            name={item.title}
-            subscribers={item.subscribers}
+            name={item.streamer_name}
+            subscriptions_count={item.subscriptions_count}
             kickOnline={item.viewers}
           />
         );

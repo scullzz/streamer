@@ -5,11 +5,12 @@ import exit from "./image/exit.svg";
 import style from "./style.module.css";
 
 interface ISubscribe {
+  streamerId: number;
   isSubscribed: boolean;
-  onClose: () => void; // Добавляем функцию для закрытия модального окна
+  onClose: () => void;
 }
 
-const Subscribe = ({ isSubscribed, onClose }: ISubscribe) => {
+const Subscribe = ({ isSubscribed, onClose, streamerId }: ISubscribe) => {
   const [getNotification, setNotification] = useState(true);
   const [youtubeNotification, setYoutubeNotification] = useState(true);
   const [twitchNotification, setTwitchNotification] = useState(false);
@@ -29,7 +30,56 @@ const Subscribe = ({ isSubscribed, onClose }: ISubscribe) => {
     const element = document.getElementById("subscribeBlock");
     if (element) {
       element.classList.add(style.close);
-      setTimeout(onClose, 300); // Ждем завершения анимации, затем вызываем onClose
+      setTimeout(onClose, 300);
+    }
+  };
+
+  const SubscribeButton = async () => {
+    try {
+      const response = await fetch(
+        "https://api.bigstreamerbot.io/subscriptions",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Telegram-User-ID": "235519518",
+            Auth: "M1bCSx92W6",
+          },
+          body: JSON.stringify({
+            streamer: streamerId,
+            is_sub: true,
+          }),
+        }
+      );
+
+      // if (response.ok) {
+      //   const res = await response.json();
+      // }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const UnSubscribeButton = async () => {
+    try {
+      const response = await fetch(
+        "https://api.bigstreamerbot.io/subscriptions",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Telegram-User-ID": "235519518",
+            Auth: "M1bCSx92W6",
+          },
+          body: JSON.stringify({
+            streamer: streamerId,
+            is_sub: true,
+            date_unsubscribe: new Date(),
+          }),
+        }
+      );
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -96,9 +146,16 @@ const Subscribe = ({ isSubscribed, onClose }: ISubscribe) => {
         }
       >
         {isSubscribed === false ? (
-          <p className={style.sub_text}>Подписаться</p>
+          <button onClick={() => SubscribeButton()} className={style.sub_text}>
+            Подписаться
+          </button>
         ) : (
-          <p className={style.un_sub_text}>Отписаться</p>
+          <button
+            onClick={() => UnSubscribeButton()}
+            className={style.un_sub_text}
+          >
+            Отписаться
+          </button>
         )}
       </div>
     </div>

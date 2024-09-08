@@ -5,27 +5,29 @@ import check from "./image/check.svg";
 import Subscribe from "../(un)subscribe/Subscribe";
 
 interface ILiveStreamerItemProps {
+  streamer_id: number;
   imgUrl: string;
   name: string;
-  subscribers: number;
   youtubeOnline?: number;
   twitchOnline?: number;
   kickOnline?: number;
   is_subscribed: boolean;
+  subscriptions_count: number;
 }
 
 const LiveStreamerItem = ({
   imgUrl,
   name,
-  subscribers,
   youtubeOnline,
   twitchOnline,
   kickOnline,
   is_subscribed,
+  subscriptions_count,
+  streamer_id,
 }: ILiveStreamerItemProps) => {
   const [isSubscribeModalOpen, setSubscribeModalOpen] = useState(false);
 
-  const OpenModal = () => {
+  const OpenModal = async () => {
     setSubscribeModalOpen(true);
   };
 
@@ -42,16 +44,18 @@ const LiveStreamerItem = ({
         <div className={styles.profileInfo}>
           <div>
             <div className={styles.name}>{name}</div>
-            <div className={styles.subscribers}>{subscribers} подписчиков</div>
+            <div className={styles.subscribers}>
+              {subscriptions_count} подписчиков
+            </div>
             <div className={styles.online}>
               Онлайн:
-              {youtubeOnline !== null ? (
+              {youtubeOnline ? (
                 <span className={styles.redBadge}>{youtubeOnline}</span>
               ) : null}
-              {twitchOnline !== null ? (
+              {twitchOnline ? (
                 <span className={styles.purpleBadge}>{twitchOnline}</span>
               ) : null}
-              {kickOnline !== null ? (
+              {kickOnline ? (
                 <span className={styles.greenBadge}>{kickOnline}</span>
               ) : null}
             </div>
@@ -70,7 +74,11 @@ const LiveStreamerItem = ({
         <div className={styles.line}></div>
       </div>
       {isSubscribeModalOpen && (
-        <Subscribe isSubscribed={is_subscribed} onClose={closeModal} />
+        <Subscribe
+          isSubscribed={is_subscribed}
+          onClose={closeModal}
+          streamerId={streamer_id}
+        />
       )}
     </div>
   );
