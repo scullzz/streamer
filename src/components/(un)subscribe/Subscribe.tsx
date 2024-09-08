@@ -37,6 +37,7 @@ const Subscribe = ({ isSubscribed, onClose, streamerId }: ISubscribe) => {
 
   const SubscribeButton = async () => {
     try {
+      console.log(streamerId)
       // const response = await fetch(
       //   "https://api.bigstreamerbot.io/subscriptions",
       //   {

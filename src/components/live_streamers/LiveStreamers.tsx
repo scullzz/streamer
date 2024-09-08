@@ -3,7 +3,7 @@ import reply from "./image/reply.svg";
 import searchIcon from "./image/search.svg";
 import style from "./style.module.css";
 import LiveStreamerItem from "../live_streamers_item/LiveStreamerItem";
-import { tg } from "../../App";
+// import { tg } from "../../App";
 interface Video {
   video_id: string;
   streamer_id: number;
