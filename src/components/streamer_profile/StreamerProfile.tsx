@@ -9,6 +9,7 @@ import Slider from "react-slick";
 import { StreamerPreview } from "../streamer_preview/StreamerPreview";
 import StreamerVideo from "../streamer_video/StreamerVideo";
 import Prize from "../prize/Prize";
+import { useNavigate } from "react-router-dom";
 
 const StreamerProfile = () => {
   const settings = {
@@ -19,10 +20,16 @@ const StreamerProfile = () => {
     slidesToScroll: 1,
     arrows: false,
   };
+
+  const nav = useNavigate();
+
+  const backPage = () => {
+    nav("/");
+  };
   return (
     <div className={style.back}>
       <SectionHeader
-        left={<span>Назад</span>}
+        left={<span onClick={() => backPage()}>Назад</span>}
         center={<span>Clash of Slots</span>}
         right={<img src={reply} alt="#" />}
       />

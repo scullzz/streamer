@@ -8,15 +8,22 @@ interface ISubscribe {
   streamerId: number;
   isSubscribed: boolean;
   onClose: () => void;
+  name: string;
+  imgUrl: string;
 }
 
-const Subscribe = ({ isSubscribed, onClose, streamerId }: ISubscribe) => {
-  
+const Subscribe = ({
+  isSubscribed,
+  onClose,
+  streamerId,
+  name,
+  imgUrl,
+}: ISubscribe) => {
   const [getNotification, setNotification] = useState(true);
   const [youtubeNotification, setYoutubeNotification] = useState(true);
-  const [twitchNotification, setTwitchNotification] = useState(false);
-  const [kickNotification, setKickNotification] = useState(false);
-  const [raffleNotification, setRaffleNotification] = useState(false);
+  const [twitchNotification, setTwitchNotification] = useState(true);
+  const [kickNotification, setKickNotification] = useState(true);
+  const [raffleNotification, setRaffleNotification] = useState(true);
 
   useEffect(() => {
     const element = document.getElementById("subscribeBlock");
@@ -37,26 +44,26 @@ const Subscribe = ({ isSubscribed, onClose, streamerId }: ISubscribe) => {
 
   const SubscribeButton = async () => {
     try {
-      console.log(streamerId)
-      // const response = await fetch(
-      //   "https://api.bigstreamerbot.io/subscriptions",
-      //   {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //       "Telegram-User-ID": "235519518",
-      //       Auth: "M1bCSx92W6",
-      //     },
-      //     body: JSON.stringify({
-      //       streamer: streamerId,
-      //       is_sub: true,
-      //     }),
-      //   }
-      // );
-
-      // if (response.ok) {
-      //   const res = await response.json();
-      // }
+      await fetch(
+        `https://api.bigstreamerbot.io/subscriptions/${streamerId}/`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            "Telegram-User-ID": "235519518",
+            Auth: "M1bCSx92W6",
+          },
+          body: JSON.stringify({
+            is_sub: true,
+            notification_youtube: youtubeNotification,
+            notification_twitch: twitchNotification,
+            notification_kick: kickNotification,
+            notification_raffle: raffleNotification,
+          }),
+        }
+      );
+      closeModal();
+      window.location.reload();
     } catch (err) {
       console.log(err);
     }
@@ -64,22 +71,27 @@ const Subscribe = ({ isSubscribed, onClose, streamerId }: ISubscribe) => {
 
   const UnSubscribeButton = async () => {
     try {
-      // const response = await fetch(
-      //   "https://api.bigstreamerbot.io/subscriptions",
-      //   {
-      //     method: "POST",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //       "Telegram-User-ID": "235519518",
-      //       Auth: "M1bCSx92W6",
-      //     },
-      //     body: JSON.stringify({
-      //       streamer: streamerId,
-      //       is_sub: true,
-      //       date_unsubscribe: new Date(),
-      //     }),
-      //   }
-      // );
+      await fetch(
+        `https://api.bigstreamerbot.io/subscriptions/${streamerId}/`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            "Telegram-User-ID": "235519518",
+            Auth: "M1bCSx92W6",
+          },
+          body: JSON.stringify({
+            is_sub: false,
+            date_unsubscribe: new Date(),
+            notification_youtube: youtubeNotification,
+            notification_twitch: twitchNotification,
+            notification_kick: kickNotification,
+            notification_raffle: raffleNotification,
+          }),
+        }
+      );
+      closeModal();
+      window.location.reload();
     } catch (err) {
       console.log(err);
     }
@@ -91,12 +103,10 @@ const Subscribe = ({ isSubscribed, onClose, streamerId }: ISubscribe) => {
         <img onClick={closeModal} src={exit} alt="" />
       </div>
       <div className={style.streamerAva}>
-        <Avatar
-          size={94}
-          isLive={false}
-          url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiE26ff46aKpfHCPy88HJkziodR9zd2jFhlg&s"
-        />
-        <p className={style.ava_text}>Подписаться на Casino_Malaya?</p>
+        <Avatar size={94} isLive={false} url={imgUrl} />
+        <p className={style.ava_text}>
+          {isSubscribed === false ? "Подписаться" : "Отписаться"} на {name}?
+        </p>
       </div>
       <div className={style.CheckerListFirstItem}>
         <Checker

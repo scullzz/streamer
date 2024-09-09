@@ -3,6 +3,7 @@ import { Avatar } from "../avatar/Avatar";
 import styles from "./style.module.css";
 import check from "./image/check.svg";
 import Subscribe from "../(un)subscribe/Subscribe";
+import { useNavigate } from "react-router-dom";
 
 interface ILiveStreamerItemProps {
   streamer_id: number;
@@ -25,6 +26,7 @@ const LiveStreamerItem = ({
   subscriptions_count,
   streamer_id,
 }: ILiveStreamerItemProps) => {
+  const nav = useNavigate();
   const [isSubscribeModalOpen, setSubscribeModalOpen] = useState(false);
 
   const OpenModal = async () => {
@@ -34,9 +36,15 @@ const LiveStreamerItem = ({
   const closeModal = () => {
     setSubscribeModalOpen(false);
   };
+  const moveToStreamerPage = () => {
+    nav("/streamer");
+  };
 
   return (
-    <div className={styles.profileContainer}>
+    <div
+      onClick={() => moveToStreamerPage()}
+      className={styles.profileContainer}
+    >
       <div className={styles.profileImage}>
         <Avatar size={64} isLive={false} url={imgUrl} />
       </div>
@@ -78,6 +86,8 @@ const LiveStreamerItem = ({
           isSubscribed={is_subscribed}
           onClose={closeModal}
           streamerId={streamer_id}
+          imgUrl={imgUrl}
+          name={name}
         />
       )}
     </div>

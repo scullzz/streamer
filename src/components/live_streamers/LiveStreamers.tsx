@@ -5,7 +5,7 @@ import style from "./style.module.css";
 import LiveStreamerItem from "../live_streamers_item/LiveStreamerItem";
 // import { tg } from "../../App";
 interface Video {
-  video_id: string;
+  video_id: number;
   streamer_id: number;
   streamer_name: string;
   viewers: number;
@@ -16,6 +16,13 @@ interface Video {
   is_subscribed: boolean;
   subscriptions_count: number;
 }
+interface IStreamer {
+  id: number;
+  name: string;
+  count_sub: number;
+  image: string;
+  is_subscribed: boolean;
+}
 
 interface StreamingPlatforms {
   youtube: Video[];
@@ -24,7 +31,6 @@ interface StreamingPlatforms {
 }
 
 const LiveStreamers = () => {
-  // const init = tg.initData;
   const [search, setSearch] = useState<string>("");
   const [listStreamer, setListStreamers] = useState<StreamingPlatforms | null>(
     null
@@ -32,15 +38,20 @@ const LiveStreamers = () => {
   const [filteredStreamers, setFilteredStreamers] =
     useState<StreamingPlatforms | null>(null);
 
+  const [allStreamers, setAllStreamers] = useState<IStreamer[]>([]);
+  const [inactiveStreamers, setInactiveStreamers] = useState<IStreamer[]>([]);
+
   useEffect(() => {
     getListOfLiveStreamers();
+    getAllStreamers();
   }, []);
 
   useEffect(() => {
     if (listStreamer) {
       filterStreamersBySearch();
+      findInactiveStreamers();
     }
-  }, [search, listStreamer]);
+  }, [listStreamer, allStreamers]);
 
   const getListOfLiveStreamers = async () => {
     try {
@@ -57,12 +68,46 @@ const LiveStreamers = () => {
       );
 
       const res = await response.json();
-      console.log(res);
       setListStreamers(res);
       setFilteredStreamers(res);
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const getAllStreamers = async () => {
+    try {
+      const response = await fetch("https://api.bigstreamerbot.io/streamers/", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Telegram-User-ID": "235519518",
+          Auth: "M1bCSx92W6",
+        },
+      });
+
+      const res: IStreamer[] = await response.json();
+      console.log(res);
+      setAllStreamers(res);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const findInactiveStreamers = () => {
+    if (!listStreamer || !allStreamers) return;
+
+    const activeStreamers = [
+      ...listStreamer.youtube.map((item) => item.streamer_name),
+      ...listStreamer.twitch.map((item) => item.streamer_name),
+      ...listStreamer.kick.map((item) => item.streamer_name),
+    ];
+
+    const inactive = allStreamers.filter(
+      (streamer) => !activeStreamers.includes(streamer.name)
+    );
+
+    setInactiveStreamers(inactive);
   };
 
   const filterStreamersBySearch = () => {
@@ -136,6 +181,18 @@ const LiveStreamers = () => {
               name={item.streamer_name}
               subscriptions_count={item.subscriptions_count}
               kickOnline={item.viewers}
+            />
+          );
+        })}
+
+        {inactiveStreamers.map((item) => {
+          return (
+            <LiveStreamerItem
+              streamer_id={item.id}
+              is_subscribed={item.is_subscribed}
+              imgUrl={"https://api.bigstreamerbot.io/" + item.image}
+              name={item.name}
+              subscriptions_count={item.count_sub}
             />
           );
         })}
