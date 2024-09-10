@@ -17,7 +17,7 @@ const Post = () => {
     File = selectedFile;
   }, [selectedFile]);
 
-    const onPreview = () => {};
+    // const onPreview = () => {};
   const onPostCreate = () => {};
   return (
     <div className={style.PostBlock}>
