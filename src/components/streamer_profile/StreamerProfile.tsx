@@ -26,6 +26,9 @@ const StreamerProfile = () => {
   const backPage = () => {
     nav("/");
   };
+  const moveToSettings = () => {
+    nav("/streamer-extra-info");
+  };
   return (
     <div className={style.back}>
       <SectionHeader
@@ -60,7 +63,12 @@ const StreamerProfile = () => {
               <img src={next_arrow} alt="#" />
             </span>
           </div>
-          <div className={style.streamer_more}>
+          <div
+            onClick={() => {
+              moveToSettings();
+            }}
+            className={style.streamer_more}
+          >
             <img src={dots} alt="#" />
             <span className={style.more}>ЕЩЁ</span>
           </div>

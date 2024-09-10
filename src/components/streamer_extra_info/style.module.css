@@ -1,0 +1,207 @@
+.back {
+  width: 100%;
+  overflow: scroll;
+  height: 100vh;
+  background-color: #efeff3;
+}
+
+.Stream {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0px 16px;
+  padding-bottom: 60px;
+  overflow-y: auto;
+}
+
+.container {
+  padding: 10px;
+  background-color: #f4f4f4;
+}
+
+.section {
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+}
+
+.profileItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #e3e3e4;
+}
+
+.item:last-child {
+  border-bottom: none;
+}
+
+.iconProfile {
+  background-color: red;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.iconAdmin {
+  background-color: green;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.iconSubscribers {
+  background-color: blue;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.iconReferrals {
+  background-color: purple;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.iconRaffle {
+  background-color: lightgreen;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.iconMessages {
+  background-color: skyblue;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.iconNews {
+  background-color: teal;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.iconSocialLinks {
+  background-color: orange;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.iconCasinoRating {
+  background-color: red;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.iconTopWins {
+  background-color: violet;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.count {
+  font-weight: bold;
+}
+
+.item_div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.item_div1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.sub_title {
+  color: #6d6d71;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  text-align: left;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+.InputBlock {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+.InputBlock_input {
+  width: 100%;
+  border-radius: 13px;
+  background-color: white;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: center;
+  color: black;
+  border: none;
+  height: 50px;
+  outline: none;
+  padding: 0px 15px;
+}
+.InputBlock_button {
+  width: 50px;
+  height: 50px;
+  border-radius: 13px;
+  border: none;
+  outline: none;
+  background-color: #d8e3f6;
+}
+.ResendButton {
+  width: 100%;
+  height: 45px;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 13px;
+  background-color: #007aff;
+  color: white;
+  border: none;
+  margin-top: 14px;
+}
+
+.description_text {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  text-align: left;
+  color: #6d6d71;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}

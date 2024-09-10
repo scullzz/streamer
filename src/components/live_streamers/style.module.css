@@ -1,4 +1,6 @@
-.back{
+.back {
+  width: 100%;
+  overflow: scroll;
   height: 100vh;
   background-color: white;
 }
@@ -12,8 +14,8 @@
   padding-left: 16px;
   padding-right: 16px;
   padding-bottom: 60px;
-  overflow-y: auto;
   background-color: white;
+  overflow-y: auto;
 }
 
 .searchContainer {

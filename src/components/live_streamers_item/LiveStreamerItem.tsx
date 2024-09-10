@@ -41,14 +41,14 @@ const LiveStreamerItem = ({
   };
 
   return (
-    <div
-      onClick={() => moveToStreamerPage()}
-      className={styles.profileContainer}
-    >
+    <div className={styles.profileContainer}>
       <div className={styles.profileImage}>
         <Avatar size={64} isLive={false} url={imgUrl} />
       </div>
-      <div className={styles.profileInfoBlock}>
+      <div
+        onClick={() => moveToStreamerPage()}
+        className={styles.profileInfoBlock}
+      >
         <div className={styles.profileInfo}>
           <div>
             <div className={styles.name}>{name}</div>
@@ -69,12 +69,24 @@ const LiveStreamerItem = ({
             </div>
           </div>
           {is_subscribed ? (
-            <button onClick={OpenModal} className={styles.subscribedButton}>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                OpenModal();
+              }}
+              className={styles.subscribedButton}
+            >
               <img src={check} alt="#" />
               Подписан
             </button>
           ) : (
-            <button onClick={OpenModal} className={styles.willSubscribeButton}>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                OpenModal();
+              }}
+              className={styles.willSubscribeButton}
+            >
               Подписаться
             </button>
           )}

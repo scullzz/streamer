@@ -45,9 +45,9 @@ const Post = () => {
           Сообщение получат все ваши подписчики, у которых бот включен.
         </span>
         <div className={style.PostSection_ButtonsBlock}>
-          <button className={style.button_preview} onClick={onPreview}>
+          {/* <button className={style.button_preview} onClick={onPreview}>
             Предпросмотр
-          </button>
+          </button> */}
           <button className={style.button_start} onClick={onPostCreate}>
             Опубликовать
           </button>
