@@ -9,7 +9,7 @@ import Slider from "react-slick";
 import { StreamerPreview } from "../streamer_preview/StreamerPreview";
 import StreamerVideo from "../streamer_video/StreamerVideo";
 import Prize from "../prize/Prize";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 interface Video {

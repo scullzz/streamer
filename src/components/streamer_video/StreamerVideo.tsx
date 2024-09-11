@@ -2,7 +2,7 @@ import style from "./style.module.css";
 import twitch from "./image/twtch.svg";
 import youtube from "./image/youtube.svg";
 import "./style.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 interface GetVideo {
   image: string;
   link: string;
@@ -25,6 +25,9 @@ const StreamerVideo = ({ image, link, platform, viewers, title }: GetVideo) => {
       setSelectedStyle("number3");
     }
   };
+  useEffect(() => {
+    getImage();
+  }, []);
   return (
     <div className={style.VideoBlock}>
       <img className={style.image} src={image} alt="#" />
