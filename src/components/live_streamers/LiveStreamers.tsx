@@ -3,7 +3,6 @@ import reply from "./image/reply.svg";
 import searchIcon from "./image/search.svg";
 import style from "./style.module.css";
 import LiveStreamerItem from "../live_streamers_item/LiveStreamerItem";
-// import { tg } from "../../App";
 interface Video {
   video_id: number;
   streamer_id: number;
@@ -48,10 +47,13 @@ const LiveStreamers = () => {
 
   useEffect(() => {
     if (listStreamer) {
-      filterStreamersBySearch();
       findInactiveStreamers();
     }
   }, [listStreamer, allStreamers]);
+
+  useEffect(() => {
+    filterStreamersBySearch();
+  }, [search]);
 
   const getListOfLiveStreamers = async () => {
     try {
@@ -113,6 +115,20 @@ const LiveStreamers = () => {
   const filterStreamersBySearch = () => {
     if (!listStreamer) return;
 
+    if (search.trim() === "") {
+      setFilteredStreamers(listStreamer);
+      setInactiveStreamers(
+        allStreamers.filter(
+          (streamer) =>
+            !listStreamer.youtube
+              .concat(listStreamer.twitch)
+              .concat(listStreamer.kick)
+              .some((item) => item.streamer_name === streamer.name)
+        )
+      );
+      return;
+    }
+
     const filteredYouTube = listStreamer.youtube.filter((item) =>
       item.streamer_name.toLowerCase().includes(search.toLowerCase())
     );
@@ -123,11 +139,16 @@ const LiveStreamers = () => {
       item.streamer_name.toLowerCase().includes(search.toLowerCase())
     );
 
+    const filteredInactive = inactiveStreamers.filter((item) =>
+      item.name.toLowerCase().includes(search.toLowerCase())
+    );
+
     setFilteredStreamers({
       youtube: filteredYouTube,
       twitch: filteredTwitch,
       kick: filteredKick,
     });
+    setInactiveStreamers(filteredInactive);
   };
 
   return (
