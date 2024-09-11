@@ -39,8 +39,24 @@
   gap: 14px;
 }
 
-.button_start {
+.button_preview {
   margin-top: 30px;
+  width: 100%;
+  border: none;
+  border-radius: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  height: 40px;
+
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  text-align: center;
+  color: #007aff;
+}
+.button_start {
   width: 100%;
   border: none;
   border-radius: 14px;

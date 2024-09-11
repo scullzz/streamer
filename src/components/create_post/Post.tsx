@@ -5,9 +5,12 @@ import style from "./style.module.css";
 import { TextBox } from "../text_box/TextBox";
 import { useMemoryState } from "../../functions/useMemoryState";
 import { FilePreview } from "../file_preview/FilePreview";
+import { useNavigate } from "react-router-dom";
 
 let File: File | null = null;
 const Post = () => {
+  const nav = useNavigate();
+
   const [selectedFile, setSelectedFile] = useState<File | null>(File);
   const [message, setPostMessage] = useMemoryState<string | undefined>(
     "",
@@ -17,7 +20,9 @@ const Post = () => {
     File = selectedFile;
   }, [selectedFile]);
 
-    // const onPreview = () => {};
+  const onPreview = () => {
+    nav("/post-preview", { state: { file: selectedFile } });
+  };
   const onPostCreate = () => {};
   return (
     <div className={style.PostBlock}>
@@ -45,20 +50,18 @@ const Post = () => {
           Сообщение получат все ваши подписчики, у которых бот включен.
         </span>
         <div className={style.PostSection_ButtonsBlock}>
-          {/* <button className={style.button_preview} onClick={onPreview}>
+          <button className={style.button_preview} onClick={onPreview}>
             Предпросмотр
-          </button> */}
+          </button>
           <button className={style.button_start} onClick={onPostCreate}>
             Опубликовать
           </button>
         </div>
 
-        {
-          <FilePreview
-            file={selectedFile}
-            style={{ marginTop: "15px" }}
-          ></FilePreview>
-        }
+        <FilePreview
+          file={selectedFile}
+          style={{ marginTop: "15px" }}
+        ></FilePreview>
       </div>
     </div>
   );

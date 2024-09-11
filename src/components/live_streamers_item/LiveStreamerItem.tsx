@@ -37,12 +37,12 @@ const LiveStreamerItem = ({
     setSubscribeModalOpen(false);
   };
   const moveToStreamerPage = () => {
-    nav("/streamer");
+    nav(`/streamer/${streamer_id}`);
   };
 
   return (
     <div className={styles.profileContainer}>
-      <div className={styles.profileImage}>
+      <div onClick={() => moveToStreamerPage()} className={styles.profileImage}>
         <Avatar size={64} isLive={false} url={imgUrl} />
       </div>
       <div

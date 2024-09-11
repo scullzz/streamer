@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { handleFiles } from "../../functions/handleFiles";
-
+import styles from "./style.module.css";
 interface IFilePreviewProps {
   file: File | null;
   style?: React.CSSProperties;
@@ -30,6 +30,8 @@ export const FilePreview = ({ file, style }: IFilePreviewProps) => {
           const el = e as HTMLElement;
           if (el.nodeName === "VIDEO") el.setAttribute("autoplay", "true");
           el.classList.add("cover");
+          el.style.width = "100%";
+          el.style.height = "200px";
         }
       });
       const elem: any = handledFiles[0];
@@ -44,7 +46,7 @@ export const FilePreview = ({ file, style }: IFilePreviewProps) => {
     }
   }, [file]);
   return (
-    <div ref={ref} className="cover" style={style}>
+    <div ref={ref} className={styles.imageBlock} style={style}>
       {elemNode}
     </div>
   );

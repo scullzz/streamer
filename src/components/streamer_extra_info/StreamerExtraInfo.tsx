@@ -1,17 +1,47 @@
 import style from "./style.module.css";
 import { SectionHeader } from "../section_header/SectionHeader";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import copy from "./image/copy.svg";
 import row from "./image/row.svg";
 import { StreamerPreview } from "../streamer_preview/StreamerPreview";
+import { useEffect, useState } from "react";
+import { StreamerResponse } from "../streamer_profile/StreamerProfile";
 const StreamerExtraInfo = () => {
+  const { id } = useParams();
+  const [data, setData] = useState<StreamerResponse | null>(null);
   const nav = useNavigate();
   const backPage = () => {
-    nav("/streamer");
+    nav(`/streamer/${id}`);
   };
 
   const moveToMessages = () => {
     nav("/create-post");
+  };
+
+  useEffect(() => {
+    getStreamerData();
+  }, []);
+
+  const getStreamerData = async () => {
+    try {
+      const response = await fetch(
+        `https://api.bigstreamerbot.io/live-streams/stream/?pk=${id}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Auth: "M1bCSx92W6",
+            "Telegram-User-ID": "235519518",
+          },
+        }
+      );
+
+      const res = await response.json();
+      console.log(res);
+      setData(res);
+    } catch (err) {
+      console.log(err);
+    }
   };
   return (
     <div className={style.back}>
@@ -25,10 +55,8 @@ const StreamerExtraInfo = () => {
 
         <StreamerPreview
           headerStyles={{ marginTop: "15px", lineHeight: "23px" }}
-          url={
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiE26ff46aKpfHCPy88HJkziodR9zd2jFhlg&s"
-          }
-          name={"Пользователь"}
+          url={"https://api.bigstreamerbot.io" + data?.streamer.image}
+          name={String(data?.streamer.name)}
           isLive={false}
         />
 

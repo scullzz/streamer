@@ -9,9 +9,40 @@ import Slider from "react-slick";
 import { StreamerPreview } from "../streamer_preview/StreamerPreview";
 import StreamerVideo from "../streamer_video/StreamerVideo";
 import Prize from "../prize/Prize";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+
+interface Video {
+  video_id: number;
+  streamer_id: number;
+  streamer_name: string;
+  viewers: number;
+  thumbnail: string;
+  author: string;
+  link: string;
+  platform: string;
+  is_subscribed: boolean;
+  subscriptions_count: number;
+  title: string;
+}
+interface Streamer {
+  id: number;
+  name: string;
+  image: string;
+  is_subscribed: boolean;
+  count_sub: number;
+}
+
+export interface StreamerResponse {
+  kick: Video[];
+  streamer: Streamer;
+  twitch: Video[];
+  youtube: Video[];
+}
 
 const StreamerProfile = () => {
+  const { id } = useParams();
+  const [data, setData] = useState<StreamerResponse | null>(null);
   const settings = {
     dots: false,
     infinite: false,
@@ -27,7 +58,43 @@ const StreamerProfile = () => {
     nav("/");
   };
   const moveToSettings = () => {
-    nav("/streamer-extra-info");
+    nav(`/streamer-extra-info/${id}`);
+  };
+  useEffect(() => {
+    getStreamerData();
+  }, []);
+
+  const getStreamerData = async () => {
+    try {
+      const response = await fetch(
+        `https://api.bigstreamerbot.io/live-streams/stream/?pk=${id}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Auth: "M1bCSx92W6",
+            "Telegram-User-ID": "235519518",
+          },
+        }
+      );
+
+      const res = await response.json();
+      console.log(res);
+      setData(res);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const checkStatus = (): boolean => {
+    if (
+      (data?.kick?.length ?? 0) > 0 ||
+      (data?.youtube?.length ?? 0) > 0 ||
+      (data?.twitch?.length ?? 0) > 0
+    ) {
+      return true;
+    }
+    return false;
   };
   return (
     <div className={style.back}>
@@ -40,17 +107,16 @@ const StreamerProfile = () => {
         <div className="mt" style={{ marginTop: "25px" }}></div>
         <StreamerPreview
           headerStyles={{ marginTop: "15px", lineHeight: "23px" }}
-          url={
-            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiE26ff46aKpfHCPy88HJkziodR9zd2jFhlg&s"
-          }
-          name={"Пользователь"}
-          details="Профиль аффилейта"
-          isLive={true}
+          url={"https://api.bigstreamerbot.io" + data?.streamer.image}
+          name={String(data?.streamer.name)}
+          isLive={checkStatus()}
         />
 
         <div className={style.streamer_stats}>
           <div className={style.streamer_subs}>
-            <span className={style.streamer_number}>125</span>
+            <span className={style.streamer_number}>
+              {data?.streamer.count_sub}
+            </span>
             <span className={style.streamer_last_info}>
               Подписчиков
               <img src={next_arrow} alt="#" />
@@ -74,18 +140,58 @@ const StreamerProfile = () => {
           </div>
         </div>
 
-        <div className={style.actionButtonSub}>
-          <p className={style.sub_text}>Подписаться</p>
-        </div>
+        {data?.streamer.is_subscribed === false ? (
+          <div className={style.actionButtonSub}>
+            <p className={style.sub_text}>Подписаться</p>
+          </div>
+        ) : (
+          <div className={style.actionButtonSub1}>
+            <p className={style.sub_a_text}>Отписаться</p>
+          </div>
+        )}
 
-        <div className={style.online_streamers}>
-          <p className={style.online_stream_title}>Стрим онлайн</p>
-          <Slider {...settings}>
-            {Array.from({ length: 3 }).map(() => (
-              <StreamerVideo />
-            ))}
-          </Slider>
-        </div>
+        {(data?.youtube.length && 0 > 0) ||
+        (data?.twitch.length && 0 > 0) ||
+        (data?.kick.length && 0 > 0) ? (
+          <div className={style.online_streamers}>
+            <p className={style.online_stream_title}>Стрим онлайн</p>
+            <Slider {...settings}>
+              {data?.youtube.map((item) => {
+                return (
+                  <StreamerVideo
+                    image={item.thumbnail}
+                    link={item.link}
+                    platform={item.platform}
+                    title={item.title}
+                    viewers={item.viewers}
+                  />
+                );
+              })}
+              {data?.twitch.map((item) => {
+                return (
+                  <StreamerVideo
+                    image={item.thumbnail}
+                    link={item.link}
+                    platform={item.platform}
+                    title={item.title}
+                    viewers={item.viewers}
+                  />
+                );
+              })}
+              {data?.kick.map((item) => {
+                return (
+                  <StreamerVideo
+                    image={item.thumbnail}
+                    link={item.link}
+                    platform={item.platform}
+                    title={item.title}
+                    viewers={item.viewers}
+                  />
+                );
+              })}
+            </Slider>
+          </div>
+        ) : null}
 
         <div className={style.RaffleDiv}>
           <span className={style.RaffleDiv_title}>Розыгрыши</span>
