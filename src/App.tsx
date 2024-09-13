@@ -22,10 +22,7 @@ function App() {
             <Route path="/" element={<LiveStreamers></LiveStreamers>}></Route>
             <Route path="/menu" element={<MainPage></MainPage>}></Route>
             <Route path="/me" element={<UserProfile></UserProfile>}></Route>
-            <Route
-              path="/streamer/:id"
-              element={<StreamerProfile></StreamerProfile>}
-            ></Route>
+            <Route path="/streamer/:id/:status" element={<StreamerProfile />} />
             <Route path="/create-post/:id" element={<Post></Post>}></Route>
             <Route
               path="/streamer-extra-info/:id"

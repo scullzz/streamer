@@ -37,7 +37,7 @@ const LiveStreamerItem = ({
     setSubscribeModalOpen(false);
   };
   const moveToStreamerPage = () => {
-    nav(`/streamer/${streamer_id}`);
+    nav(`/streamer/${streamer_id}/${is_subscribed}`);
   };
 
   return (

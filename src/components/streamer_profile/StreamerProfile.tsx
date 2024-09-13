@@ -41,8 +41,10 @@ export interface StreamerResponse {
 }
 
 const StreamerProfile = () => {
-  const { id } = useParams();
+  const { id, status } = useParams();
   const [data, setData] = useState<StreamerResponse | null>(null);
+  const [sub_status, set_sub_status] = useState<boolean>(Boolean(status));
+  const [number_of_sub, set_number_of_sub] = useState<number>();
   const settings = {
     dots: false,
     infinite: false,
@@ -78,9 +80,12 @@ const StreamerProfile = () => {
         }
       );
 
-      const res = await response.json();
-      console.log(res);
-      setData(res);
+      if (response.ok) {
+        const res = await response.json();
+        setData(res);
+        set_sub_status(Boolean(res?.streamer.is_subscribed));
+        set_number_of_sub(res?.streamer.count_sub);
+      }
     } catch (err) {
       console.log(err);
     }
@@ -114,6 +119,14 @@ const StreamerProfile = () => {
         }
       );
 
+      if (
+        response.ok &&
+        typeof number_of_sub === "number" &&
+        number_of_sub > -1
+      ) {
+        set_sub_status(true);
+        set_number_of_sub(number_of_sub + 1);
+      }
     } catch (err) {
       console.log(err);
     }
@@ -121,7 +134,7 @@ const StreamerProfile = () => {
 
   const UnSubscribe = async () => {
     try {
-      await fetch(
+      const response = await fetch(
         `https://api.bigstreamerbot.io/subscriptions/${data?.streamer.id}/`,
         {
           method: "PUT",
@@ -136,6 +149,15 @@ const StreamerProfile = () => {
           }),
         }
       );
+
+      if (
+        response.ok &&
+        typeof number_of_sub === "number" &&
+        number_of_sub > -1
+      ) {
+        set_sub_status(false);
+        set_number_of_sub(number_of_sub - 1);
+      }
     } catch (err) {
       console.log(err);
     }
@@ -158,9 +180,7 @@ const StreamerProfile = () => {
 
         <div className={style.streamer_stats}>
           <div className={style.streamer_subs}>
-            <span className={style.streamer_number}>
-              {data?.streamer.count_sub}
-            </span>
+            <span className={style.streamer_number}>{number_of_sub}</span>
             <span className={style.streamer_last_info}>
               Подписчиков
               <img src={next_arrow} alt="#" />
@@ -184,7 +204,7 @@ const StreamerProfile = () => {
           </div>
         </div>
 
-        {data?.streamer.is_subscribed === false ? (
+        {sub_status === false ? (
           <div onClick={() => Subscribe()} className={style.actionButtonSub}>
             <p className={style.sub_text}>Подписаться</p>
           </div>

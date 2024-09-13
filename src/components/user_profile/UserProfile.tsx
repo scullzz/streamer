@@ -38,6 +38,7 @@ const UserProfile = () => {
           "Telegram-User-ID": "235519518",
         },
       });
+      console.log(email);
 
       const res = await response.json();
       console.log(res);
