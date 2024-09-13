@@ -97,6 +97,34 @@ const Subscribe = ({
     }
   };
 
+  const getNotificationsByStreamerId = async () => {
+    try {
+      const response = await fetch(
+        `https://api.bigstreamerbot.io/subscriptions/${streamerId}/`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Telegram-User-ID": "235519518",
+            Auth: "M1bCSx92W6",
+          },
+        }
+      );
+      const res = await response.json();
+
+      setRaffleNotification(res.notification_raffle);
+      setYoutubeNotification(res.notification_youtube);
+      setKickNotification(res.notification_kick);
+      setTwitchNotification(res.notification_twitch);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getNotificationsByStreamerId();
+  }, []);
+
   return (
     <div id="subscribeBlock" className={style.subscribeBlock}>
       <div className={style.exitImg}>

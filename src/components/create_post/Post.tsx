@@ -5,10 +5,11 @@ import style from "./style.module.css";
 import { TextBox } from "../text_box/TextBox";
 import { useMemoryState } from "../../functions/useMemoryState";
 import { FilePreview } from "../file_preview/FilePreview";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 let File: File | null = null;
 const Post = () => {
+  const { id } = useParams();
   const nav = useNavigate();
 
   const [selectedFile, setSelectedFile] = useState<File | null>(File);
@@ -21,13 +22,51 @@ const Post = () => {
   }, [selectedFile]);
 
   const onPreview = () => {
-    nav("/post-preview", { state: { file: selectedFile } });
+    nav("/post-preview", {
+      state: { file: selectedFile, id: id, text: message },
+    });
   };
-  const onPostCreate = () => {};
+
+  const backPage = () => {
+    nav(`/streamer-extra-info/${id}`);
+  };
+  const onPostCreate = async () => {
+    try {
+      if (!id) {
+        console.error("Streamer ID is missing");
+        return;
+      }
+      if (!selectedFile) {
+        console.error("No file selected");
+        return;
+      }
+
+      const messageText = message || "";
+
+      const formData = new FormData();
+      formData.append("streamer", id);
+      formData.append("photo", selectedFile, selectedFile.name);
+      formData.append("text", messageText);
+
+      const response = await fetch(`https://api.bigstreamerbot.io/mailings/`, {
+        method: "POST",
+        headers: {
+          Auth: "M1bCSx92W6",
+        },
+        body: formData,
+      });
+
+      const result = await response.json();
+      console.log(result);
+    } catch (error) {
+      console.error("Error creating post:", error);
+    }
+  };
+
   return (
     <div className={style.PostBlock}>
       <SectionHeader
-        left={<span>Закрыть</span>}
+        left={<span onClick={() => backPage()}>Закрыть</span>}
         center={<span>BigStreamerBot</span>}
       />
 

@@ -15,7 +15,7 @@ const StreamerExtraInfo = () => {
   };
 
   const moveToMessages = () => {
-    nav("/create-post");
+    nav(`/create-post/${id}`);
   };
 
   useEffect(() => {

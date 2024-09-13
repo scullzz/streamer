@@ -26,7 +26,7 @@ function App() {
               path="/streamer/:id"
               element={<StreamerProfile></StreamerProfile>}
             ></Route>
-            <Route path="/create-post" element={<Post></Post>}></Route>
+            <Route path="/create-post/:id" element={<Post></Post>}></Route>
             <Route
               path="/streamer-extra-info/:id"
               element={<StreamerExtraInfo />}

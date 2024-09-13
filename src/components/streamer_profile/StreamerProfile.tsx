@@ -96,6 +96,50 @@ const StreamerProfile = () => {
     }
     return false;
   };
+
+  const Subscribe = async () => {
+    try {
+      const response = await fetch(
+        `https://api.bigstreamerbot.io/subscriptions/${data?.streamer.id}/`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            "Telegram-User-ID": "235519518",
+            Auth: "M1bCSx92W6",
+          },
+          body: JSON.stringify({
+            is_sub: true,
+          }),
+        }
+      );
+
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const UnSubscribe = async () => {
+    try {
+      await fetch(
+        `https://api.bigstreamerbot.io/subscriptions/${data?.streamer.id}/`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            "Telegram-User-ID": "235519518",
+            Auth: "M1bCSx92W6",
+          },
+          body: JSON.stringify({
+            is_sub: false,
+            date_unsubscribe: new Date(),
+          }),
+        }
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <div className={style.back}>
       <SectionHeader
@@ -107,7 +151,7 @@ const StreamerProfile = () => {
         <div className="mt" style={{ marginTop: "25px" }}></div>
         <StreamerPreview
           headerStyles={{ marginTop: "15px", lineHeight: "23px" }}
-          url={"https://api.bigstreamerbot.io" + data?.streamer.image}
+          url={"https://api.bigstreamerbot.io" + String(data?.streamer.image)}
           name={String(data?.streamer.name)}
           isLive={checkStatus()}
         />
@@ -123,7 +167,7 @@ const StreamerProfile = () => {
             </span>
           </div>
           <div className={style.streamer_refs}>
-            <span className={style.streamer_number}>512</span>
+            <span className={style.streamer_number}>0</span>
             <span className={style.streamer_last_info}>
               Рефералов
               <img src={next_arrow} alt="#" />
@@ -141,11 +185,11 @@ const StreamerProfile = () => {
         </div>
 
         {data?.streamer.is_subscribed === false ? (
-          <div className={style.actionButtonSub}>
+          <div onClick={() => Subscribe()} className={style.actionButtonSub}>
             <p className={style.sub_text}>Подписаться</p>
           </div>
         ) : (
-          <div className={style.actionButtonSub1}>
+          <div onClick={() => UnSubscribe()} className={style.actionButtonSub1}>
             <p className={style.sub_a_text}>Отписаться</p>
           </div>
         )}

@@ -1,33 +1,55 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { SectionHeader } from "../section_header/SectionHeader";
 import style from "./style.module.css";
 import { StreamerPreview } from "../streamer_preview/StreamerPreview";
 import { FormInput } from "../form_input/FormInput";
 import { useNavigate } from "react-router-dom";
 
-// interface GetUserProfile {
-//   id: number;
-//   tgId: string;
-//   email: string | null;
-//   firstName: string;
-//   lastName: string | null;
-//   imageUrl: string | null;
-// }
+interface GetUserProfile {
+  id: number;
+  tgid: string;
+  email: string | null;
+  first_name: string;
+  last_name: string | null;
+  image: string | null;
+}
 
 const UserProfile = () => {
   const nav = useNavigate();
 
-  //need to create endpoint to take userData
-  // const [user, setUser] = useState<GetUserProfile | null>(null);
+  const [user, setUser] = useState<GetUserProfile | null>(null);
 
   const [trc, setTrc] = useState<string | null | undefined>(undefined);
   const [erc, setErc] = useState<string | null | undefined>(undefined);
   const [pstrx, setPstrx] = useState<string | null | undefined>(undefined);
-  const [email, setEmail] = useState<string | null | undefined>(undefined);
+  const [email, setEmail] = useState<string>("");
 
   const CloseHandle = () => {
     nav("/menu");
   };
+
+  const getUser = async () => {
+    try {
+      const response = await fetch("https://api.bigstreamerbot.io/users/1/", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Auth: "M1bCSx92W6",
+          "Telegram-User-ID": "235519518",
+        },
+      });
+
+      const res = await response.json();
+      console.log(res);
+      setUser(res);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    getUser();
+  }, []);
   return (
     <div className={`${style.userProfile} section`}>
       <SectionHeader
@@ -38,10 +60,10 @@ const UserProfile = () => {
       <div className="mt" style={{ marginTop: "25px" }}></div>
       <StreamerPreview
         headerStyles={{ marginTop: "15px", lineHeight: "23px" }}
-        url={
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiE26ff46aKpfHCPy88HJkziodR9zd2jFhlg&s"
-        }
-        name={"Пользователь"}
+        url={"https://api.bigstreamerbot.io" + String(user?.image)}
+        name={`${user?.first_name ? user.first_name : ""} ${
+          user?.last_name ? user.last_name : ""
+        }`}
         isLive={false}
       ></StreamerPreview>
       <div
@@ -92,7 +114,7 @@ const UserProfile = () => {
         <FormInput
           borderString={{ borderRadius: "14px" }}
           placeholder="Email"
-          value={email || undefined}
+          value={user?.email || ""}
           onChange={(e) => setEmail(e.currentTarget.value)}
         ></FormInput>
       </form>
