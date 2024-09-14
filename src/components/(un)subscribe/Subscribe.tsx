@@ -3,6 +3,7 @@ import { Avatar } from "../avatar/Avatar";
 import { Checker } from "../checker/Checker";
 import exit from "./image/exit.svg";
 import style from "./style.module.css";
+import SureModal from "../sure_to_unsub/MakeSure";
 
 interface ISubscribe {
   streamerId: number;
@@ -24,21 +25,31 @@ const Subscribe = ({
   const [twitchNotification, setTwitchNotification] = useState(true);
   const [kickNotification, setKickNotification] = useState(true);
   const [raffleNotification, setRaffleNotification] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const element = document.getElementById("subscribeBlock");
-    if (element) {
+    const overlay = document.getElementById("overlay");
+
+    if (element && overlay) {
       setTimeout(() => {
         element.classList.add(style.show);
+        overlay.classList.add(style.show);
       }, 0);
     }
   }, []);
 
   const closeModal = () => {
     const element = document.getElementById("subscribeBlock");
-    if (element) {
+    const overlay = document.getElementById("overlay");
+
+    if (element && overlay) {
       element.classList.add(style.close);
-      setTimeout(onClose, 300);
+      overlay.classList.add(style.close);
+      setTimeout(() => {
+        onClose();
+        overlay.classList.remove(style.show, style.close);
+      }, 300);
     }
   };
 
@@ -69,7 +80,7 @@ const Subscribe = ({
     }
   };
 
-  const UnSubscribeButton = async () => {
+  const approveUnSub = async () => {
     try {
       await fetch(
         `https://api.bigstreamerbot.io/subscriptions/${streamerId}/`,
@@ -92,6 +103,13 @@ const Subscribe = ({
       );
       closeModal();
       window.location.reload();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const UnSubscribeButton = async () => {
+    try {
+      setIsModalOpen(true);
     } catch (err) {
       console.log(err);
     }
@@ -124,80 +142,89 @@ const Subscribe = ({
   useEffect(() => {
     getNotificationsByStreamerId();
   }, []);
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
-    <div id="subscribeBlock" className={style.subscribeBlock}>
-      <div className={style.exitImg}>
-        <img onClick={closeModal} src={exit} alt="" />
-      </div>
-      <div className={style.streamerAva}>
-        <Avatar size={94} isLive={false} url={imgUrl} />
-        <p className={style.ava_text}>
-          {isSubscribed === false ? "Подписаться" : "Отписаться"} на {name}?
-        </p>
-      </div>
-      <div className={style.CheckerListFirstItem}>
-        <Checker
-          status={true}
-          color="#000000"
-          text="Получать сообщения от стримера (через бота)"
-          value={getNotification}
-          onChange={setNotification}
-        />
-      </div>
+    <div className={style.Main}>
+      <div id="overlay" className={style.overlay}></div>
+      <div id="subscribeBlock" className={style.subscribeBlock}>
+        <div className={style.exitImg}>
+          <img onClick={closeModal} src={exit} alt="" />
+        </div>
+        <div className={style.streamerAva}>
+          <Avatar size={94} isLive={false} url={imgUrl} />
+          <p className={style.ava_text}>
+            {isSubscribed === false ? "Подписаться" : "Отписаться"} на {name}?
+          </p>
+        </div>
+        <div className={style.CheckerListFirstItem}>
+          <Checker
+            status={true}
+            color="#000000"
+            text="Получать сообщения от стримера (через бота)"
+            value={getNotification}
+            onChange={setNotification}
+          />
+        </div>
 
-      <div className={style.CheckerListSecondItem}>
-        <Checker
-          status={false}
-          text="Оповещать о начале стримов на YouTube.com"
-          value={youtubeNotification}
-          onChange={setYoutubeNotification}
-        />
-        <div className={style.line}></div>
-        <Checker
-          status={false}
-          text="Оповещать о начале стримов на Twitch.tv"
-          value={twitchNotification}
-          onChange={setTwitchNotification}
-        />
-        <div className={style.line}></div>
-        <Checker
-          status={false}
-          text="Оповещать о начале стримов на Kick.com"
-          value={kickNotification}
-          onChange={setKickNotification}
-        />
-      </div>
+        <div className={style.CheckerListSecondItem}>
+          <Checker
+            status={false}
+            text="Оповещать о начале стримов на YouTube.com"
+            value={youtubeNotification}
+            onChange={setYoutubeNotification}
+          />
+          <div className={style.line}></div>
+          <Checker
+            status={false}
+            text="Оповещать о начале стримов на Twitch.tv"
+            value={twitchNotification}
+            onChange={setTwitchNotification}
+          />
+          <div className={style.line}></div>
+          <Checker
+            status={false}
+            text="Оповещать о начале стримов на Kick.com"
+            value={kickNotification}
+            onChange={setKickNotification}
+          />
+        </div>
 
-      <div className={style.CheckerListFirstItem}>
-        <Checker
-          status={false}
-          text="Оповещать о розыгрышах в боте"
-          value={raffleNotification}
-          onChange={setRaffleNotification}
-        />
-      </div>
+        <div className={style.CheckerListFirstItem}>
+          <Checker
+            status={false}
+            text="Оповещать о розыгрышах в боте"
+            value={raffleNotification}
+            onChange={setRaffleNotification}
+          />
+        </div>
 
-      <div
-        className={
-          isSubscribed === false
-            ? style.actionButtonSub
-            : style.actionButtonUnSub
-        }
-      >
         {isSubscribed === false ? (
-          <button onClick={() => SubscribeButton()} className={style.sub_text}>
-            Подписаться
-          </button>
-        ) : (
-          <button
-            onClick={() => UnSubscribeButton()}
-            className={style.un_sub_text}
+          <div
+            onClick={() => SubscribeButton()}
+            className={style.actionButtonSub}
           >
-            Отписаться
-          </button>
+            <button className={style.sub_text}>Подписаться</button>
+          </div>
+        ) : (
+          <div
+            onClick={() => UnSubscribeButton()}
+            className={style.actionButtonUnSub}
+          >
+            <button className={style.un_sub_text}>Отписаться</button>
+          </div>
         )}
       </div>
+
+      <SureModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        approve={approveUnSub}
+        id={streamerId}
+        name={name}
+      />
     </div>
   );
 };
