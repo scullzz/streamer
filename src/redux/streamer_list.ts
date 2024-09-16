@@ -1,4 +1,3 @@
-
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 interface Video {
@@ -22,27 +21,22 @@ interface IStreamer {
   is_subscribed: boolean;
 }
 
-interface StreamingPlatforms {
+export interface StreamingPlatforms {
   youtube: Video[];
   twitch: Video[];
   kick: Video[];
+  rest: IStreamer[];
 }
 
 interface StreamersState {
-  listStreamer: StreamingPlatforms | null;
-  allStreamers: IStreamer[];
-  filteredStreamers: StreamingPlatforms | null;
-  inactiveStreamers: IStreamer[];
-  loading: boolean;
+  platforms: StreamingPlatforms | null;
+  status: "idle" | "loading" | "succeeded" | "failed";
   error: string | null;
 }
 
 const initialState: StreamersState = {
-  listStreamer: null,
-  allStreamers: [],
-  filteredStreamers: null,
-  inactiveStreamers: [],
-  loading: false,
+  platforms: null,
+  status: "idle",
   error: null,
 };
 
@@ -65,74 +59,25 @@ export const fetchListOfLiveStreamers = createAsyncThunk(
   }
 );
 
-// Async thunk for fetching all streamers
-export const fetchAllStreamers = createAsyncThunk(
-  "liveStreamers/fetchAllStreamers",
-  async () => {
-    const response = await fetch("https://api.bigstreamerbot.io/streamers/", {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        "Telegram-User-ID": "235519518",
-        Auth: "M1bCSx92W6",
-      },
-    });
-    const data: IStreamer[] = await response.json();
-    return data;
-  }
-);
-
 const liveStreamersSlice = createSlice({
   name: "liveStreamers",
   initialState,
-  reducers: {
-    setFilteredStreamers: (state, action) => {
-      state.filteredStreamers = action.payload;
-    },
-    findInactiveStreamers: (state) => {
-      if (!state.listStreamer || state.allStreamers.length === 0) return;
-
-      const activeStreamers = [
-        ...state.listStreamer.youtube.map((item) => item.streamer_name),
-        ...state.listStreamer.twitch.map((item) => item.streamer_name),
-        ...state.listStreamer.kick.map((item) => item.streamer_name),
-      ];
-
-      state.inactiveStreamers = state.allStreamers.filter(
-        (streamer) => !activeStreamers.includes(streamer.name)
-      );
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchListOfLiveStreamers.pending, (state) => {
-        state.loading = true;
+        state.status = "loading";
         state.error = null;
       })
       .addCase(fetchListOfLiveStreamers.fulfilled, (state, action) => {
-        state.loading = false;
-        state.listStreamer = action.payload;
-        state.filteredStreamers = action.payload;
+        state.status = "succeeded";
+        state.platforms = action.payload;
       })
       .addCase(fetchListOfLiveStreamers.rejected, (state, action) => {
-        state.loading = false;
+        state.status = "failed";
         state.error = action.error.message || "Failed to fetch live streamers";
-      })
-      .addCase(fetchAllStreamers.pending, (state) => {
-        state.loading = true;
-        state.error = null;
-      })
-      .addCase(fetchAllStreamers.fulfilled, (state, action) => {
-        state.loading = false;
-        state.allStreamers = action.payload;
-      })
-      .addCase(fetchAllStreamers.rejected, (state, action) => {
-        state.loading = false;
-        state.error = action.error.message || "Failed to fetch all streamers";
       });
   },
 });
 
-export const { setFilteredStreamers, findInactiveStreamers } =
-  liveStreamersSlice.actions;
 export default liveStreamersSlice.reducer;

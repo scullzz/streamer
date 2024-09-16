@@ -6,60 +6,64 @@ import LiveStreamerItem from "../live_streamers_item/LiveStreamerItem";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchListOfLiveStreamers,
-  fetchAllStreamers,
-  findInactiveStreamers,
-  setFilteredStreamers,
+  StreamingPlatforms,
 } from "../../redux/streamer_list";
-import { RootState, AppDispatch } from "../../store";
+import { AppDispatch, RootState } from "../../store";
 
 const LiveStreamers = () => {
   const [search, setSearch] = useState<string>("");
+  const [filteredPlatforms, setFilteredPlatforms] =
+    useState<StreamingPlatforms | null>(null);
+
   const dispatch = useDispatch<AppDispatch>();
-  const { listStreamer, filteredStreamers, inactiveStreamers } = useSelector(
+
+  const { platforms, status } = useSelector(
     (state: RootState) => state.liveStreamers
   );
 
   useEffect(() => {
-    dispatch(fetchListOfLiveStreamers());
-    dispatch(fetchAllStreamers());
-  }, [dispatch]);
+    if (!platforms) {
+      dispatch(fetchListOfLiveStreamers());
+      console.log(platforms);
+    } else {
+      setFilteredPlatforms(platforms);
+    }
+  }, [dispatch, platforms]);
 
   useEffect(() => {
-    if (listStreamer && filteredStreamers) {
-      dispatch(findInactiveStreamers());
+    if (platforms) {
+      if (search === "") {
+        setFilteredPlatforms(platforms);
+      } else {
+        const filteredYoutube = platforms.youtube.filter((item) =>
+          item.streamer_name.toLowerCase().includes(search.toLowerCase())
+        );
+        const filteredTwitch = platforms.twitch.filter((item) =>
+          item.streamer_name.toLowerCase().includes(search.toLowerCase())
+        );
+        const filteredKick = platforms.kick.filter((item) =>
+          item.streamer_name.toLowerCase().includes(search.toLowerCase())
+        );
+        const filteredRest = platforms.rest.filter((item) =>
+          item.name.toLowerCase().includes(search.toLowerCase())
+        );
+        setFilteredPlatforms({
+          youtube: filteredYoutube,
+          twitch: filteredTwitch,
+          kick: filteredKick,
+          rest: filteredRest,
+        });
+      }
     }
-  }, [listStreamer, filteredStreamers, dispatch]);
+  }, [platforms, search]);
 
-  useEffect(() => {
-    filterStreamersBySearch(search);
-  }, [search]);
-
-  const filterStreamersBySearch = (search: string) => {
-    if (!listStreamer) return;
-
-    if (search.trim() === "") {
-      dispatch(setFilteredStreamers(listStreamer));
-      return;
-    }
-
-    const filteredYouTube = listStreamer.youtube.filter((item) =>
-      item.streamer_name.toLowerCase().includes(search.toLowerCase())
+  if (status === "loading") {
+    return (
+      <div className={style.loader_container}>
+        <div className={style.loader}></div>;
+      </div>
     );
-    const filteredTwitch = listStreamer.twitch.filter((item) =>
-      item.streamer_name.toLowerCase().includes(search.toLowerCase())
-    );
-    const filteredKick = listStreamer.kick.filter((item) =>
-      item.streamer_name.toLowerCase().includes(search.toLowerCase())
-    );
-
-    dispatch(
-      setFilteredStreamers({
-        youtube: filteredYouTube,
-        twitch: filteredTwitch,
-        kick: filteredKick,
-      })
-    );
-  };
+  }
 
   return (
     <div className={style.back}>
@@ -80,7 +84,7 @@ const LiveStreamers = () => {
           <img src={reply} alt="Reply" />
         </div>
 
-        {filteredStreamers?.youtube.map((item) => (
+        {filteredPlatforms?.youtube.map((item) => (
           <LiveStreamerItem
             key={item.streamer_id}
             streamer_id={item.streamer_id}
@@ -91,7 +95,7 @@ const LiveStreamers = () => {
             youtubeOnline={item.viewers}
           />
         ))}
-        {filteredStreamers?.twitch.map((item) => (
+        {filteredPlatforms?.twitch.map((item) => (
           <LiveStreamerItem
             key={item.streamer_id}
             streamer_id={item.streamer_id}
@@ -102,7 +106,7 @@ const LiveStreamers = () => {
             twitchOnline={item.viewers}
           />
         ))}
-        {filteredStreamers?.kick.map((item) => (
+        {filteredPlatforms?.kick.map((item) => (
           <LiveStreamerItem
             key={item.streamer_id}
             streamer_id={item.streamer_id}
@@ -114,7 +118,7 @@ const LiveStreamers = () => {
           />
         ))}
 
-        {inactiveStreamers.map((item) => (
+        {filteredPlatforms?.rest.map((item) => (
           <LiveStreamerItem
             key={item.id}
             streamer_id={item.id}

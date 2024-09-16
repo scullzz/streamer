@@ -10,7 +10,7 @@ import Post from "./components/create_post/Post";
 import StreamerExtraInfo from "./components/streamer_extra_info/StreamerExtraInfo";
 import PostPreview from "./components/post_preview/PostPreview";
 import { Provider } from "react-redux";
-import store from "./store";
+import { store } from "./store";
 
 export const tg = Telegram.WebApp;
 function App() {
