@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 
 interface Video {
   video_id: number;
@@ -58,11 +58,57 @@ export const fetchListOfLiveStreamers = createAsyncThunk(
     return data;
   }
 );
+const updateSubscriptionStatus = (
+  platforms: StreamingPlatforms,
+  streamerId: number,
+  isSubscribed: boolean
+) => {
+  (["youtube", "twitch", "kick"] as Array<keyof StreamingPlatforms>).forEach(
+    (platform) => {
+      platforms[platform].forEach((streamer) => {
+        if (
+          (streamer as Video).streamer_id === streamerId &&
+          isSubscribed === true
+        ) {
+          (streamer as Video).is_subscribed = isSubscribed;
+          (streamer as Video).subscriptions_count++;
+        } else if (
+          (streamer as Video).streamer_id === streamerId &&
+          isSubscribed === false
+        ) {
+          (streamer as Video).is_subscribed = isSubscribed;
+          (streamer as Video).subscriptions_count--;
+        }
+      });
+    }
+  );
+
+  platforms.rest.forEach((streamer) => {
+    if (streamer.id === streamerId && isSubscribed === true) {
+      streamer.is_subscribed = isSubscribed;
+      streamer.count_sub++;
+    } else if (streamer.id === streamerId && isSubscribed === false) {
+      streamer.is_subscribed = isSubscribed;
+      streamer.count_sub--;
+    }
+  });
+};
 
 const liveStreamersSlice = createSlice({
   name: "liveStreamers",
   initialState,
-  reducers: {},
+  reducers: {
+    subscribeToStreamer: (state, action: PayloadAction<number>) => {
+      if (state.platforms) {
+        updateSubscriptionStatus(state.platforms, action.payload, true);
+      }
+    },
+    unsubscribeFromStreamer: (state, action: PayloadAction<number>) => {
+      if (state.platforms) {
+        updateSubscriptionStatus(state.platforms, action.payload, false);
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchListOfLiveStreamers.pending, (state) => {
@@ -79,5 +125,9 @@ const liveStreamersSlice = createSlice({
       });
   },
 });
+
+// Exporting the subscribe and unsubscribe actions
+export const { subscribeToStreamer, unsubscribeFromStreamer } =
+  liveStreamersSlice.actions;
 
 export default liveStreamersSlice.reducer;

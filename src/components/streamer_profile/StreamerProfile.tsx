@@ -9,8 +9,14 @@ import Slider from "react-slick";
 import { StreamerPreview } from "../streamer_preview/StreamerPreview";
 import StreamerVideo from "../streamer_video/StreamerVideo";
 import Prize from "../prize/Prize";
+import {
+  subscribeToStreamer,
+  unsubscribeFromStreamer,
+} from "../../redux/streamer_list";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../store";
 
 interface Video {
   video_id: number;
@@ -42,6 +48,7 @@ export interface StreamerResponse {
 
 const StreamerProfile = () => {
   const { id, status } = useParams();
+  const dispatch = useDispatch<AppDispatch>();
   const [data, setData] = useState<StreamerResponse | null>(null);
   const [sub_status, set_sub_status] = useState<boolean>(Boolean(status));
   const [number_of_sub, set_number_of_sub] = useState<number>();
@@ -122,10 +129,12 @@ const StreamerProfile = () => {
       if (
         response.ok &&
         typeof number_of_sub === "number" &&
-        number_of_sub > -1
+        number_of_sub > -1 &&
+        data
       ) {
         set_sub_status(true);
         set_number_of_sub(number_of_sub + 1);
+        dispatch(subscribeToStreamer(data.streamer.id));
       }
     } catch (err) {
       console.log(err);
@@ -153,10 +162,12 @@ const StreamerProfile = () => {
       if (
         response.ok &&
         typeof number_of_sub === "number" &&
-        number_of_sub > -1
+        number_of_sub > -1 &&
+        data
       ) {
         set_sub_status(false);
         set_number_of_sub(number_of_sub - 1);
+        dispatch(unsubscribeFromStreamer(data.streamer.id));
       }
     } catch (err) {
       console.log(err);

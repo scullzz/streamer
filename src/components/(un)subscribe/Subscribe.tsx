@@ -4,6 +4,10 @@ import { Checker } from "../checker/Checker";
 import exit from "./image/exit.svg";
 import style from "./style.module.css";
 import SureModal from "../sure_to_unsub/MakeSure";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../store";
+import { subscribeToStreamer } from "../../redux/streamer_list";
+import { unsubscribeFromStreamer } from "../../redux/streamer_list";
 
 interface ISubscribe {
   streamerId: number;
@@ -26,6 +30,8 @@ const Subscribe = ({
   const [kickNotification, setKickNotification] = useState(true);
   const [raffleNotification, setRaffleNotification] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
     const element = document.getElementById("subscribeBlock");
@@ -74,7 +80,7 @@ const Subscribe = ({
         }
       );
       closeModal();
-      window.location.reload();
+      dispatch(subscribeToStreamer(streamerId));
     } catch (err) {
       console.log(err);
     }
@@ -102,7 +108,7 @@ const Subscribe = ({
         }
       );
       closeModal();
-      window.location.reload();
+      dispatch(unsubscribeFromStreamer(streamerId));
     } catch (err) {
       console.log(err);
     }
