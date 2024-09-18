@@ -3,20 +3,33 @@ import { SectionHeader } from "../section_header/SectionHeader";
 import { useNavigate, useParams } from "react-router-dom";
 import copy from "./image/copy.svg";
 import row from "./image/row.svg";
+import user from "./image/user.svg";
+import admin from "./image/admin.svg";
+import subs from "./image/subs.svg";
+import refs from "./image/refs.svg";
+import ruf from "./image/ruffers.svg";
+import mes from "./image/message.svg";
+import edit from "./image/edit.svg";
+import draw from "./image/draw.svg";
+import card from "./image/card.svg";
+import seven from "./image/seven.svg";
 import { StreamerPreview } from "../streamer_preview/StreamerPreview";
 import { useEffect, useState } from "react";
 import { StreamerResponse } from "../streamer_profile/StreamerProfile";
 const StreamerExtraInfo = () => {
-  const { id } = useParams();
+  const { id, status } = useParams();
   const [data, setData] = useState<StreamerResponse | null>(null);
   const nav = useNavigate();
   const backPage = () => {
-    nav(`/streamer/${id}`);
+    nav(`/streamer/${id}/${status}`);
   };
 
   const moveToMessages = () => {
     nav(`/create-post/${id}`);
   };
+  const moveToSubscribers = () => {
+    nav("/streamer/subscribers");
+  }
 
   useEffect(() => {
     getStreamerData();
@@ -82,7 +95,9 @@ const StreamerExtraInfo = () => {
           <div className={style.section}>
             <div className={style.profileItem}>
               <div className={style.item_div}>
-                <span className={style.iconProfile}></span>
+                <span className={style.iconProfile}>
+                  <img src={user} alt="" />
+                </span>
                 <span>Профиль аффилeйта</span>
               </div>
               <img src={row} alt="#" />
@@ -92,7 +107,9 @@ const StreamerExtraInfo = () => {
           <div className={style.section}>
             <div className={style.item}>
               <div className={style.item_div}>
-                <span className={style.iconAdmin}></span>
+                <span className={style.iconAdmin}>
+                  <img src={admin} alt="" />
+                </span>
                 <span>Администраторы</span>
               </div>
               <div className={style.item_div1}>
@@ -100,9 +117,11 @@ const StreamerExtraInfo = () => {
                 <img src={row} alt="#" />
               </div>
             </div>
-            <div className={style.item}>
+            <div onClick={()=> moveToSubscribers()} className={style.item}>
               <div className={style.item_div}>
-                <span className={style.iconSubscribers}></span>
+                <span className={style.iconSubscribers}>
+                  <img src={subs} alt="" />
+                </span>
                 <span>Подписчики</span>
               </div>
               <div className={style.item_div1}>
@@ -112,7 +131,9 @@ const StreamerExtraInfo = () => {
             </div>
             <div className={style.item}>
               <div className={style.item_div}>
-                <span className={style.iconReferrals}></span>
+                <span className={style.iconReferrals}>
+                  <img src={refs} alt="" />
+                </span>
                 <span>Рефералы</span>
               </div>
               <div className={style.item_div1}>
@@ -125,7 +146,9 @@ const StreamerExtraInfo = () => {
           <div className={style.section}>
             <div className={style.item}>
               <div className={style.item_div}>
-                <span className={style.iconRaffle}></span>
+                <span className={style.iconRaffle}>
+                  <img src={ruf} alt="" />
+                </span>
                 <span>Розыгрыши</span>
               </div>
               <img src={row} alt="#" />
@@ -137,14 +160,18 @@ const StreamerExtraInfo = () => {
               className={style.item}
             >
               <div className={style.item_div}>
-                <span className={style.iconMessages}></span>
+                <span className={style.iconMessages}>
+                  <img src={mes} alt="" />
+                </span>
                 <span>Сообщения</span>
               </div>
               <img src={row} alt="#" />
             </div>
             <div className={style.item}>
               <div className={style.item_div}>
-                <span className={style.iconNews}></span>
+                <span className={style.iconNews}>
+                  <img src={edit} alt="" />
+                </span>
                 <span>Новости</span>
               </div>
               <img src={row} alt="#" />
@@ -154,14 +181,18 @@ const StreamerExtraInfo = () => {
           <div className={style.section}>
             <div className={style.item}>
               <div className={style.item_div}>
-                <span className={style.iconSocialLinks}></span>
+                <span className={style.iconSocialLinks}>
+                  <img src={draw} alt="" />
+                </span>
                 <span>Соц. сети и ссылки</span>
               </div>
               <img src={row} alt="#" />
             </div>
             <div className={style.item}>
               <div className={style.item_div}>
-                <span className={style.iconCasinoRating}></span>
+                <span className={style.iconCasinoRating}>
+                  <img src={card} alt="" />
+                </span>
                 <span>Рейтинг казино</span>
               </div>
               <img src={row} alt="#" />
@@ -171,7 +202,9 @@ const StreamerExtraInfo = () => {
           <div className={style.section}>
             <div className={style.item}>
               <div className={style.item_div}>
-                <span className={style.iconTopWins}></span>
+                <span className={style.iconTopWins}>
+                  <img src={seven} alt="" />
+                </span>
                 <span>Топ заносы</span>
               </div>
               <img src={row} alt="#" />

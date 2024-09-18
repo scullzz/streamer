@@ -11,6 +11,7 @@ import StreamerExtraInfo from "./components/streamer_extra_info/StreamerExtraInf
 import PostPreview from "./components/post_preview/PostPreview";
 import { Provider } from "react-redux";
 import { store } from "./store";
+import SubscribersList from "./components/subscribers_list/SubscribersList";
 
 export const tg = Telegram.WebApp;
 function App() {
@@ -31,10 +32,14 @@ function App() {
               />
               <Route path="/create-post/:id" element={<Post></Post>}></Route>
               <Route
-                path="/streamer-extra-info/:id"
+                path="/streamer-extra-info/:id/:status"
                 element={<StreamerExtraInfo />}
               ></Route>
               <Route path="/post-preview" element={<PostPreview />}></Route>
+              <Route
+                path="/streamer/subscribers"
+                element={<SubscribersList />}
+              ></Route>
             </Routes>
           </WithMenu>
         </Router>

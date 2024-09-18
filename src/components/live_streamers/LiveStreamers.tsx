@@ -60,7 +60,7 @@ const LiveStreamers = () => {
   if (status === "loading") {
     return (
       <div className={style.loader_container}>
-        <div className={style.loader}></div>;
+        <div className={style.loader}></div>
       </div>
     );
   }

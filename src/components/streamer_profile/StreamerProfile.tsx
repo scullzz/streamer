@@ -67,7 +67,7 @@ const StreamerProfile = () => {
     nav("/");
   };
   const moveToSettings = () => {
-    nav(`/streamer-extra-info/${id}`);
+    nav(`/streamer-extra-info/${id}/${sub_status}`);
   };
   useEffect(() => {
     getStreamerData();
