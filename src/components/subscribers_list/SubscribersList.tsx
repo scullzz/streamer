@@ -1,4 +1,3 @@
-import React from "react";
 import styles from "./style.module.css";
 import SubscriberRow from "./SubscribeRow";
 import { SectionHeader } from "../section_header/SectionHeader";
@@ -13,15 +12,15 @@ const subscribers = [
   { name: "Valeriya", date: "30 августа 2024" },
 ];
 
-interface User {
-  id: number; 
-  tgid: number;
-  first_name?: string | null; 
-  last_name?: string | null; 
-  email?: string | null;
-  image?: string | null;
-  username?: string | null;
-}
+// interface User {
+//   id: number; 
+//   tgid: number;
+//   first_name?: string | null; 
+//   last_name?: string | null; 
+//   email?: string | null;
+//   image?: string | null;
+//   username?: string | null;
+// }
 
 const SubscribersList = () => {
   return (
