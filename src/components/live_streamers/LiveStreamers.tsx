@@ -27,6 +27,7 @@ const LiveStreamers = () => {
       console.log(platforms);
     } else {
       setFilteredPlatforms(platforms);
+      console.log(filteredPlatforms);
     }
   }, [dispatch, platforms]);
 

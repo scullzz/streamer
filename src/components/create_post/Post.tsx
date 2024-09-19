@@ -27,9 +27,6 @@ const Post = () => {
     });
   };
 
-  const backPage = () => {
-    nav(`/streamer-extra-info/${id}`);
-  };
   const onPostCreate = async () => {
     try {
       if (!id) {
@@ -66,7 +63,15 @@ const Post = () => {
   return (
     <div className={style.PostBlock}>
       <SectionHeader
-        left={<span onClick={() => backPage()}>Закрыть</span>}
+        left={
+          <span
+            onClick={() => {
+              window.history.back();
+            }}
+          >
+            Назад
+          </span>
+        }
         center={<span>BigStreamerBot</span>}
       />
 

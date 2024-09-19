@@ -28,7 +28,7 @@ const StreamerExtraInfo = () => {
     nav(`/create-post/${id}`);
   };
   const moveToSubscribers = () => {
-    nav("/streamer/subscribers");
+    nav(`/streamer/subscribers/${id}`);
   }
 
   useEffect(() => {

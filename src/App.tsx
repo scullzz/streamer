@@ -37,7 +37,7 @@ function App() {
               ></Route>
               <Route path="/post-preview" element={<PostPreview />}></Route>
               <Route
-                path="/streamer/subscribers"
+                path="/streamer/subscribers/:id"
                 element={<SubscribersList />}
               ></Route>
             </Routes>

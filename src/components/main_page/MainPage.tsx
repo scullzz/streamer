@@ -9,8 +9,38 @@ import play from "./image/play.svg";
 import lightning from "./image/ligthning.svg";
 import champ from "./image/champ.svg";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+
+interface GetUserProfile {
+  id: number;
+  tgid: string;
+  email: string | null;
+  first_name: string;
+  last_name: string | null;
+  image: string | null;
+}
 const MainPage = () => {
   const nav = useNavigate();
+
+  const [user, setUser] = useState<GetUserProfile | null>(null);
+
+  const getUser = async () => {
+    try {
+      const response = await fetch("https://api.bigstreamerbot.io/users/1/", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Auth: "M1bCSx92W6",
+          "Telegram-User-ID": "235519518",
+        },
+      });
+
+      const res = await response.json();
+      setUser(res);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   const menuItems = [
     {
       id: 1,
@@ -66,6 +96,10 @@ const MainPage = () => {
     }
   };
 
+  useEffect(() => {
+    getUser();
+  }, []);
+
   return (
     <div className={style.MainPageBlock}>
       <div className={style.MainPageFlexItem}>
@@ -75,10 +109,12 @@ const MainPage = () => {
             <Avatar
               size={26}
               isLive={false}
-              url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiE26ff46aKpfHCPy88HJkziodR9zd2jFhlg&s"
+              url={"https://api.bigstreamerbot.io/" + String(user?.image)}
             ></Avatar>
             <div className={style.MainPage_ItemTextBlock}>
-              <p className={style.item_title}>Cobrik</p>
+              <p className={style.item_title}>
+                {user?.first_name + (user?.last_name || "")}
+              </p>
               <p className={style.item_text}>
                 Профиль, статистика, безопасность, платежная информация,
                 кошелек, история ставок...
@@ -100,10 +136,12 @@ const MainPage = () => {
             <Avatar
               size={26}
               isLive={false}
-              url="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiE26ff46aKpfHCPy88HJkziodR9zd2jFhlg&s"
+              url={"https://api.bigstreamerbot.io/" + String(user?.image)}
             ></Avatar>
             <div className={style.MainPage_ItemTextBlock}>
-              <p className={style.item_title}>Cobrik</p>
+              <p className={style.item_title}>
+                {user?.first_name + (user?.last_name || "")}
+              </p>
               <p className={style.item_text}>
                 Настройки стримов, розыгрыши, подписчики, рейтинг казино,
                 реферальные ссылки...

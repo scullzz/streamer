@@ -1,10 +1,10 @@
 import styles from "./style.module.css";
 
-const SubscriberRow = ({ name, date }: any) => {
+const SubscriberRow = ({ name, date, image }: any) => {
   return (
     <div className={styles.row}>
       <div className={styles.avatar}>
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiE26ff46aKpfHCPy88HJkziodR9zd2jFhlg&s" alt={name} />
+        <img src={"https://api.bigstreamerbot.io/" + image} alt={name} />
       </div>
       <div className={styles.info}>
         <div className={styles.name}>{name}</div>

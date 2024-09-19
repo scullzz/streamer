@@ -54,14 +54,14 @@
   font-weight: 700;
   line-height: 18.75px;
   text-align: center;
-  color: #8a8a8e;
+  color: #007AFF;
 }
 .streamer_last_info {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 4px;
-  color: #8a8a8e;
+  color: #007AFF;
 
   font-size: 12px;
   font-weight: 400;
@@ -96,7 +96,7 @@
   font-weight: 700;
   line-height: 20px;
   text-align: center;
-  color: #8a8a8e;
+  color: #007AFF;
 }
 
 .online_streamers {
