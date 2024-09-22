@@ -93,20 +93,6 @@ const ReferalList = () => {
     }
   };
 
-  const getExcel = async () => {
-    try {
-      await fetch(`https://bot.bigstreamerbot.io/send-subscriptions?pk=${id}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "X-Secret-Key": "tAhpSg4SJP",
-        },
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
   useEffect(() => {
     getAllSubscribers();
   }, []);
