@@ -54,14 +54,14 @@
   font-weight: 700;
   line-height: 18.75px;
   text-align: center;
-  color: #007AFF;
+  color: #007aff;
 }
 .streamer_last_info {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 4px;
-  color: #007AFF;
+  color: #007aff;
 
   font-size: 12px;
   font-weight: 400;
@@ -96,7 +96,7 @@
   font-weight: 700;
   line-height: 20px;
   text-align: center;
-  color: #007AFF;
+  color: #007aff;
 }
 
 .online_streamers {
@@ -148,4 +148,63 @@
   color: black;
   line-height: 18px;
   font-weight: bold;
+}
+
+.container {
+  position: relative;
+  display: inline-block;
+}
+
+.menu {
+  position: absolute;
+  top: 100%; /* Меню будет появляться над кнопкой */
+  right: 0; /* Меню будет выравниваться по правой стороне кнопки */
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  border-radius: 10px;
+}
+
+.menu a {
+  display: block;
+  color: black;
+  text-decoration: none;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 18px;
+  text-align: left;
+}
+
+.flex_item {
+  display: flex;
+  width: 100%;
+  padding: 10px;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #d0d1d4;
+  gap: 50px;
+}
+
+.menu a:hover {
+  background-color: #f0f0f0;
+}
+
+.unsubscribeButton {
+  display: block;
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  cursor: pointer;
+  margin-top: 10px;
+  border-radius: 5px;
+}
+
+.img_block {
+  height: 20px;
+  width: 20px;
 }

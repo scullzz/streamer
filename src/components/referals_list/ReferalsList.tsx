@@ -1,5 +1,5 @@
 import styles from "./style.module.css";
-import SubscriberRow from "./SubscribeRow";
+import ReferalRow from "./ReferalRow";
 import { SectionHeader } from "../section_header/SectionHeader";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -66,7 +66,7 @@ interface Subscription {
   user: number;
 }
 
-const SubscribersList = () => {
+const ReferalList = () => {
   const { id } = useParams();
   const [listSubs, setListSubs] = useState<User[] | []>([]);
   const [listExtraInfoSubs, setExtraInfoSubs] = useState<Subscription[] | []>(
@@ -93,7 +93,6 @@ const SubscribersList = () => {
     }
   };
 
-
   const getExcel = async () => {
     try {
       await fetch(`https://bot.bigstreamerbot.io/send-subscriptions?pk=${id}`, {
@@ -115,27 +114,28 @@ const SubscribersList = () => {
   return (
     <div className={styles.subscribers_list}>
       <SectionHeader
-        left={<span onClick={()=> {window.history.back()}}>Назад</span>}
+        left={
+          <span
+            onClick={() => {
+              window.history.back();
+            }}
+          >
+            Назад
+          </span>
+        }
         center={<span>Clash of Slots</span>}
       />
       <div className={styles.container}>
-        <h2 className={styles.title}>Подписчики Casino_Malaya</h2>
+        <h2 className={styles.title}>Рефералы Casino_Malaya</h2>
         <p className={styles.description}>
-          Список пользователей, которые включили уведомления для оповещений о
-          стримах и розыгрышах.
+          Список пользователей, которых привел в бота аффилейт по своей ссылке.
+          Таким пользователям показываются реферальные ссылки на казино онлайн
+          только от этого аффилейта.
         </p>
         <div className={styles.listContainer}>
-          <button
-            onClick={() => {
-              getExcel();
-            }}
-            className={styles.downloadButton}
-          >
-            Скачать
-          </button>
           <div className={styles.blockOverflow}>
             {listSubs.map((subscriber, index) => (
-              <SubscriberRow
+              <ReferalRow
                 key={index}
                 name={subscriber.first_name + (subscriber.last_name || "")}
                 date={formatDateToRussian(
@@ -153,4 +153,4 @@ const SubscribersList = () => {
   );
 };
 
-export default SubscribersList;
+export default ReferalList;

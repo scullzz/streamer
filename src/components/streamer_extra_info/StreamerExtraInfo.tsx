@@ -29,8 +29,14 @@ const StreamerExtraInfo = () => {
   };
   const moveToSubscribers = () => {
     nav(`/streamer/subscribers/${id}`);
-  }
+  };
+  const moveToReferals = () => {
+    nav(`/streamer/referrals/${id}`);
+  };
 
+  const movetoAdmins = () => {
+    nav(`/streamer/admins/${id}`);
+  };
   useEffect(() => {
     getStreamerData();
   }, []);
@@ -106,7 +112,7 @@ const StreamerExtraInfo = () => {
 
           <div className={style.section}>
             <div className={style.item}>
-              <div className={style.item_div}>
+              <div onClick={() => movetoAdmins()} className={style.item_div}>
                 <span className={style.iconAdmin}>
                   <img src={admin} alt="" />
                 </span>
@@ -117,7 +123,7 @@ const StreamerExtraInfo = () => {
                 <img src={row} alt="#" />
               </div>
             </div>
-            <div onClick={()=> moveToSubscribers()} className={style.item}>
+            <div onClick={() => moveToSubscribers()} className={style.item}>
               <div className={style.item_div}>
                 <span className={style.iconSubscribers}>
                   <img src={subs} alt="" />
@@ -129,7 +135,7 @@ const StreamerExtraInfo = () => {
                 <img src={row} alt="#" />
               </div>
             </div>
-            <div className={style.item}>
+            <div onClick={() => moveToReferals()} className={style.item}>
               <div className={style.item_div}>
                 <span className={style.iconReferrals}>
                   <img src={refs} alt="" />
@@ -167,7 +173,7 @@ const StreamerExtraInfo = () => {
               </div>
               <img src={row} alt="#" />
             </div>
-            <div className={style.item}>
+            {/* <div className={style.item}>
               <div className={style.item_div}>
                 <span className={style.iconNews}>
                   <img src={edit} alt="" />
@@ -175,7 +181,7 @@ const StreamerExtraInfo = () => {
                 <span>Новости</span>
               </div>
               <img src={row} alt="#" />
-            </div>
+            </div> */}
           </div>
 
           <div className={style.section}>
@@ -188,7 +194,7 @@ const StreamerExtraInfo = () => {
               </div>
               <img src={row} alt="#" />
             </div>
-            <div className={style.item}>
+            {/* <div className={style.item}>
               <div className={style.item_div}>
                 <span className={style.iconCasinoRating}>
                   <img src={card} alt="" />
@@ -196,7 +202,7 @@ const StreamerExtraInfo = () => {
                 <span>Рейтинг казино</span>
               </div>
               <img src={row} alt="#" />
-            </div>
+            </div> */}
           </div>
 
           <div className={style.section}>

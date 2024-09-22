@@ -154,7 +154,11 @@ const Subscribe = ({
 
   return (
     <div className={style.Main}>
-      <div id="overlay" className={style.overlay}></div>
+      <div
+        onClick={() => closeModal()}
+        id="overlay"
+        className={style.overlay}
+      ></div>
       <div id="subscribeBlock" className={style.subscribeBlock}>
         <div className={style.exitImg}>
           <img onClick={closeModal} src={exit} alt="" />

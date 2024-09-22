@@ -46,12 +46,30 @@ export interface StreamerResponse {
   youtube: Video[];
 }
 
+interface ISocial {
+  id: number;
+  icon: string;
+  name: string;
+}
+interface ISocialById {
+  id: number;
+  streamer: number;
+  social: number;
+  url: string;
+}
+
 const StreamerProfile = () => {
   const { id, status } = useParams();
   const dispatch = useDispatch<AppDispatch>();
   const [data, setData] = useState<StreamerResponse | null>(null);
   const [sub_status, set_sub_status] = useState<boolean>(Boolean(status));
   const [number_of_sub, set_number_of_sub] = useState<number>();
+  const [openSocial, setOpenSocial] = useState(false);
+  const [role, setRole] = useState<string>();
+
+  const [allSocials, setAllSocials] = useState<ISocial[]>([]);
+  const [allSocialsById, setAllSocialsById] = useState<ISocialById[]>([]);
+
   const settings = {
     dots: false,
     infinite: false,
@@ -66,11 +84,74 @@ const StreamerProfile = () => {
   const backPage = () => {
     nav("/");
   };
+
+  const getRole = async () => {
+    try {
+      const response = await fetch(
+        `https://api.bigstreamerbot.io/streamer-admins/${id}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Auth: "M1bCSx92W6",
+            "Telegram-User-ID": "235519518",
+          },
+        }
+      );
+
+      const res = await response.json();
+      setRole(res.role);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const getAllSocials = async () => {
+    try {
+      const response = await fetch("https://api.bigstreamerbot.io/socials/", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Auth: "M1bCSx92W6",
+        },
+      });
+      const res = await response.json();
+      setAllSocials(res);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const getSocialsByStreamer = async () => {
+    try {
+      const response = await fetch(
+        `https://api.bigstreamerbot.io/streamer-socials/${id}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Auth: "M1bCSx92W6",
+          },
+        }
+      );
+      const res = await response.json();
+      setAllSocialsById(res);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const moveToSettings = () => {
-    nav(`/streamer-extra-info/${id}/${sub_status}`);
+    if (role === "user") {
+      setOpenSocial(!openSocial);
+    } else {
+      nav(`/streamer-extra-info/${id}/${sub_status}`);
+    }
   };
   useEffect(() => {
     getStreamerData();
+    getRole();
+    getAllSocials();
+    getSocialsByStreamer();
   }, []);
 
   const getStreamerData = async () => {
@@ -89,6 +170,7 @@ const StreamerProfile = () => {
 
       if (response.ok) {
         const res = await response.json();
+        console.log(res);
         setData(res);
         set_sub_status(Boolean(res?.streamer.is_subscribed));
         set_number_of_sub(res?.streamer.count_sub);
@@ -184,7 +266,7 @@ const StreamerProfile = () => {
         <div className="mt" style={{ marginTop: "25px" }}></div>
         <StreamerPreview
           headerStyles={{ marginTop: "15px", lineHeight: "23px" }}
-          url={"https://api.bigstreamerbot.io" + String(data?.streamer.image)}
+          url={"https://api.bigstreamerbot.io/" + String(data?.streamer.image)}
           name={String(data?.streamer.name)}
           isLive={checkStatus()}
         />
@@ -204,14 +286,45 @@ const StreamerProfile = () => {
               <img src={next_arrow} alt="#" />
             </span>
           </div>
-          <div
-            onClick={() => {
-              moveToSettings();
-            }}
-            className={style.streamer_more}
-          >
-            <img src={dots} alt="#" />
-            <span className={style.more}>ЕЩЁ</span>
+          <div className={style.container}>
+            <div
+              onClick={() => {
+                moveToSettings();
+              }}
+              className={style.streamer_more}
+            >
+              <img src={dots} alt="#" />
+              <span className={style.more}>ЕЩЁ</span>
+            </div>
+
+            {openSocial && (
+              <div className={style.menu}>
+                {allSocialsById.map((item) => {
+                  return (
+                    <div className={style.flex_item}>
+                      <a href={item.url}>
+                        {
+                          allSocials.filter((el) => el.id === item.social)[0]
+                            .name
+                        }
+                      </a>
+                      <img 
+                      className={style.img_block}
+                        src={
+                          "https://api.bigstreamerbot.io/" +
+                          String(
+                            allSocials.filter((el) => el.id === item.social)[0]
+                              .icon
+                          )
+                        }
+                        alt=""
+                      />
+                    </div>
+                  );
+                })}
+                {/* <button className={style.unsubscribeButton}>Отписаться</button> */}
+              </div>
+            )}
           </div>
         </div>
 

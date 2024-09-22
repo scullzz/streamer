@@ -12,6 +12,8 @@ import PostPreview from "./components/post_preview/PostPreview";
 import { Provider } from "react-redux";
 import { store } from "./store";
 import SubscribersList from "./components/subscribers_list/SubscribersList";
+import ReferalList from "./components/referals_list/ReferalsList";
+import AdminsList from "./components/admins_list/AdminsList";
 
 export const tg = Telegram.WebApp;
 function App() {
@@ -39,6 +41,14 @@ function App() {
               <Route
                 path="/streamer/subscribers/:id"
                 element={<SubscribersList />}
+              ></Route>
+              <Route
+                path="/streamer/referrals/:id"
+                element={<ReferalList />}
+              ></Route>
+              <Route
+                path="/streamer/admins/:id"
+                element={<AdminsList />}
               ></Route>
             </Routes>
           </WithMenu>

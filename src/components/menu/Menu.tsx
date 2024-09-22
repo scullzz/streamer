@@ -22,7 +22,7 @@ const Menu = () => {
         className={style.menu}
         style={{
           borderTop: "1px solid #e6e6e6",
-          backgroundColor: "#FFFFFF",
+          backgroundColor: "#F2F2F2",
         }}
       >
         <MenuItem

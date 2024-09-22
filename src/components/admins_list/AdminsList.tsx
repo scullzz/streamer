@@ -1,8 +1,9 @@
 import styles from "./style.module.css";
-import SubscriberRow from "./SubscribeRow";
+import AdminsRow from "./AdminsRow";
 import { SectionHeader } from "../section_header/SectionHeader";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import add from "./image/add.svg"
 
 function formatDateToRussian(isoDateStr: string) {
   // Array of Russian month names
@@ -66,7 +67,7 @@ interface Subscription {
   user: number;
 }
 
-const SubscribersList = () => {
+const AdminsList = () => {
   const { id } = useParams();
   const [listSubs, setListSubs] = useState<User[] | []>([]);
   const [listExtraInfoSubs, setExtraInfoSubs] = useState<Subscription[] | []>(
@@ -93,7 +94,6 @@ const SubscribersList = () => {
     }
   };
 
-
   const getExcel = async () => {
     try {
       await fetch(`https://bot.bigstreamerbot.io/send-subscriptions?pk=${id}`, {
@@ -115,27 +115,32 @@ const SubscribersList = () => {
   return (
     <div className={styles.subscribers_list}>
       <SectionHeader
-        left={<span onClick={()=> {window.history.back()}}>Назад</span>}
+        left={
+          <span
+            onClick={() => {
+              window.history.back();
+            }}
+          >
+            Назад
+          </span>
+        }
         center={<span>Clash of Slots</span>}
       />
       <div className={styles.container}>
-        <h2 className={styles.title}>Подписчики Casino_Malaya</h2>
-        <p className={styles.description}>
-          Список пользователей, которые включили уведомления для оповещений о
-          стримах и розыгрышах.
-        </p>
+        <h2 className={styles.title}>Администраторы</h2>
         <div className={styles.listContainer}>
           <button
             onClick={() => {
               getExcel();
             }}
-            className={styles.downloadButton}
+            className={styles.addAdminButton}
           >
-            Скачать
+            <img className={styles.addIcon} src={add} alt="#" />
+            <div className={styles.addAdminText}>Добавить администратора</div>
           </button>
           <div className={styles.blockOverflow}>
             {listSubs.map((subscriber, index) => (
-              <SubscriberRow
+              <AdminsRow
                 key={index}
                 name={subscriber.first_name + (subscriber.last_name || "")}
                 date={formatDateToRussian(
@@ -148,9 +153,13 @@ const SubscribersList = () => {
             ))}
           </div>
         </div>
+        <p className={styles.description}>
+          Вы можете добавлять администраторов, чтобы они помогали Вам управлять
+          страницей аффилейта.
+        </p>
       </div>
     </div>
   );
 };
 
-export default SubscribersList;
+export default AdminsList;

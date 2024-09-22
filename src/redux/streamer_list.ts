@@ -43,17 +43,14 @@ const initialState: StreamersState = {
 export const fetchListOfLiveStreamers = createAsyncThunk(
   "liveStreamers/fetchListOfLiveStreamers",
   async () => {
-    const response = await fetch(
-      "https://api.bigstreamerbot.io/live-streams/",
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "Telegram-User-ID": "235519518",
-          Auth: "M1bCSx92W6",
-        },
-      }
-    );
+    const response = await fetch("https://api.bigstreamerbot.io/streams/", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Telegram-User-ID": "235519518",
+        Auth: "M1bCSx92W6",
+      },
+    });
     const data: StreamingPlatforms = await response.json();
     return data;
   }
