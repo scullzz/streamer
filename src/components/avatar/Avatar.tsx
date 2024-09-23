@@ -9,11 +9,12 @@ export interface AvatarProps {
   size?: number;
 }
 
-export const Avatar = ({ url, isLive, initials, size = 94 }: AvatarProps) => {
+export const Avatar = ({ url, isLive, size = 94 }: AvatarProps) => {
   const correct = useCheckImageCorrect(url);
+
   return (
     <div className={styles.avatar} style={{ width: size, height: size }}>
-      {correct ? (
+      {url && correct ? (
         <img
           src={url}
           alt="фото профиля"
@@ -22,17 +23,14 @@ export const Avatar = ({ url, isLive, initials, size = 94 }: AvatarProps) => {
         />
       ) : (
         <div
-          className="menu-item__icon"
+          className={styles.skeleton} // Анимация скелетона
           style={{
-            backgroundColor: initials?.color,
             width: size,
             height: size,
           }}
-        >
-          <span className="menu-item__text">{initials?.initials}</span>
-        </div>
+        ></div>
       )}
-      {isLive && <IsLive></IsLive>}
+      {isLive && <IsLive />}
     </div>
   );
 };

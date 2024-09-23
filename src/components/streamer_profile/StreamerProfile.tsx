@@ -66,6 +66,7 @@ const StreamerProfile = () => {
   const [number_of_sub, set_number_of_sub] = useState<number>();
   const [openSocial, setOpenSocial] = useState(false);
   const [role, setRole] = useState<string>();
+  const [image, setImage] = useState();
 
   const [allSocials, setAllSocials] = useState<ISocial[]>([]);
   const [allSocialsById, setAllSocialsById] = useState<ISocialById[]>([]);
@@ -147,17 +148,11 @@ const StreamerProfile = () => {
       nav(`/streamer-extra-info/${id}/${sub_status}`);
     }
   };
-  useEffect(() => {
-    getStreamerData();
-    getRole();
-    getAllSocials();
-    getSocialsByStreamer();
-  }, []);
 
   const getStreamerData = async () => {
     try {
       const response = await fetch(
-        `https://api.bigstreamerbot.io/live-streams/stream/?pk=${id}`,
+        `https://api.bigstreamerbot.io/streams/${id}`,
         {
           method: "GET",
           headers: {
@@ -170,8 +165,8 @@ const StreamerProfile = () => {
 
       if (response.ok) {
         const res = await response.json();
-        console.log(res);
         setData(res);
+        setImage(res.streamer.image);
         set_sub_status(Boolean(res?.streamer.is_subscribed));
         set_number_of_sub(res?.streamer.count_sub);
       }
@@ -255,6 +250,17 @@ const StreamerProfile = () => {
       console.log(err);
     }
   };
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await getStreamerData(); // Дожидаемся загрузки данных стримера
+      await getRole(); // Дожидаемся загрузки роли
+      await getAllSocials(); // Дожидаемся загрузки всех соцсетей
+      await getSocialsByStreamer(); // Дожидаемся загрузки соцсетей стримера
+    };
+
+    fetchData(); // Вызываем асинхронную функцию загрузки данных
+  }, []);
   return (
     <div className={style.back}>
       <SectionHeader
@@ -266,7 +272,7 @@ const StreamerProfile = () => {
         <div className="mt" style={{ marginTop: "25px" }}></div>
         <StreamerPreview
           headerStyles={{ marginTop: "15px", lineHeight: "23px" }}
-          url={"https://api.bigstreamerbot.io/" + String(data?.streamer.image)}
+          url={"https://api.bigstreamerbot.io" + image}
           name={String(data?.streamer.name)}
           isLive={checkStatus()}
         />
@@ -308,8 +314,8 @@ const StreamerProfile = () => {
                             .name
                         }
                       </a>
-                      <img 
-                      className={style.img_block}
+                      <img
+                        className={style.img_block}
                         src={
                           "https://api.bigstreamerbot.io/" +
                           String(

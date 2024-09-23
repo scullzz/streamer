@@ -45,37 +45,29 @@ function formatDateToRussian(isoDateStr: string) {
 
 interface User {
   id: number;
-  tgid: number;
-  first_name?: string | null;
-  last_name?: string | null;
-  email?: string | null;
-  image?: string | null;
-  username?: string | null;
+  tgid: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  image?: string;
+  username: string;
 }
 
-interface Subscription {
-  date_subscription: Date;
-  date_unsubscribe: Date;
+interface MainInterface {
   id: number;
-  is_sub: boolean;
-  notification_kick: boolean;
-  notification_raffle: boolean;
-  notification_twitch: boolean;
-  notification_youtube: boolean;
-  streamer: number;
-  user: number;
+  title: string;
+  user: User;
+  date_created: string;
 }
 
 const ReferalList = () => {
   const { id } = useParams();
-  const [listSubs, setListSubs] = useState<User[] | []>([]);
-  const [listExtraInfoSubs, setExtraInfoSubs] = useState<Subscription[] | []>(
-    []
-  );
-  const getAllSubscribers = async () => {
+  const [listSubs, setListSubs] = useState<MainInterface[] | []>([]);
+
+  const getAllReferrals = async () => {
     try {
       const response = await fetch(
-        `https://api.bigstreamerbot.io/users-subscriptions/streamers/?pk=${id}`,
+        `https://api.bigstreamerbot.io/referrals/?pk=${id}`,
         {
           method: "GET",
           headers: {
@@ -87,14 +79,13 @@ const ReferalList = () => {
 
       const res = await response.json();
       setListSubs(res.users);
-      setExtraInfoSubs(res.subscriptions);
     } catch (err) {
       console.log(err);
     }
   };
 
   useEffect(() => {
-    getAllSubscribers();
+    getAllReferrals();
   }, []);
 
   return (
@@ -123,13 +114,11 @@ const ReferalList = () => {
             {listSubs.map((subscriber, index) => (
               <ReferalRow
                 key={index}
-                name={subscriber.first_name + (subscriber.last_name || "")}
-                date={formatDateToRussian(
-                  listExtraInfoSubs
-                    .filter((item) => item.user === subscriber.id)[0]
-                    .date_subscription.toString()
-                )}
-                image={subscriber.image}
+                name={
+                  subscriber.user.first_name + (subscriber.user.last_name || "")
+                }
+                date={formatDateToRussian(subscriber.date_created)}
+                image={subscriber.user.image}
               />
             ))}
           </div>

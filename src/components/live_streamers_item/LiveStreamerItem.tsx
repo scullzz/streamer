@@ -56,15 +56,16 @@ const LiveStreamerItem = ({
               {subscriptions_count} подписчиков
             </div>
             <div className={styles.online}>
-              Онлайн:
               {youtubeOnline ? (
-                <span className={styles.redBadge}>{youtubeOnline}</span>
+                <span className={styles.redBadge}>Онлайн:{youtubeOnline}</span>
               ) : null}
               {twitchOnline ? (
-                <span className={styles.purpleBadge}>{twitchOnline}</span>
+                <span className={styles.purpleBadge}>
+                  Онлайн:{twitchOnline}
+                </span>
               ) : null}
               {kickOnline ? (
-                <span className={styles.greenBadge}>{kickOnline}</span>
+                <span className={styles.greenBadge}>Онлайн:{kickOnline}</span>
               ) : null}
             </div>
           </div>
