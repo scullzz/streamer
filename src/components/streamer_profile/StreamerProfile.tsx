@@ -252,15 +252,12 @@ const StreamerProfile = () => {
   };
 
   useEffect(() => {
-    const fetchData = async () => {
-      await getStreamerData(); // Дожидаемся загрузки данных стримера
-      await getRole(); // Дожидаемся загрузки роли
-      await getAllSocials(); // Дожидаемся загрузки всех соцсетей
-      await getSocialsByStreamer(); // Дожидаемся загрузки соцсетей стримера
-    };
-
-    fetchData(); // Вызываем асинхронную функцию загрузки данных
+    getStreamerData(); // Дожидаемся загрузки данных стримера
+    getRole(); // Дожидаемся загрузки роли
+    getAllSocials(); // Дожидаемся загрузки всех соцсетей
+    getSocialsByStreamer(); // Дожидаемся загрузки соцсетей стримера
   }, []);
+  
   return (
     <div className={style.back}>
       <SectionHeader
