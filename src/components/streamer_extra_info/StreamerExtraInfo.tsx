@@ -16,8 +16,10 @@ import seven from "./image/seven.svg";
 import { StreamerPreview } from "../streamer_preview/StreamerPreview";
 import { useEffect, useState } from "react";
 import { StreamerResponse } from "../streamer_profile/StreamerProfile";
+import { tg } from "../../App";
 const StreamerExtraInfo = () => {
   const { id, status } = useParams();
+  const inputValue = `https://t.me/clashofslots_bot?start=refstr_${id}`;
   const [data, setData] = useState<StreamerResponse | null>(null);
   const nav = useNavigate();
   const backPage = () => {
@@ -62,6 +64,15 @@ const StreamerExtraInfo = () => {
       console.log(err);
     }
   };
+
+  const copyToBuffer = async () => {
+    await navigator.clipboard.writeText(inputValue);
+  };
+  const shareWithOthers = async () => {
+    tg.openTelegramLink(
+      `https://t.me/share/url?url=${inputValue}&text=Подписывайся братишка`
+    );
+  };
   return (
     <div className={style.back}>
       <SectionHeader
@@ -83,16 +94,24 @@ const StreamerExtraInfo = () => {
           <p className={style.sub_title}>Реферальная Ссылка</p>
           <div className={style.InputBlock}>
             <input
-              value={"https://t.me/clashofslotsbot/cobrik?promo=895b729e-d5dd"}
+              value={inputValue}
               readOnly
               className={style.InputBlock_input}
               type="text"
             />
-            <button className={style.InputBlock_button}>
+            <button
+              onClick={() => copyToBuffer()}
+              className={style.InputBlock_button}
+            >
               <img src={copy} alt="#" />
             </button>
           </div>
-          <button className={style.ResendButton}>Поделиться</button>
+          <button
+            onClick={() => shareWithOthers()}
+            className={style.ResendButton}
+          >
+            Поделиться
+          </button>
           <p className={style.description_text}>
             Поделитесь этой ссылкой с подписчиками, чтобы они, пользуясь ботом,
             видели только ваши реферальные ссылки на онлайн казино.

@@ -62,7 +62,9 @@ const StreamerProfile = () => {
   const { id, status } = useParams();
   const dispatch = useDispatch<AppDispatch>();
   const [data, setData] = useState<StreamerResponse | null>(null);
-  const [sub_status, set_sub_status] = useState<boolean>(Boolean(status));
+  const [sub_status, set_sub_status] = useState<boolean>(
+    status === "true" ? true : false
+  );
   const [number_of_sub, set_number_of_sub] = useState<number>();
   const [openSocial, setOpenSocial] = useState(false);
   const [role, setRole] = useState<string>();
@@ -257,7 +259,7 @@ const StreamerProfile = () => {
     getAllSocials(); // Дожидаемся загрузки всех соцсетей
     getSocialsByStreamer(); // Дожидаемся загрузки соцсетей стримера
   }, []);
-  
+
   return (
     <div className={style.back}>
       <SectionHeader

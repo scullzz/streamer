@@ -3,7 +3,7 @@ import AdminsRow from "./AdminsRow";
 import { SectionHeader } from "../section_header/SectionHeader";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import add from "./image/add.svg"
+import add from "./image/add.svg";
 
 function formatDateToRussian(isoDateStr: string) {
   // Array of Russian month names
@@ -46,33 +46,24 @@ function formatDateToRussian(isoDateStr: string) {
 
 interface User {
   id: number;
-  tgid: number;
-  first_name?: string | null;
-  last_name?: string | null;
-  email?: string | null;
-  image?: string | null;
-  username?: string | null;
+  tgid: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  image?: string;
+  username: string;
 }
 
-interface Subscription {
-  date_subscription: Date;
-  date_unsubscribe: Date;
+interface MainInterface {
   id: number;
-  is_sub: boolean;
-  notification_kick: boolean;
-  notification_raffle: boolean;
-  notification_twitch: boolean;
-  notification_youtube: boolean;
-  streamer: number;
-  user: number;
+  title: string;
+  user: User;
+  date_created: string;
 }
 
 const AdminsList = () => {
   const { id } = useParams();
-  const [listSubs, setListSubs] = useState<User[] | []>([]);
-  const [listExtraInfoSubs, setExtraInfoSubs] = useState<Subscription[] | []>(
-    []
-  );
+  const [listSubs, setListSubs] = useState<MainInterface[] | []>([]);
   const getAllSubscribers = async () => {
     try {
       const response = await fetch(
@@ -88,25 +79,24 @@ const AdminsList = () => {
 
       const res = await response.json();
       setListSubs(res.users);
-      setExtraInfoSubs(res.subscriptions);
     } catch (err) {
       console.log(err);
     }
   };
 
-  const getExcel = async () => {
-    try {
-      await fetch(`https://bot.bigstreamerbot.io/send-subscriptions?pk=${id}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          "X-Secret-Key": "tAhpSg4SJP",
-        },
-      });
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  // const addAdminAction = async () => {
+  //   try {
+  //     await fetch(`https://api.bigstreamerbot.io/streamer-admins/?pk=${id}`, {
+  //       method: "GET",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Auth: "M1bCSx92W6",
+  //       },
+  //     });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // };
 
   useEffect(() => {
     getAllSubscribers();
@@ -130,9 +120,9 @@ const AdminsList = () => {
         <h2 className={styles.title}>Администраторы</h2>
         <div className={styles.listContainer}>
           <button
-            onClick={() => {
-              getExcel();
-            }}
+            // onClick={() => {
+            //   addAdminAction();
+            // }}
             className={styles.addAdminButton}
           >
             <img className={styles.addIcon} src={add} alt="#" />
@@ -142,13 +132,11 @@ const AdminsList = () => {
             {listSubs.map((subscriber, index) => (
               <AdminsRow
                 key={index}
-                name={subscriber.first_name + (subscriber.last_name || "")}
-                date={formatDateToRussian(
-                  listExtraInfoSubs
-                    .filter((item) => item.user === subscriber.id)[0]
-                    .date_subscription.toString()
-                )}
-                image={subscriber.image}
+                name={
+                  subscriber.user.first_name + (subscriber.user.last_name || "")
+                }
+                date={formatDateToRussian(subscriber.date_created)}
+                image={subscriber.user.image}
               />
             ))}
           </div>
