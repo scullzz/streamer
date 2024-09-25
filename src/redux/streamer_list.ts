@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { tg } from "../App";
 interface Video {
   video_id: number;
   streamer_id: number;

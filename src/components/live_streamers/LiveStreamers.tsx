@@ -23,7 +23,6 @@ const LiveStreamers = () => {
   const scrollPositionRef = useRef<number>(0); // Для хранения позиции прокрутки
 
   const navigate = useNavigate();
-  const location = useLocation();
 
   useEffect(() => {
     if (!platforms) {
