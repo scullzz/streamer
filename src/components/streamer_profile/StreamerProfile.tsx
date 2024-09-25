@@ -271,7 +271,7 @@ const StreamerProfile = () => {
         <div className="mt" style={{ marginTop: "25px" }}></div>
         <StreamerPreview
           headerStyles={{ marginTop: "15px", lineHeight: "23px" }}
-          url={"https://api.bigstreamerbot.io" + image}
+          url={"https://api.bigstreamerbot.io/" + image}
           name={String(data?.streamer.name)}
           isLive={checkStatus()}
         />

@@ -46,7 +46,7 @@ const StreamerExtraInfo = () => {
   const getStreamerData = async () => {
     try {
       const response = await fetch(
-        `https://api.bigstreamerbot.io/live-streams/stream/?pk=${id}`,
+        `https://api.bigstreamerbot.io/streams/${id}`,
         {
           method: "GET",
           headers: {
@@ -58,7 +58,6 @@ const StreamerExtraInfo = () => {
       );
 
       const res = await response.json();
-      console.log(res);
       setData(res);
     } catch (err) {
       console.log(err);
@@ -85,7 +84,7 @@ const StreamerExtraInfo = () => {
 
         <StreamerPreview
           headerStyles={{ marginTop: "15px", lineHeight: "23px" }}
-          url={"https://api.bigstreamerbot.io" + data?.streamer.image}
+          url={"https://api.bigstreamerbot.io/" + data?.streamer.image}
           name={String(data?.streamer.name)}
           isLive={false}
         />

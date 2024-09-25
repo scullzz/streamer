@@ -76,9 +76,11 @@ const ReferalList = () => {
           },
         }
       );
-
-      const res = await response.json();
-      setListSubs(res.users);
+      if (response.ok) {
+        const res = await response.json();
+        console.log(res);
+        setListSubs(res.users);
+      }
     } catch (err) {
       console.log(err);
     }
@@ -111,16 +113,19 @@ const ReferalList = () => {
         </p>
         <div className={styles.listContainer}>
           <div className={styles.blockOverflow}>
-            {listSubs.map((subscriber, index) => (
-              <ReferalRow
-                key={index}
-                name={
-                  subscriber.user.first_name + (subscriber.user.last_name || "")
-                }
-                date={formatDateToRussian(subscriber.date_created)}
-                image={subscriber.user.image}
-              />
-            ))}
+            {Array.isArray(listSubs) && listSubs.length > 0
+              ? listSubs.map((subscriber, index) => (
+                  <ReferalRow
+                    key={index}
+                    name={
+                      subscriber.user.first_name +
+                      (subscriber.user.last_name || "")
+                    }
+                    date={formatDateToRussian(subscriber.date_created)}
+                    image={subscriber.user.image}
+                  />
+                ))
+              : null}
           </div>
         </div>
       </div>
