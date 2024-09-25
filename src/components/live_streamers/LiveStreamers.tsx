@@ -1,35 +1,44 @@
-import { useState, useEffect } from "react";
-import reply from "./image/reply.svg";
-import searchIcon from "./image/search.svg";
-import style from "./style.module.css";
-import LiveStreamerItem from "../live_streamers_item/LiveStreamerItem";
+import { useState, useEffect, useRef } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchListOfLiveStreamers,
   StreamingPlatforms,
 } from "../../redux/streamer_list";
 import { AppDispatch, RootState } from "../../store";
+import LiveStreamerItem from "../live_streamers_item/LiveStreamerItem";
+import reply from "./image/reply.svg";
+import searchIcon from "./image/search.svg";
+import style from "./style.module.css";
 
 const LiveStreamers = () => {
   const [search, setSearch] = useState<string>("");
   const [filteredPlatforms, setFilteredPlatforms] =
     useState<StreamingPlatforms | null>(null);
-
   const dispatch = useDispatch<AppDispatch>();
-
   const { platforms, status } = useSelector(
     (state: RootState) => state.liveStreamers
   );
 
+  const scrollPositionRef = useRef<number>(0); // Для хранения позиции прокрутки
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
   useEffect(() => {
     if (!platforms) {
       dispatch(fetchListOfLiveStreamers());
-      console.log(platforms);
     } else {
       setFilteredPlatforms(platforms);
-      console.log(filteredPlatforms);
     }
   }, [dispatch, platforms]);
+
+  useEffect(() => {
+    const savedPosition = localStorage.getItem("scrollPosition");
+    if (savedPosition) {
+      window.scrollTo(0, parseInt(savedPosition));
+    }
+  }, []);
 
   useEffect(() => {
     if (platforms) {
@@ -57,6 +66,12 @@ const LiveStreamers = () => {
       }
     }
   }, [platforms, search]);
+
+  const handleNavigate = (id: any, is_subscribed: any) => {
+    scrollPositionRef.current = window.scrollY; // Сохраняем текущее положение скролла
+    localStorage.setItem("scrollPosition", String(scrollPositionRef.current));
+    navigate(`/streamer/${id}/${is_subscribed}`);
+  };
 
   if (status === "loading") {
     return (
@@ -90,10 +105,13 @@ const LiveStreamers = () => {
             key={item.streamer_id}
             streamer_id={item.streamer_id}
             is_subscribed={item.is_subscribed}
-            imgUrl={item.thumbnail}
+            imgUrl={"https://api.bigstreamerbot.io/" + item.image}
             name={item.streamer_name}
             subscriptions_count={item.subscriptions_count}
             youtubeOnline={item.viewers}
+            scrollHandle={() =>
+              handleNavigate(item.streamer_id, item.is_subscribed)
+            }
           />
         ))}
         {filteredPlatforms?.twitch.map((item) => (
@@ -101,10 +119,13 @@ const LiveStreamers = () => {
             key={item.streamer_id}
             streamer_id={item.streamer_id}
             is_subscribed={item.is_subscribed}
-            imgUrl={item.thumbnail}
+            imgUrl={"https://api.bigstreamerbot.io/" + item.image}
             name={item.streamer_name}
             subscriptions_count={item.subscriptions_count}
             twitchOnline={item.viewers}
+            scrollHandle={() =>
+              handleNavigate(item.streamer_id, item.is_subscribed)
+            }
           />
         ))}
         {filteredPlatforms?.kick.map((item) => (
@@ -112,10 +133,13 @@ const LiveStreamers = () => {
             key={item.streamer_id}
             streamer_id={item.streamer_id}
             is_subscribed={item.is_subscribed}
-            imgUrl={item.thumbnail}
+            imgUrl={"https://api.bigstreamerbot.io/" + item.image}
             name={item.streamer_name}
             subscriptions_count={item.subscriptions_count}
             kickOnline={item.viewers}
+            scrollHandle={() =>
+              handleNavigate(item.streamer_id, item.is_subscribed)
+            }
           />
         ))}
 
@@ -127,6 +151,7 @@ const LiveStreamers = () => {
             imgUrl={"https://api.bigstreamerbot.io/" + item.image}
             name={item.name}
             subscriptions_count={item.count_sub}
+            scrollHandle={() => handleNavigate(item.id, item.is_subscribed)}
           />
         ))}
       </div>

@@ -45,11 +45,36 @@ const Subscribe = ({
     }
   }, []);
 
+  const changeNotifications = async () => {
+    try {
+      await fetch(
+        `https://api.bigstreamerbot.io/subscriptions/${streamerId}/`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            "Telegram-User-ID": "235519518",
+            Auth: "M1bCSx92W6",
+          },
+          body: JSON.stringify({
+            notification_youtube: youtubeNotification,
+            notification_twitch: twitchNotification,
+            notification_kick: kickNotification,
+            notification_raffle: raffleNotification,
+          }),
+        }
+      );
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const closeModal = () => {
     const element = document.getElementById("subscribeBlock");
     const overlay = document.getElementById("overlay");
 
     if (element && overlay) {
+      changeNotifications();
       element.classList.add(style.close);
       overlay.classList.add(style.close);
       setTimeout(() => {
@@ -113,6 +138,7 @@ const Subscribe = ({
       console.log(err);
     }
   };
+
   const UnSubscribeButton = async () => {
     try {
       setIsModalOpen(true);

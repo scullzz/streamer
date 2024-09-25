@@ -167,6 +167,7 @@ const StreamerProfile = () => {
 
       if (response.ok) {
         const res = await response.json();
+        console.log(res);
         setData(res);
         setImage(res.streamer.image);
         set_sub_status(Boolean(res?.streamer.is_subscribed));
@@ -271,7 +272,7 @@ const StreamerProfile = () => {
         <div className="mt" style={{ marginTop: "25px" }}></div>
         <StreamerPreview
           headerStyles={{ marginTop: "15px", lineHeight: "23px" }}
-          url={"https://api.bigstreamerbot.io/" + image}
+          url={"https://api.bigstreamerbot.io" + image}
           name={String(data?.streamer.name)}
           isLive={checkStatus()}
         />
@@ -343,9 +344,9 @@ const StreamerProfile = () => {
           </div>
         )}
 
-        {(data?.youtube.length && 0 > 0) ||
-        (data?.twitch.length && 0 > 0) ||
-        (data?.kick.length && 0 > 0) ? (
+        {(data?.kick?.length ?? 0) > 0 ||
+        (data?.youtube?.length ?? 0) > 0 ||
+        (data?.twitch?.length ?? 0) > 0 ? (
           <div className={style.online_streamers}>
             <p className={style.online_stream_title}>Стрим онлайн</p>
             <Slider {...settings}>

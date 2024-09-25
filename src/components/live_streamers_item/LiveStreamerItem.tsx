@@ -3,7 +3,6 @@ import { Avatar } from "../avatar/Avatar";
 import styles from "./style.module.css";
 import check from "./image/check.svg";
 import Subscribe from "../(un)subscribe/Subscribe";
-import { useNavigate } from "react-router-dom";
 
 interface ILiveStreamerItemProps {
   streamer_id: number;
@@ -14,6 +13,7 @@ interface ILiveStreamerItemProps {
   kickOnline?: number;
   is_subscribed: boolean;
   subscriptions_count: number;
+  scrollHandle: () => any;
 }
 
 const LiveStreamerItem = ({
@@ -25,8 +25,8 @@ const LiveStreamerItem = ({
   is_subscribed,
   subscriptions_count,
   streamer_id,
+  scrollHandle,
 }: ILiveStreamerItemProps) => {
-  const nav = useNavigate();
   const [isSubscribeModalOpen, setSubscribeModalOpen] = useState(false);
 
   const OpenModal = async () => {
@@ -36,19 +36,13 @@ const LiveStreamerItem = ({
   const closeModal = () => {
     setSubscribeModalOpen(false);
   };
-  const moveToStreamerPage = () => {
-    nav(`/streamer/${streamer_id}/${is_subscribed}`);
-  };
 
   return (
     <div className={styles.profileContainer}>
-      <div onClick={() => moveToStreamerPage()} className={styles.profileImage}>
+      <div onClick={() => scrollHandle()} className={styles.profileImage}>
         <Avatar size={64} isLive={false} url={imgUrl} />
       </div>
-      <div
-        onClick={() => moveToStreamerPage()}
-        className={styles.profileInfoBlock}
-      >
+      <div onClick={() => scrollHandle()} className={styles.profileInfoBlock}>
         <div className={styles.profileInfo}>
           <div>
             <div className={styles.name}>{name}</div>
@@ -57,15 +51,22 @@ const LiveStreamerItem = ({
             </div>
             <div className={styles.online}>
               {youtubeOnline ? (
-                <span className={styles.redBadge}>Онлайн:{youtubeOnline}</span>
+                <div>
+                  <span>Онлайн:</span>
+                  <span className={styles.redBadge}>{youtubeOnline}</span>
+                </div>
               ) : null}
               {twitchOnline ? (
-                <span className={styles.purpleBadge}>
-                  Онлайн:{twitchOnline}
-                </span>
+                <div>
+                  <span>Онлайн:</span>
+                  <span className={styles.purpleBadge}>{twitchOnline}</span>
+                </div>
               ) : null}
               {kickOnline ? (
-                <span className={styles.greenBadge}>Онлайн:{kickOnline}</span>
+                <div>
+                  <span>Онлайн:</span>
+                  <span className={styles.greenBadge}>{kickOnline}</span>
+                </div>
               ) : null}
             </div>
           </div>
