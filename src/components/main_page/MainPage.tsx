@@ -113,7 +113,7 @@ const MainPage = () => {
             <Avatar
               size={26}
               isLive={false}
-              url={tg.initDataUnsafe.user?.photo_url}
+              url={`https://t.me/${tg.initDataUnsafe.user?.photo_url}`}
             ></Avatar>
             <div className={style.MainPage_ItemTextBlock}>
               <p className={style.item_title}>
@@ -140,7 +140,7 @@ const MainPage = () => {
             <Avatar
               size={26}
               isLive={false}
-              url={tg.initDataUnsafe.user?.photo_url}
+              url={`https://t.me/${tg.initDataUnsafe.user?.photo_url}`}
             ></Avatar>
             <div className={style.MainPage_ItemTextBlock}>
               <p className={style.item_title}>

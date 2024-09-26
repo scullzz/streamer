@@ -64,7 +64,7 @@ const UserProfile = () => {
       <div className="mt" style={{ marginTop: "25px" }}></div>
       <StreamerPreview
         headerStyles={{ marginTop: "15px", lineHeight: "23px" }}
-        url={tg.initDataUnsafe.user?.photo_url}
+        url={`https://t.me/${tg.initDataUnsafe.user?.photo_url}`}
         name={`${user?.first_name ? user.first_name : ""} ${
           user?.last_name ? user.last_name : ""
         }`}
