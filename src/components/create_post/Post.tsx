@@ -6,7 +6,7 @@ import { TextBox } from "../text_box/TextBox";
 import { useMemoryState } from "../../functions/useMemoryState";
 import { FilePreview } from "../file_preview/FilePreview";
 import { useNavigate, useParams } from "react-router-dom";
-
+import { tg } from "../../App";
 let File: File | null = null;
 const Post = () => {
   const { id } = useParams();
@@ -48,7 +48,7 @@ const Post = () => {
       const response = await fetch(`https://api.bigstreamerbot.io/mailings/`, {
         method: "POST",
         headers: {
-          Auth: "M1bCSx92W6",
+          Auth: tg.initData,
         },
         body: formData,
       });

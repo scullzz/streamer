@@ -4,7 +4,7 @@ import { SectionHeader } from "../section_header/SectionHeader";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import add from "./image/add.svg";
-
+import { tg } from "../../App";
 function formatDateToRussian(isoDateStr: string) {
   // Array of Russian month names
   const russianMonths = [
@@ -72,7 +72,7 @@ const AdminsList = () => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Auth: "M1bCSx92W6",
+            Auth: tg.initData,
           },
         }
       );
@@ -83,20 +83,6 @@ const AdminsList = () => {
       console.log(err);
     }
   };
-
-  // const addAdminAction = async () => {
-  //   try {
-  //     await fetch(`https://api.bigstreamerbot.io/streamer-admins/?pk=${id}`, {
-  //       method: "GET",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //         Auth: "M1bCSx92W6",
-  //       },
-  //     });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
 
   useEffect(() => {
     getAllSubscribers();

@@ -3,6 +3,7 @@ import SubscriberRow from "./SubscribeRow";
 import { SectionHeader } from "../section_header/SectionHeader";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { tg } from "../../App";
 
 function formatDateToRussian(isoDateStr: string) {
   // Array of Russian month names
@@ -80,7 +81,7 @@ const SubscribersList = () => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Auth: "M1bCSx92W6",
+            Auth: tg.initData,
           },
         }
       );
@@ -92,7 +93,6 @@ const SubscribersList = () => {
       console.log(err);
     }
   };
-
 
   const getExcel = async () => {
     try {
@@ -115,7 +115,15 @@ const SubscribersList = () => {
   return (
     <div className={styles.subscribers_list}>
       <SectionHeader
-        left={<span onClick={()=> {window.history.back()}}>Назад</span>}
+        left={
+          <span
+            onClick={() => {
+              window.history.back();
+            }}
+          >
+            Назад
+          </span>
+        }
         center={<span>Clash of Slots</span>}
       />
       <div className={styles.container}>

@@ -2,7 +2,7 @@
   width: 100%;
   overflow: scroll;
   height: 100vh;
-  background-color: #efeff3;
+  background-color: #131313;
 }
 .StreamerProfile {
   width: 100%;
@@ -41,7 +41,7 @@
 .streamer_subs {
   width: 135px;
   height: 57px;
-  background-color: #ffffff;
+  background-color: #292929;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,14 +54,14 @@
   font-weight: 700;
   line-height: 18.75px;
   text-align: center;
-  color: #007aff;
+  color: #FFFFFF;
 }
 .streamer_last_info {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 4px;
-  color: #007aff;
+  color: #8A8A8E;
 
   font-size: 12px;
   font-weight: 400;
@@ -71,7 +71,7 @@
 .streamer_refs {
   width: 135px;
   height: 57px;
-  background-color: #ffffff;
+  background-color: #292929;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -83,7 +83,7 @@
   width: 54px;
   height: 57px;
   display: flex;
-  background-color: #ffffff;
+  background-color: #292929;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -96,7 +96,7 @@
   font-weight: 700;
   line-height: 20px;
   text-align: center;
-  color: #007aff;
+  color: #8A8A8E;
 }
 
 .online_streamers {

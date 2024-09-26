@@ -8,7 +8,7 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store";
 import { subscribeToStreamer } from "../../redux/streamer_list";
 import { unsubscribeFromStreamer } from "../../redux/streamer_list";
-
+import { tg } from "../../App";
 interface ISubscribe {
   streamerId: number;
   isSubscribed: boolean;
@@ -53,8 +53,11 @@ const Subscribe = ({
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
-            "Telegram-User-ID": "235519518",
-            Auth: "M1bCSx92W6",
+            "Telegram-User-ID":
+              tg.initDataUnsafe.user?.id !== undefined
+                ? tg.initDataUnsafe.user.id.toString()
+                : "error",
+            Auth: tg.initData,
           },
           body: JSON.stringify({
             notification_youtube: youtubeNotification,
@@ -92,8 +95,11 @@ const Subscribe = ({
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
-            "Telegram-User-ID": "235519518",
-            Auth: "M1bCSx92W6",
+            "Telegram-User-ID":
+              tg.initDataUnsafe.user?.id !== undefined
+                ? tg.initDataUnsafe.user.id.toString()
+                : "error",
+            Auth: tg.initData,
           },
           body: JSON.stringify({
             is_sub: true,
@@ -119,8 +125,11 @@ const Subscribe = ({
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
-            "Telegram-User-ID": "235519518",
-            Auth: "M1bCSx92W6",
+            "Telegram-User-ID":
+              tg.initDataUnsafe.user?.id !== undefined
+                ? tg.initDataUnsafe.user.id.toString()
+                : "error",
+            Auth: tg.initData,
           },
           body: JSON.stringify({
             is_sub: false,
@@ -155,8 +164,11 @@ const Subscribe = ({
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            "Telegram-User-ID": "235519518",
-            Auth: "M1bCSx92W6",
+            "Telegram-User-ID":
+              tg.initDataUnsafe.user?.id !== undefined
+                ? tg.initDataUnsafe.user.id.toString()
+                : "error",
+            Auth: tg.initData,
           },
         }
       );

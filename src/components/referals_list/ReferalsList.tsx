@@ -3,7 +3,7 @@ import ReferalRow from "./ReferalRow";
 import { SectionHeader } from "../section_header/SectionHeader";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-
+import { tg } from "../../App";
 function formatDateToRussian(isoDateStr: string) {
   // Array of Russian month names
   const russianMonths = [
@@ -72,7 +72,7 @@ const ReferalList = () => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Auth: "M1bCSx92W6",
+            Auth: tg.initData,
           },
         }
       );

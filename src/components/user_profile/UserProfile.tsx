@@ -4,7 +4,7 @@ import style from "./style.module.css";
 import { StreamerPreview } from "../streamer_preview/StreamerPreview";
 import { FormInput } from "../form_input/FormInput";
 import { useNavigate } from "react-router-dom";
-
+import { tg } from "../../App";
 interface GetUserProfile {
   id: number;
   tgid: string;
@@ -34,8 +34,11 @@ const UserProfile = () => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Auth: "M1bCSx92W6",
-          "Telegram-User-ID": "235519518",
+          Auth: tg.initData,
+          "Telegram-User-ID":
+            tg.initDataUnsafe.user?.id !== undefined
+              ? tg.initDataUnsafe.user.id.toString()
+              : "error",
         },
       });
       console.log(email);

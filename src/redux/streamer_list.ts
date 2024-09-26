@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
+import { tg } from "../App";
 interface Video {
   video_id: number;
   streamer_id: number;
@@ -47,8 +48,11 @@ export const fetchListOfLiveStreamers = createAsyncThunk(
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "Telegram-User-ID": "235519518",
-        Auth: "M1bCSx92W6",
+        "Telegram-User-ID":
+          tg.initDataUnsafe.user?.id !== undefined
+            ? tg.initDataUnsafe.user.id.toString()
+            : "error",
+        Auth: tg.initData,
       },
     });
     const data: StreamingPlatforms = await response.json();

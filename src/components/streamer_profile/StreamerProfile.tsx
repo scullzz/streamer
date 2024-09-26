@@ -17,6 +17,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store";
+import { tg } from "../../App";
 
 interface Video {
   video_id: number;
@@ -31,6 +32,18 @@ interface Video {
   subscriptions_count: number;
   title: string;
 }
+interface Raffle {
+  id: number; // Read-only, автогенерируется
+  streamer: number; // Обязательное поле, ID стримера
+  conditions: any[]; // Обязательное поле, массив условий (тип не определен, можно уточнить в будущем)
+  count_winners: number; // Обязательное поле, количество победителей
+  amount: number; // Обязательное поле, сумма
+  description: string; // Обязательное поле, описание
+  date_end: string; // Обязательное поле, дата завершения (формат ISO)
+  see_winners?: boolean; // Необязательное поле, флаг для показа победителей
+  date_create?: string; // Дата создания, read-only, автогенерируется (формат ISO)
+}
+
 interface Streamer {
   id: number;
   name: string;
@@ -72,6 +85,7 @@ const StreamerProfile = () => {
 
   const [allSocials, setAllSocials] = useState<ISocial[]>([]);
   const [allSocialsById, setAllSocialsById] = useState<ISocialById[]>([]);
+  const [raffle, setRaffle] = useState<Raffle[]>([]);
 
   const settings = {
     dots: false,
@@ -96,8 +110,11 @@ const StreamerProfile = () => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Auth: "M1bCSx92W6",
-            "Telegram-User-ID": "235519518",
+            Auth: tg.initData,
+            "Telegram-User-ID":
+              tg.initDataUnsafe.user?.id !== undefined
+                ? tg.initDataUnsafe.user.id.toString()
+                : "error",
           },
         }
       );
@@ -115,7 +132,7 @@ const StreamerProfile = () => {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Auth: "M1bCSx92W6",
+          Auth: tg.initData,
         },
       });
       const res = await response.json();
@@ -132,7 +149,7 @@ const StreamerProfile = () => {
         {
           headers: {
             "Content-Type": "application/json",
-            Auth: "M1bCSx92W6",
+            Auth: tg.initData,
           },
         }
       );
@@ -159,8 +176,11 @@ const StreamerProfile = () => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Auth: "M1bCSx92W6",
-            "Telegram-User-ID": "235519518",
+            Auth: tg.initData,
+            "Telegram-User-ID":
+              tg.initDataUnsafe.user?.id !== undefined
+                ? tg.initDataUnsafe.user.id.toString()
+                : "error",
           },
         }
       );
@@ -197,8 +217,11 @@ const StreamerProfile = () => {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
-            "Telegram-User-ID": "235519518",
-            Auth: "M1bCSx92W6",
+            "Telegram-User-ID":
+              tg.initDataUnsafe.user?.id !== undefined
+                ? tg.initDataUnsafe.user.id.toString()
+                : "error",
+            Auth: tg.initData,
           },
           body: JSON.stringify({
             is_sub: true,
@@ -229,8 +252,11 @@ const StreamerProfile = () => {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
-            "Telegram-User-ID": "235519518",
-            Auth: "M1bCSx92W6",
+            "Telegram-User-ID":
+              tg.initDataUnsafe.user?.id !== undefined
+                ? tg.initDataUnsafe.user.id.toString()
+                : "error",
+            Auth: tg.initData,
           },
           body: JSON.stringify({
             is_sub: false,
@@ -254,6 +280,25 @@ const StreamerProfile = () => {
     }
   };
 
+  const getRaffle = async () => {
+    try {
+      const response = await fetch(
+        `https://api.bigstreamerbot.io/raffles/?pk=${id}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      if (response.ok) {
+        const res = await response.json();
+        setRaffle(res);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
     getStreamerData(); // Дожидаемся загрузки данных стримера
     getRole(); // Дожидаемся загрузки роли
@@ -265,7 +310,7 @@ const StreamerProfile = () => {
     <div className={style.back}>
       <SectionHeader
         left={<span onClick={() => backPage()}>Назад</span>}
-        center={<span>Clash of Slots</span>}
+        center={<span style={{ color: "white" }}>Clash of Slots</span>}
         right={<img src={reply} alt="#" />}
       />
       <div className={style.StreamerProfile}>
@@ -274,6 +319,7 @@ const StreamerProfile = () => {
           headerStyles={{ marginTop: "15px", lineHeight: "23px" }}
           url={"https://api.bigstreamerbot.io" + image}
           name={String(data?.streamer.name)}
+          details="Профиль аффилейта"
           isLive={checkStatus()}
         />
 
@@ -387,25 +433,36 @@ const StreamerProfile = () => {
           </div>
         ) : null}
 
-        <div className={style.RaffleDiv}>
-          <span className={style.RaffleDiv_title}>Розыгрыши</span>
-          <span className={style.RaffleDiv_numberOf}>Завершенные (12)</span>
-        </div>
-        <div>
-          <Prize
-            title="Розыгрыш 10 000 RUB"
-            amountOfParticipants={100}
-            amountOfPrize={10}
-            description="Розыгрыш на 10к для рефералов казино R7 используй промо COBRIK (100FS) ИЛИ COBRIK200 (200%+100FS): https://cobrik.pro/r7 "
-            endTime="2024-09-05"
-            isCreator={false}
-            isParticipant={false}
-            raffleConditions={[
-              { isDone: false, title: "заполнить email от VAVADA казино" },
-            ]}
-            forPreview={false}
-          />
-        </div>
+        {raffle.length > 0 ? (
+          <>
+            <div className={style.RaffleDiv}>
+              <span className={style.RaffleDiv_title}>Розыгрыши</span>
+              <span className={style.RaffleDiv_numberOf}>Завершенные (12)</span>
+            </div>
+            <div>
+              {raffle.map((item) => {
+                return (
+                  <Prize
+                    title="Розыгрыш 10 000 RUB"
+                    amountOfParticipants={100}
+                    amountOfPrize={item.amount}
+                    description={item.description}
+                    endTime={item.date_end}
+                    isCreator={false}
+                    isParticipant={false}
+                    raffleConditions={[
+                      {
+                        isDone: false,
+                        title: "заполнить email от VAVADA казино",
+                      },
+                    ]}
+                    forPreview={false}
+                  />
+                );
+              })}
+            </div>
+          </>
+        ) : null}
       </div>
     </div>
   );

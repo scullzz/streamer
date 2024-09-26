@@ -21,8 +21,8 @@ const Menu = () => {
       <div
         className={style.menu}
         style={{
-          borderTop: "1px solid #e6e6e6",
-          backgroundColor: "#F2F2F2",
+          borderTop: "1px solid #1C1C1C",
+          backgroundColor: "#1C1C1C",
         }}
       >
         <MenuItem

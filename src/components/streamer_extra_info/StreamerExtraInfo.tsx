@@ -51,8 +51,11 @@ const StreamerExtraInfo = () => {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Auth: "M1bCSx92W6",
-            "Telegram-User-ID": "235519518",
+            Auth: tg.initData,
+            "Telegram-User-ID":
+              tg.initDataUnsafe.user?.id !== undefined
+                ? tg.initDataUnsafe.user.id.toString()
+                : "error",
           },
         }
       );

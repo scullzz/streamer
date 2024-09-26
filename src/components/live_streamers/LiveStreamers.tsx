@@ -20,7 +20,7 @@ const LiveStreamers = () => {
     (state: RootState) => state.liveStreamers
   );
 
-  const scrollPositionRef = useRef<number>(0); // Для хранения позиции прокрутки
+  const scrollPositionRef = useRef<number>(0);
 
   const navigate = useNavigate();
 
@@ -95,7 +95,7 @@ const LiveStreamers = () => {
         </div>
 
         <div className={style.StreamersListHeader}>
-          <span>Стримеры</span>
+          <span className={style.StreamerText}>Стримеры</span>
           <img src={reply} alt="Reply" />
         </div>
 
