@@ -113,7 +113,7 @@ const MainPage = () => {
             <Avatar
               size={26}
               isLive={false}
-              url={`https://t.me/${tg.initDataUnsafe.user?.photo_url}`}
+              url={"https://api.bigstreamerbot.io/" + String(user?.image)}
             ></Avatar>
             <div className={style.MainPage_ItemTextBlock}>
               <p className={style.item_title}>
@@ -140,7 +140,7 @@ const MainPage = () => {
             <Avatar
               size={26}
               isLive={false}
-              url={`https://t.me/${tg.initDataUnsafe.user?.photo_url}`}
+              url={"https://api.bigstreamerbot.io/" + String(user?.image) }
             ></Avatar>
             <div className={style.MainPage_ItemTextBlock}>
               <p className={style.item_title}>
