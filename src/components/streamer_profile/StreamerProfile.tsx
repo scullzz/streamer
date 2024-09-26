@@ -304,6 +304,7 @@ const StreamerProfile = () => {
     getRole(); // Дожидаемся загрузки роли
     getAllSocials(); // Дожидаемся загрузки всех соцсетей
     getSocialsByStreamer(); // Дожидаемся загрузки соцсетей стримера
+    getRaffle();
   }, []);
 
   return (
