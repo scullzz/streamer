@@ -375,7 +375,14 @@ const StreamerProfile = () => {
                     </div>
                   );
                 })}
-                {/* <button className={style.unsubscribeButton}>Отписаться</button> */}
+                {sub_status === true ? (
+                  <button
+                    onClick={() => UnSubscribe()}
+                    className={style.unsubscribeButton}
+                  >
+                    Отписаться
+                  </button>
+                ) : null}
               </div>
             )}
           </div>
@@ -385,11 +392,7 @@ const StreamerProfile = () => {
           <div onClick={() => Subscribe()} className={style.actionButtonSub}>
             <p className={style.sub_text}>Подписаться</p>
           </div>
-        ) : (
-          <div onClick={() => UnSubscribe()} className={style.actionButtonSub1}>
-            <p className={style.sub_a_text}>Отписаться</p>
-          </div>
-        )}
+        ) : null}
 
         {(data?.kick?.length ?? 0) > 0 ||
         (data?.youtube?.length ?? 0) > 0 ||

@@ -130,7 +130,7 @@ const MainPage = () => {
         </div>
       </div>
 
-      <div className={style.MainPageFlexItem}>
+      {/* <div className={style.MainPageFlexItem}>
         <p className={style.page_title}>Аккаунт аффилейта</p>
         <div className={style.flexBlock}>
           <div
@@ -155,7 +155,7 @@ const MainPage = () => {
           </div>
           <div className={style.line}></div>
         </div>
-      </div>
+      </div> */}
 
       <div className={style.MainPageFlexItem}>
         {menuItems.map((item) => (
