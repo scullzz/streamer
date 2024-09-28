@@ -17,6 +17,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store";
+import exit from "./image/exit.svg";
 import { tg } from "../../App";
 
 interface Video {
@@ -376,12 +377,13 @@ const StreamerProfile = () => {
                   );
                 })}
                 {sub_status === true ? (
-                  <button
+                  <div
                     onClick={() => UnSubscribe()}
-                    className={style.unsubscribeButton}
+                    className={style.flex_item1}
                   >
-                    Отписаться
-                  </button>
+                    <span className={style.unsub_text}>Отписаться</span>
+                    <img src={exit} alt="#" />
+                  </div>
                 ) : null}
               </div>
             )}
