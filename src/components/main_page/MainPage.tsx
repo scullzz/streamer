@@ -90,9 +90,9 @@ const MainPage = () => {
     nav("/me");
   };
 
-  const handleClickStreamer = () => {
-    nav("/streamer");
-  };
+  // const handleClickStreamer = () => {
+  //   nav("/streamer");
+  // };
 
   const HandleListItem = (id: number) => {
     if (id === 1) {
