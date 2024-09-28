@@ -1,4 +1,13 @@
 .imageBlock {
   width: 100%;
   height: 200px;
+  position: relative;
+  overflow: hidden;
+}
+
+.imageBlock img, 
+.imageBlock video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Сохранение пропорций изображения */
 }
