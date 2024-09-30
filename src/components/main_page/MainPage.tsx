@@ -20,11 +20,29 @@ interface GetUserProfile {
   last_name: string | null;
   image: string | null;
 }
+
+interface StreamerInfo {
+  id: number;
+  name: string;
+  count_sub: number;
+  image: string;
+  is_subscribed: boolean;
+}
+
+interface StreamerAdmin {
+  id: number;
+  streamer: number;
+  streamer_info: StreamerInfo;
+  user: number;
+  role: string;
+  add_url: string;
+  add_date: string;
+}
 const MainPage = () => {
   const nav = useNavigate();
 
   const [user, setUser] = useState<GetUserProfile | null>(null);
-
+  const [admins, setAdmins] = useState<StreamerAdmin[] | []>([]);
   const getUser = async () => {
     try {
       const response = await fetch("https://api.bigstreamerbot.io/users/1/", {
@@ -45,6 +63,33 @@ const MainPage = () => {
       console.log(err);
     }
   };
+
+  const getAdminsList = async () => {
+    try {
+      const response = await fetch(
+        "https://api.bigstreamerbot.io/streamer-admins/user/",
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Auth: tg.initData,
+            "Telegram-User-ID":
+              tg.initDataUnsafe.user?.id !== undefined
+                ? tg.initDataUnsafe.user.id.toString()
+                : "error",
+          },
+        }
+      );
+
+      if (response.ok) {
+        const res = await response.json();
+        setAdmins(res.streamer_admin);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const menuItems = [
     {
       id: 1,
@@ -90,9 +135,9 @@ const MainPage = () => {
     nav("/me");
   };
 
-  // const handleClickStreamer = () => {
-  //   nav("/streamer");
-  // };
+  const handleClickStreamer = () => {
+    nav("/streamer");
+  };
 
   const HandleListItem = (id: number) => {
     if (id === 1) {
@@ -102,6 +147,7 @@ const MainPage = () => {
 
   useEffect(() => {
     getUser();
+    getAdminsList();
   }, []);
 
   return (
@@ -130,32 +176,37 @@ const MainPage = () => {
         </div>
       </div>
 
-      {/* <div className={style.MainPageFlexItem}>
+      <div className={style.MainPageFlexItem}>
         <p className={style.page_title}>Аккаунт аффилейта</p>
-        <div className={style.flexBlock}>
-          <div
-            className={style.MainPage_Item}
-            onClick={() => handleClickStreamer()}
-          >
-            <Avatar
-              size={26}
-              isLive={false}
-              url={"https://api.bigstreamerbot.io/" + String(user?.image) }
-            ></Avatar>
-            <div className={style.MainPage_ItemTextBlock}>
-              <p className={style.item_title}>
-                {user?.first_name + (user?.last_name || "")}
-              </p>
-              <p className={style.item_text}>
-                Настройки стримов, розыгрыши, подписчики, рейтинг казино,
-                реферальные ссылки...
-              </p>
+        {admins.map((item) => {
+          return (
+            <div className={style.flexBlock}>
+              <div
+                className={style.MainPage_Item}
+                onClick={() => handleClickStreamer()}
+              >
+                <Avatar
+                  size={26}
+                  isLive={false}
+                  url={
+                    "https://api.bigstreamerbot.io/" +
+                    String(item.streamer_info.image)
+                  }
+                ></Avatar>
+                <div className={style.MainPage_ItemTextBlock}>
+                  <p className={style.item_title}>{item.streamer_info.name}</p>
+                  <p className={style.item_text}>
+                    Настройки стримов, розыгрыши, подписчики, рейтинг казино,
+                    реферальные ссылки...
+                  </p>
+                </div>
+                <img src={row} alt="#" />
+              </div>
+              <div className={style.line}></div>
             </div>
-            <img src={row} alt="#" />
-          </div>
-          <div className={style.line}></div>
-        </div>
-      </div> */}
+          );
+        })}
+      </div>
 
       <div className={style.MainPageFlexItem}>
         {menuItems.map((item) => (

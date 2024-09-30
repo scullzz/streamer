@@ -72,6 +72,14 @@ interface ISocialById {
   url: string;
 }
 
+interface ConditionData {
+  id: number;
+  name: string;
+  description: string;
+  date_create: string;
+  isDone: boolean;
+}
+
 const StreamerProfile = () => {
   const { id, status } = useParams();
   const dispatch = useDispatch<AppDispatch>();
@@ -83,6 +91,7 @@ const StreamerProfile = () => {
   const [openSocial, setOpenSocial] = useState(false);
   const [role, setRole] = useState<string>();
   const [image, setImage] = useState();
+  const [conditions, setConditions] = useState<ConditionData[] | []>([]);
 
   const [allSocials, setAllSocials] = useState<ISocial[]>([]);
   const [allSocialsById, setAllSocialsById] = useState<ISocialById[]>([]);
@@ -288,12 +297,32 @@ const StreamerProfile = () => {
         {
           headers: {
             "Content-Type": "application/json",
+            Auth: tg.initData,
           },
         }
       );
       if (response.ok) {
         const res = await response.json();
         setRaffle(res);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const getAllConditions = async () => {
+    try {
+      const response = await fetch(
+        "https://api.bigstreamerbot.io/conditions/",
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Auth: tg.initData,
+          },
+        }
+      );
+      if (response.ok) {
+        const res = await response.json();
+        setConditions(res);
       }
     } catch (err) {
       console.log(err);
@@ -306,6 +335,7 @@ const StreamerProfile = () => {
     getAllSocials(); // Дожидаемся загрузки всех соцсетей
     getSocialsByStreamer(); // Дожидаемся загрузки соцсетей стримера
     getRaffle();
+    getAllConditions();
   }, []);
 
   return (
@@ -447,6 +477,7 @@ const StreamerProfile = () => {
             </div>
             <div>
               {raffle.map((item) => {
+                console.log(item);
                 return (
                   <Prize
                     title="Розыгрыш 10 000 RUB"
@@ -454,15 +485,14 @@ const StreamerProfile = () => {
                     amountOfPrize={item.amount}
                     description={item.description}
                     endTime={item.date_end}
-                    isCreator={false}
+                    isCreator={role === "owner" ? true : false}
                     isParticipant={false}
-                    raffleConditions={[
-                      {
-                        isDone: false,
-                        title: "заполнить email от VAVADA казино",
-                      },
-                    ]}
-                    forPreview={false}
+                    raffleConditions={conditions.filter((f) =>
+                      raffle.some((i) => i.conditions.some((c) => c === f.id))
+                    )}
+                    forPreview={
+                      new Date(item.date_end) < new Date() ? true : false
+                    }
                   />
                 );
               })}

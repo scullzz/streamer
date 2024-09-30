@@ -7,15 +7,18 @@ import raffleIcon from "./image/raffleIcon.svg";
 import style from "./style.module.css";
 import coins from "./image/coins.svg";
 
-export interface GetRaffleConditionDto {
+interface ConditionData {
+  id: number;
+  name: string;
+  description: string;
+  date_create: string;
   isDone: boolean;
-  title: string;
 }
 export interface GetRaffleDto {
   title: string;
   description: string;
   amountOfPrize: number;
-  raffleConditions: GetRaffleConditionDto[];
+  raffleConditions: ConditionData[] | [];
   endTime: string;
   amountOfParticipants: number;
   isParticipant: boolean;
