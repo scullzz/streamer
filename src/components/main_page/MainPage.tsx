@@ -60,6 +60,7 @@ const MainPage = () => {
       const res = await response.json();
       setUser(res);
     } catch (err) {
+      alert("fuck");
       console.log(err);
     }
   };
@@ -86,6 +87,7 @@ const MainPage = () => {
         setAdmins(res.streamer_admin);
       }
     } catch (err) {
+      alert("fuck1");
       console.log(err);
     }
   };
@@ -159,7 +161,7 @@ const MainPage = () => {
             <Avatar
               size={26}
               isLive={false}
-              url={"https://api.bigstreamerbot.io" + String(user?.image)}
+              url={"https://api.bigstreamerbot.io/" + String(user?.image)}
             ></Avatar>
             <div className={style.MainPage_ItemTextBlock}>
               <p className={style.item_title}>
