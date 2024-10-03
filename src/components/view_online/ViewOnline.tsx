@@ -21,6 +21,7 @@ const ViewOnline = () => {
       setSelectedStyle("number3");
     }
   };
+  const youtubeEmbedLink = link.replace("watch?v=", "embed/");
   useEffect(() => {
     getImage();
   }, []);
@@ -35,7 +36,7 @@ const ViewOnline = () => {
           <iframe
             width="100%"
             height="210px"
-            src={link}
+            src={youtubeEmbedLink}
             title={title}
             className={styles.streamThumbnail}
             frameBorder="0"
