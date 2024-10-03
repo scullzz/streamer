@@ -2,6 +2,7 @@ import { useLocation } from "react-router-dom";
 import { SectionHeader } from "../section_header/SectionHeader";
 import styles from "./style.module.css";
 import { useEffect, useState } from "react";
+import trash from "./image/trash.svg";
 const ViewOnline = () => {
   const location = useLocation();
   const { link, platform, viewers, title } = location.state;
@@ -68,15 +69,15 @@ const ViewOnline = () => {
       </div> */}
 
       <div className={styles.ratingContainer}>
-        <h3>Рейтинг онлайн казино</h3>
+        <h3 className={styles.p3_changed}>Рейтинг онлайн казино</h3>
         <div className={styles.casinoList}>
           <div className={styles.casinoItem}>
             <div className={styles.casinoLogo}>
-              <img src="/path/to/logo.png" alt="Auf Casino" />
+              <img src={trash} alt="Auf Casino" />
             </div>
             <div className={styles.casinoInfo}>
-              <span>Auf Casino</span>
-              <span>Промокод: COBRIK</span>
+              <span className={styles.casinoMainText}>Auf Casino</span>
+              <span className={styles.casinoMiniText}>Промокод: COBRIK</span>
             </div>
             <button className={styles.playButton}>Играть</button>
           </div>

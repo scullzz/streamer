@@ -87,15 +87,40 @@
 }
 
 .casinoInfo {
-  flex: 1;
-  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 6px;
+}
+.casinoMainText {
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
+  text-align: left;
+  color: white;
+}
+.casinoMiniText {
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.06px;
+  text-align: left;
+  color: #8a8a8e;
 }
 
 .playButton {
-  background-color: #00f;
+  background-color: #282934;
   color: white;
-  padding: 10px 20px;
+  width: 80px;
+  height: 30px;
   border-radius: 5px;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  text-align: center;
 }
 
 .buttonGroup {
@@ -105,17 +130,19 @@
 }
 
 .twitchButton {
+  width: 178px;
+  height: 35px;
   background-color: #1c1c1c;
   color: white;
-  padding: 10px 20px;
   border-radius: 5px;
   border: none;
 }
 
 .buttonblock {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  gap: 10px;
 }
 
 .number1 {
@@ -162,4 +189,11 @@
   padding: 0px 2px;
   background-color: green;
   border-radius: 4px;
+}
+.p3_changed {
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 20px;
+  text-align: left;
 }
