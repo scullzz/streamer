@@ -4,7 +4,7 @@ import styles from "./style.module.css";
 import { useEffect, useState } from "react";
 const ViewOnline = () => {
   const location = useLocation();
-  const { image, link, platform, viewers, title } = location.state;
+  const { link, platform, viewers, title } = location.state;
   const backPage = () => {
     window.history.back();
   };
@@ -47,7 +47,7 @@ const ViewOnline = () => {
       <div className={styles.buttonGroup}>
         <button className={styles.twitchButton}>
           <div className={styles.buttonblock}>
-            <span className={`${styles[selectedStyle]}`}></span>
+            <span className={`${styles[selectedStyle]}`}>{viewers}</span>
             <span> Смотреть на {platform}</span>
           </div>
         </button>
