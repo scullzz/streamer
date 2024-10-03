@@ -11,6 +11,8 @@
 }
 .streamContainer {
   width: 100%;
+  padding: 0px;
+  margin-top: 10px;
 }
 
 .streamThumbnail {
@@ -130,7 +132,7 @@
 }
 
 .twitchButton {
-  width: 178px;
+  padding: 0 10px;
   height: 35px;
   background-color: #1c1c1c;
   color: white;
