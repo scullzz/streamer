@@ -33,7 +33,7 @@ const ViewOnline = () => {
         <div className={styles.streamInfo}>
           <iframe
             width="100%"
-            height="500px"
+            height="210px"
             src={link}
             title={title}
             className={styles.streamThumbnail}
@@ -45,7 +45,12 @@ const ViewOnline = () => {
       </div>
 
       <div className={styles.buttonGroup}>
-        <button className={styles.twitchButton}>
+        <button
+          onClick={() => {
+            window.location.href = link;
+          }}
+          className={styles.twitchButton}
+        >
           <div className={styles.buttonblock}>
             <span className={`${styles[selectedStyle]}`}>{viewers}</span>
             <span> Смотреть на {platform}</span>
