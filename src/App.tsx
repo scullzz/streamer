@@ -14,6 +14,7 @@ import { store } from "./store";
 import SubscribersList from "./components/subscribers_list/SubscribersList";
 import ReferalList from "./components/referals_list/ReferalsList";
 import AdminsList from "./components/admins_list/AdminsList";
+import ViewOnline from "./components/view_online/ViewOnline";
 
 export const tg = Telegram.WebApp;
 function App() {
@@ -50,6 +51,7 @@ function App() {
                 path="/streamer/admins/:id"
                 element={<AdminsList />}
               ></Route>
+              <Route path="/streamer/online" element={<ViewOnline />}></Route>
             </Routes>
           </WithMenu>
         </Router>

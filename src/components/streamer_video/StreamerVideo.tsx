@@ -1,9 +1,10 @@
 import style from "./style.module.css";
 import twitch from "./image/twtch.svg";
 import youtube from "./image/youtube.svg";
-import kick from "./image/kick.svg"
+import kick from "./image/kick.svg";
 import "./style.css";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 interface GetVideo {
   image: string;
   link: string;
@@ -12,10 +13,11 @@ interface GetVideo {
   title: string;
 }
 const StreamerVideo = ({ image, link, platform, viewers, title }: GetVideo) => {
+  const nav = useNavigate();
   const [selectedStyle, setSelectedStyle] = useState<string>("number1");
   const [selectedImage, setSelectedImage] = useState<string>();
   const getImage = () => {
-    console.log(platform)
+    console.log(platform);
     if (platform === "Twitch") {
       setSelectedImage(twitch);
       setSelectedStyle("number1");
@@ -27,11 +29,16 @@ const StreamerVideo = ({ image, link, platform, viewers, title }: GetVideo) => {
       setSelectedStyle("number3");
     }
   };
+  const moveToVideoWatch = () => {
+    nav("/streamer/online", {
+      state: { image, link, platform, viewers, title },
+    });
+  };
   useEffect(() => {
     getImage();
   }, []);
   return (
-    <div className={style.VideoBlock}>
+    <div onClick={() => moveToVideoWatch()} className={style.VideoBlock}>
       <img className={style.image} src={image} alt="#" />
       <div className={style.mainBlock}>
         <div className={style.video_title}>

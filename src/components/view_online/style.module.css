@@ -1,0 +1,116 @@
+.streamContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.streamThumbnail {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 8px;
+}
+
+.streamOverlay {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.streamHeader {
+  font-size: 24px;
+  font-weight: bold;
+  color: white;
+}
+
+.streamBonus {
+  font-size: 18px;
+  color: yellow;
+}
+
+.chatContainer {
+  background: #222;
+  border-radius: 10px;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.chatHeader {
+  font-size: 18px;
+  color: white;
+}
+
+.chatMessages {
+  height: 150px;
+  overflow-y: scroll;
+}
+
+.chatInput input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.ratingContainer {
+  margin-top: 20px;
+}
+
+.casinoList {
+  display: flex;
+  flex-direction: column;
+}
+
+.casinoItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background: #333;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.casinoLogo img {
+  width: 50px;
+  height: 50px;
+}
+
+.casinoInfo {
+  flex: 1;
+  margin-left: 20px;
+}
+
+.playButton {
+  background-color: #00f;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.twitchButton {
+  background-color: #6441a5;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.youtubeButton {
+  background-color: #ff0000;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.buttonblock {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
