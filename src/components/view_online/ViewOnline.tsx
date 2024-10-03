@@ -72,12 +72,14 @@ const ViewOnline = () => {
         <h3 className={styles.p3_changed}>Рейтинг онлайн казино</h3>
         <div className={styles.casinoList}>
           <div className={styles.casinoItem}>
-            <div className={styles.casinoLogo}>
-              <img src={trash} alt="Auf Casino" />
-            </div>
-            <div className={styles.casinoInfo}>
-              <span className={styles.casinoMainText}>Auf Casino</span>
-              <span className={styles.casinoMiniText}>Промокод: COBRIK</span>
+            <div className={styles.miniFlex}>
+              <div className={styles.casinoLogo}>
+                <img src={trash} alt="Auf Casino" />
+              </div>
+              <div className={styles.casinoInfo}>
+                <span className={styles.casinoMainText}>Auf Casino</span>
+                <span className={styles.casinoMiniText}>Промокод: COBRIK</span>
+              </div>
             </div>
             <button className={styles.playButton}>Играть</button>
           </div>
