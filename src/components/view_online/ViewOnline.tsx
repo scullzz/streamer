@@ -21,7 +21,19 @@ const ViewOnline = () => {
       setSelectedStyle("number3");
     }
   };
-  const youtubeEmbedLink = link.replace("watch?v=", "embed/");
+  function convertYouTubeUrlToEmbed(url: any) {
+    const videoIdMatch = url.match(
+      /(?:\?v=|&v=|\/embed\/|\/v\/|youtu\.be\/|\/watch\?v=)([a-zA-Z0-9_-]{11})/
+    );
+
+    if (videoIdMatch && videoIdMatch[1]) {
+      const videoId = videoIdMatch[1];
+      return `https://www.youtube.com/embed/${videoId}`;
+    }
+
+    return url;
+  }
+  const youtubeEmbedLink = convertYouTubeUrlToEmbed(link);
   useEffect(() => {
     getImage();
   }, []);
