@@ -43,6 +43,7 @@ const MainPage = () => {
 
   const [user, setUser] = useState<GetUserProfile | null>(null);
   const [admins, setAdmins] = useState<StreamerAdmin[] | []>([]);
+
   const getUser = async () => {
     try {
       const response = await fetch("https://api.bigstreamerbot.io/users/1/", {
@@ -60,7 +61,6 @@ const MainPage = () => {
       const res = await response.json();
       setUser(res);
     } catch (err) {
-      alert("fuck");
       console.log(err);
     }
   };
@@ -84,10 +84,10 @@ const MainPage = () => {
 
       if (response.ok) {
         const res = await response.json();
-        setAdmins(res.streamer_admin);
+        console.log(res);
+        setAdmins(res["streamer-admin"]);
       }
     } catch (err) {
-      alert("fuck1");
       console.log(err);
     }
   };
@@ -161,7 +161,7 @@ const MainPage = () => {
             <Avatar
               size={26}
               isLive={false}
-              url={"https://api.bigstreamerbot.io/" + String(user?.image)}
+              url={"https://api.bigstreamerbot.io" + String(user?.image)}
             ></Avatar>
             <div className={style.MainPage_ItemTextBlock}>
               <p className={style.item_title}>
