@@ -1,7 +1,16 @@
+.back {
+  width: 100%;
+  overflow: scroll;
+  height: 100vh;
+  background-color: #131313;
+}
 .streamContainer {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  padding: 0px 16px;
+  padding-bottom: 60px;
+  overflow-y: auto;
 }
 
 .streamThumbnail {
@@ -96,14 +105,7 @@
 }
 
 .twitchButton {
-  background-color: #6441a5;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 5px;
-}
-
-.youtubeButton {
-  background-color: #ff0000;
+  background-color: #1c1c1c;
   color: white;
   padding: 10px 20px;
   border-radius: 5px;

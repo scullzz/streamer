@@ -53,14 +53,14 @@ const ViewOnline = () => {
         </button>
       </div>
 
-      <div className={styles.chatContainer}>
+      {/* <div className={styles.chatContainer}>
         <div className={styles.chatHeader}>Чат</div>
         <div className={styles.chatMessages}>
           <div className={styles.chatInput}>
             <input type="text" placeholder="Отправить сообщение" />
           </div>
         </div>
-      </div>
+      </div> */}
 
       <div className={styles.ratingContainer}>
         <h3>Рейтинг онлайн казино</h3>
