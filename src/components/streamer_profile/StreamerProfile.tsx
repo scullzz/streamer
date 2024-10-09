@@ -477,51 +477,49 @@ const StreamerProfile = () => {
               <span className={style.RaffleDiv_numberOf}>Завершенные (12)</span>
             </div>
             <div>
-              {raffle.length !== 0 ? (
-                raffle.map((item) => {
-                  return (
-                    <Prize
-                      title="Розыгрыш 10 000 RUB"
-                      amountOfParticipants={100}
-                      amountOfPrize={item.amount}
-                      description={item.description}
-                      endTime={item.date_end}
-                      isCreator={role === "owner" ? true : false}
-                      isParticipant={false}
-                      raffleConditions={conditions.filter((f) =>
-                        raffle.some((i) => i.conditions.some((c) => c === f.id))
-                      )}
-                      forPreview={
-                        new Date(item.date_end) < new Date() ? true : false
-                      }
-                    />
-                  );
-                })
-              ) : (
-                <div className={style.NoneRaffle}>
-                  <div className={style.NoneDisplayBlock}>
-                    <img src={none} alt="#" />
-                  </div>
-                  <div className={style.NoneDisplayBlock1}>
-                    <p className={style.firstPar}>Нет активных розыгрышей</p>
-                    <p className={style.secondPar}>
-                      Подпишитесь на стримера, чтобы получать оповещения о его
-                      розыгрышах:
-                    </p>
-                  </div>
-                  {sub_status === false ? (
-                    <div
-                      onClick={() => Subscribe()}
-                      className={style.actionButtonSub}
-                    >
-                      <p className={style.sub_text}>Подписаться</p>
-                    </div>
-                  ) : null}
-                </div>
-              )}
+              {raffle.map((item) => {
+                return (
+                  <Prize
+                    title="Розыгрыш 10 000 RUB"
+                    amountOfParticipants={100}
+                    amountOfPrize={item.amount}
+                    description={item.description}
+                    endTime={item.date_end}
+                    isCreator={role === "owner" ? true : false}
+                    isParticipant={false}
+                    raffleConditions={conditions.filter((f) =>
+                      raffle.some((i) => i.conditions.some((c) => c === f.id))
+                    )}
+                    forPreview={
+                      new Date(item.date_end) < new Date() ? true : false
+                    }
+                  />
+                );
+              })}
             </div>
           </>
-        ) : null}
+        ) : (
+          <div className={style.NoneRaffle}>
+            <div className={style.NoneDisplayBlock}>
+              <img src={none} alt="#" />
+            </div>
+            <div className={style.NoneDisplayBlock1}>
+              <p className={style.firstPar}>Нет активных розыгрышей</p>
+              <p className={style.secondPar}>
+                Подпишитесь на стримера, чтобы получать оповещения о его
+                розыгрышах:
+              </p>
+            </div>
+            {sub_status === false ? (
+              <div
+                onClick={() => Subscribe()}
+                className={style.actionButtonSub}
+              >
+                <p className={style.sub_text}>Подписаться</p>
+              </div>
+            ) : null}
+          </div>
+        )}
       </div>
     </div>
   );
