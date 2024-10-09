@@ -40,7 +40,6 @@
 .online {
   font-size: 14px;
   color: white;
-  margin-left: 3px;
 }
 
 .redBadge {
@@ -54,6 +53,7 @@
   font-weight: 400;
   line-height: 11.72px;
   text-align: center;
+  margin-left: 3px;
 }
 
 .purpleBadge {
@@ -67,6 +67,7 @@
   font-weight: 400;
   line-height: 11.72px;
   text-align: center;
+  margin-left: 3px;
 }
 .greenBadge {
   background-color: #53fc19;
@@ -79,6 +80,7 @@
   font-weight: 400;
   line-height: 11.72px;
   text-align: center;
+  margin-left: 3px;
 }
 .subscribedButton {
   display: flex;
