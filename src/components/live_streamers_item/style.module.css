@@ -40,29 +40,36 @@
 .online {
   font-size: 14px;
   color: white;
+  margin-left: 3px;
 }
 
 .redBadge {
-  background-color: #ff3b30;
-  color: #ffffff;
-  padding: 3px 3px;
-  border-radius: 4px;
+  background-color: #eb0400;
+  font-family: Roboto;
   font-size: 10px;
+  font-weight: 400;
+  line-height: 11.72px;
+  text-align: center;
+  color: white;
 }
 
 .purpleBadge {
-  background-color: #af52de;
-  color: #ffffff;
-  padding: 3px 3px;
-  border-radius: 4px;
+  background-color: #9146ff;
+  font-family: Roboto;
   font-size: 10px;
+  font-weight: 400;
+  line-height: 11.72px;
+  text-align: center;
+  color: white;
 }
 .greenBadge {
   background-color: #53fc19;
-  color: #ffffff;
-  padding: 3px 3px;
-  border-radius: 4px;
+  font-family: Roboto;
   font-size: 10px;
+  font-weight: 400;
+  line-height: 11.72px;
+  text-align: center;
+  color: white;
 }
 .subscribedButton {
   display: flex;
