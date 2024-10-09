@@ -225,3 +225,42 @@
   line-height: 18px;
   color: #ff3b30;
 }
+
+.NoneRaffle {
+  background-color: #1c1c1c;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.NoneDisplayBlock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.NoneDisplayBlock1 {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+}
+
+.firstPar {
+  font-family: Roboto;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 22px;
+  text-align: center;
+  color: white;
+}
+.secondPar {
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: center;
+  color: white;
+}
