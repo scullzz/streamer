@@ -9,6 +9,7 @@ import Slider from "react-slick";
 import { StreamerPreview } from "../streamer_preview/StreamerPreview";
 import StreamerVideo from "../streamer_video/StreamerVideo";
 import Prize from "../prize/Prize";
+import link from "./image/link.svg";
 import {
   subscribeToStreamer,
   unsubscribeFromStreamer,
@@ -393,17 +394,7 @@ const StreamerProfile = () => {
                             .name
                         }
                       </a>
-                      <img
-                        className={style.img_block}
-                        src={
-                          "https://api.bigstreamerbot.io/" +
-                          String(
-                            allSocials.filter((el) => el.id === item.social)[0]
-                              .icon
-                          )
-                        }
-                        alt=""
-                      />
+                      <img className={style.img_block} src={link} alt="" />
                     </div>
                   );
                 })}
