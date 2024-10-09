@@ -5,44 +5,44 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import add from "./image/add.svg";
 import { tg } from "../../App";
-function formatDateToRussian(isoDateStr: string) {
-  // Array of Russian month names
-  const russianMonths = [
-    "января", // January
-    "февраля", // February
-    "марта", // March
-    "апреля", // April
-    "мая", // May
-    "июня", // June
-    "июля", // July
-    "августа", // August
-    "сентября", // September
-    "октября", // October
-    "ноября", // November
-    "декабря", // December
-  ];
+// function formatDateToRussian(isoDateStr: string) {
+//   // Array of Russian month names
+//   const russianMonths = [
+//     "января", // January
+//     "февраля", // February
+//     "марта", // March
+//     "апреля", // April
+//     "мая", // May
+//     "июня", // June
+//     "июля", // July
+//     "августа", // August
+//     "сентября", // September
+//     "октября", // October
+//     "ноября", // November
+//     "декабря", // December
+//   ];
 
-  // Truncate milliseconds to 3 digits if necessary
-  const truncatedIsoDateStr = isoDateStr.replace(
-    /\.\d{3}\d*Z$/,
-    (match) => match.slice(0, 4) + "Z"
-  );
+//   // Truncate milliseconds to 3 digits if necessary
+//   const truncatedIsoDateStr = isoDateStr.replace(
+//     /\.\d{3}\d*Z$/,
+//     (match) => match.slice(0, 4) + "Z"
+//   );
 
-  // Create Date object
-  const dateObj = new Date(truncatedIsoDateStr);
+//   // Create Date object
+//   const dateObj = new Date(truncatedIsoDateStr);
 
-  // Extract day, month, and year
-  const day = dateObj.getUTCDate();
-  const monthIndex = dateObj.getUTCMonth(); // Months are zero-indexed (0-11)
-  const month = russianMonths[monthIndex];
-  const year = dateObj.getUTCFullYear();
+//   // Extract day, month, and year
+//   const day = dateObj.getUTCDate();
+//   const monthIndex = dateObj.getUTCMonth(); // Months are zero-indexed (0-11)
+//   const month = russianMonths[monthIndex];
+//   const year = dateObj.getUTCFullYear();
 
-  // Format the date in Russian
-  const formattedDate = `${day} ${month} ${year}`;
+//   // Format the date in Russian
+//   const formattedDate = `${day} ${month} ${year}`;
 
-  // Return the formatted date
-  return formattedDate;
-}
+//   // Return the formatted date
+//   return formattedDate;
+// }
 
 interface StreamerInfo {
   id: number;
