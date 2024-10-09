@@ -1,6 +1,6 @@
-import { SectionHeader } from "../section_header/SectionHeader";
+// import { SectionHeader } from "../section_header/SectionHeader";
 import style from "./style.module.css";
-import reply from "./image/reply.svg";
+// import reply from "./image/reply.svg";
 import next_arrow from "./image/next_arrow.svg";
 import dots from "./image/dots.svg";
 import "slick-carousel/slick/slick.css";
@@ -341,11 +341,11 @@ const StreamerProfile = () => {
 
   return (
     <div className={style.back}>
-      <SectionHeader
+      {/* <SectionHeader
         left={<span onClick={() => backPage()}>Назад</span>}
         center={<span style={{ color: "white" }}>Clash of Slots</span>}
         right={<img src={reply} alt="#" />}
-      />
+      /> */}
       <div className={style.StreamerProfile}>
         <div className="mt" style={{ marginTop: "25px" }}></div>
         <StreamerPreview
