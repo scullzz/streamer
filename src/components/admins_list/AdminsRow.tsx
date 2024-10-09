@@ -1,6 +1,6 @@
 import styles from "./style.module.css";
 
-const AdminsRow = ({ name, date, image }: any) => {
+const AdminsRow = ({ name, image }: any) => {
   return (
     <div className={styles.row}>
       <div className={styles.avatar}>
@@ -8,7 +8,6 @@ const AdminsRow = ({ name, date, image }: any) => {
       </div>
       <div className={styles.info}>
         <div className={styles.name}>{name}</div>
-        <div className={styles.date}>Подписан с {date}</div>
       </div>
     </div>
   );

@@ -44,30 +44,42 @@ function formatDateToRussian(isoDateStr: string) {
   return formattedDate;
 }
 
-interface User {
+interface StreamerInfo {
   id: number;
-  tgid: string;
+  name: string;
+  count_sub: number;
+  image: string;
+  is_subscribed: boolean;
+}
+
+interface UserInfo {
+  id: number;
+  tgid: number;
   first_name: string;
-  last_name: string;
-  email: string;
-  image?: string;
+  last_name: string | null;
+  email: string | null;
+  image: string;
   username: string;
 }
 
-interface MainInterface {
+interface StreamData {
   id: number;
-  title: string;
-  user: User;
-  date_created: string;
+  streamer: number;
+  streamer_info: StreamerInfo;
+  user: number;
+  user_info: UserInfo;
+  role: string;
+  add_url: string;
+  add_date: string;
 }
 
 const AdminsList = () => {
   const { id } = useParams();
-  const [listSubs, setListSubs] = useState<MainInterface[] | []>([]);
+  const [listSubs, setListSubs] = useState<StreamData[] | []>([]);
   const getAllSubscribers = async () => {
     try {
       const response = await fetch(
-        `https://api.bigstreamerbot.io/users-subscriptions/streamers/?pk=${id}`,
+        `https://api.bigstreamerbot.io/streamer-admins/?pk=${id}`,
         {
           method: "GET",
           headers: {
@@ -78,7 +90,7 @@ const AdminsList = () => {
       );
 
       const res = await response.json();
-      setListSubs(res.users);
+      setListSubs(res);
     } catch (err) {
       console.log(err);
     }
@@ -119,10 +131,10 @@ const AdminsList = () => {
               <AdminsRow
                 key={index}
                 name={
-                  subscriber.user.first_name + (subscriber.user.last_name || "")
+                  subscriber.user_info.first_name +
+                  (subscriber.user_info.last_name || "")
                 }
-                date={formatDateToRussian(subscriber.date_created)}
-                image={subscriber.user.image}
+                image={subscriber.user_info.image}
               />
             ))}
           </div>
