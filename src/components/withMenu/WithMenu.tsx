@@ -6,7 +6,6 @@ import useApplyTelegramTheme from "../../functions/useApplyTelegramTheme";
 export const WithMenu = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
   useEffect(() => {
-    useApplyTelegramTheme();
     const elem = document.querySelector(".footer") as HTMLDivElement;
     if (elem != null) {
       const section = document.querySelector(".section") as HTMLDivElement;
@@ -17,6 +16,7 @@ export const WithMenu = ({ children }: { children: React.ReactNode }) => {
       }
     }
   }, [location]);
+  useApplyTelegramTheme();
 
   return (
     <>
