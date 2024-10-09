@@ -233,6 +233,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  border-radius: 14px;
+  margin-top: 20px;
 }
 .NoneDisplayBlock {
   display: flex;
