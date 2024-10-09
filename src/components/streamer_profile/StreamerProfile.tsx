@@ -109,9 +109,9 @@ const StreamerProfile = () => {
 
   const nav = useNavigate();
 
-  const backPage = () => {
-    nav("/");
-  };
+  // const backPage = () => {
+  //   nav("/");
+  // };
 
   const getRole = async () => {
     try {
