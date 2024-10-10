@@ -40,8 +40,7 @@
   margin-top: 20px;
 }
 .streamer_subs {
-  width: 135px;
-  height: 57px;
+  width: 40%;
   background-color: #292929;
   display: flex;
   justify-content: center;
@@ -70,8 +69,7 @@
   text-align: center;
 }
 .streamer_refs {
-  width: 135px;
-  height: 57px;
+  width: 40%;
   background-color: #292929;
   display: flex;
   justify-content: center;
@@ -81,8 +79,7 @@
   border-radius: 13px;
 }
 .streamer_more {
-  width: 54px;
-  height: 57px;
+  width: 20%;
   display: flex;
   background-color: #292929;
   justify-content: center;
