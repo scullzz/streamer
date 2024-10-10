@@ -37,6 +37,7 @@
   justify-content: space-between;
   align-items: center;
   margin-top: 20px;
+  gap: 8px;
 }
 .streamer_subs {
   background-color: #292929;
