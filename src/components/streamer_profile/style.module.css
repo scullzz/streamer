@@ -36,16 +36,15 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 8px;
   margin-top: 20px;
 }
 .streamer_subs {
-  width: 40%;
   background-color: #292929;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  flex: 1 1 40%;
   gap: 6px;
   border-radius: 13px;
 }
@@ -69,7 +68,7 @@
   text-align: center;
 }
 .streamer_refs {
-  width: 40%;
+  flex: 1 1 40%;
   background-color: #292929;
   display: flex;
   justify-content: center;
@@ -79,7 +78,7 @@
   border-radius: 13px;
 }
 .streamer_more {
-  width: 20%;
+  flex: 1 1 20%;
   display: flex;
   background-color: #292929;
   justify-content: center;
