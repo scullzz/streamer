@@ -34,7 +34,6 @@
 .streamer_stats {
   width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
   margin-top: 20px;
   gap: 8px;
@@ -45,7 +44,8 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  flex: 1 1 35%;
+  flex: 1 1 40%;
+  height: 57px;
   gap: 6px;
   border-radius: 13px;
 }
@@ -69,7 +69,9 @@
   text-align: center;
 }
 .streamer_refs {
-  flex: 1 1 35%;
+  flex: 1 1 40%;
+  height: 57px;
+
   background-color: #292929;
   display: flex;
   justify-content: center;
@@ -79,7 +81,8 @@
   border-radius: 13px;
 }
 .streamer_more {
-  flex: 1 1 30%;
+  flex: 1 1 20%;
+  height: 57px;
   display: flex;
   background-color: #292929;
   justify-content: center;
