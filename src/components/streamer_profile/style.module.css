@@ -81,7 +81,6 @@
   border-radius: 13px;
 }
 .streamer_more {
-  width: 20%;
   height: 57px;
   display: flex;
   background-color: #292929;
@@ -154,6 +153,7 @@
 .container {
   position: relative;
   display: inline-block;
+  width: 20%;
 }
 
 .menu {
