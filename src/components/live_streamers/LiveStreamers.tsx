@@ -96,7 +96,6 @@ const LiveStreamers = () => {
 
         <div className={style.StreamersListHeader}>
           <span className={style.StreamerText}>Стримеры</span>
-          <img src={reply} alt="Reply" />
         </div>
 
         {filteredPlatforms?.youtube.map((item) => (
