@@ -7,7 +7,6 @@ import {
 } from "../../redux/streamer_list";
 import { AppDispatch, RootState } from "../../store";
 import LiveStreamerItem from "../live_streamers_item/LiveStreamerItem";
-import reply from "./image/reply.svg";
 import searchIcon from "./image/search.svg";
 import style from "./style.module.css";
 
