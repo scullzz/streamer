@@ -427,6 +427,7 @@ const StreamerProfile = () => {
               {data?.youtube.map((item) => {
                 return (
                   <StreamerVideo
+                    name={item.streamer_name}
                     image={item.thumbnail}
                     link={item.link}
                     platform={item.platform}
@@ -438,6 +439,7 @@ const StreamerProfile = () => {
               {data?.twitch.map((item) => {
                 return (
                   <StreamerVideo
+                    name={item.streamer_name}
                     image={item.thumbnail}
                     link={item.link}
                     platform={item.platform}
@@ -449,6 +451,7 @@ const StreamerProfile = () => {
               {data?.kick.map((item) => {
                 return (
                   <StreamerVideo
+                    name={item.streamer_name}
                     image={item.thumbnail}
                     link={item.link}
                     platform={item.platform}

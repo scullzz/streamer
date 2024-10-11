@@ -6,16 +6,25 @@ import "./style.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 interface GetVideo {
+  name: string;
   image: string;
   link: string;
   platform: string;
   viewers: number;
   title: string;
 }
-const StreamerVideo = ({ image, link, platform, viewers, title }: GetVideo) => {
+const StreamerVideo = ({
+  name,
+  image,
+  link,
+  platform,
+  viewers,
+  title,
+}: GetVideo) => {
   const nav = useNavigate();
   const [selectedStyle, setSelectedStyle] = useState<string>("number1");
   const [selectedImage, setSelectedImage] = useState<string>();
+  const [changedLink, setChangedLink] = useState<string>();
   const getImage = () => {
     console.log(platform);
     if (platform === "Twitch") {
@@ -29,6 +38,16 @@ const StreamerVideo = ({ image, link, platform, viewers, title }: GetVideo) => {
       setSelectedStyle("number3");
     }
   };
+
+  const getUpdatedLink = () => {
+    if (platform === "Twitch") {
+      setChangedLink(`www.twitch.tv/${name}`);
+    } else if (platform === "YouTube") {
+      setChangedLink(`www.youtube.com/${name}`);
+    } else if (platform === "Kick") {
+      setChangedLink(`www.kick.com/${name}`);
+    }
+  };
   const moveToVideoWatch = () => {
     nav("/streamer/online", {
       state: { image, link, platform, viewers, title },
@@ -36,6 +55,7 @@ const StreamerVideo = ({ image, link, platform, viewers, title }: GetVideo) => {
   };
   useEffect(() => {
     getImage();
+    getUpdatedLink();
   }, []);
   return (
     <div onClick={() => moveToVideoWatch()} className={style.VideoBlock}>
@@ -44,7 +64,7 @@ const StreamerVideo = ({ image, link, platform, viewers, title }: GetVideo) => {
         <div className={style.video_title}>
           <div className={style.video_first_title}>
             <img src={selectedImage} alt="#" />
-            <span className={style.link}>{link}</span>
+            <span className={style.link}>{changedLink}</span>
           </div>
           <div className={`${style[selectedStyle]}`}>{viewers}</div>
         </div>
