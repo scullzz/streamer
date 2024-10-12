@@ -72,7 +72,7 @@
 }
 
 .loader {
-  border: 8px solid #f3f3f3; /* Light gray */
+  border: 8px solid #808080; /* Light gray */
   border-top: 4px solid #007aff; /* Blue color for the loader */
   border-radius: 50%;
   width: 50px;
