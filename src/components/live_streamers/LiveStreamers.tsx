@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchListOfLiveStreamers,
@@ -20,16 +20,18 @@ const LiveStreamers = () => {
   );
 
   const scrollPositionRef = useRef<number>(0);
-
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-    if (!platforms) {
-      dispatch(fetchListOfLiveStreamers());
-    } else {
+    dispatch(fetchListOfLiveStreamers());
+  }, [dispatch, location]);
+
+  useEffect(() => {
+    if (platforms) {
       setFilteredPlatforms(platforms);
     }
-  }, [dispatch, platforms]);
+  }, [platforms]);
 
   useEffect(() => {
     const savedPosition = localStorage.getItem("scrollPosition");
@@ -66,7 +68,7 @@ const LiveStreamers = () => {
   }, [platforms, search]);
 
   const handleNavigate = (id: any, is_subscribed: any) => {
-    scrollPositionRef.current = window.scrollY; // Сохраняем текущее положение скролла
+    scrollPositionRef.current = window.scrollY;
     localStorage.setItem("scrollPosition", String(scrollPositionRef.current));
     navigate(`/streamer/${id}/${is_subscribed}`);
   };

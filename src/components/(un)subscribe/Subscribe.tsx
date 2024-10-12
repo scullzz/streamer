@@ -77,7 +77,7 @@ const Subscribe = ({
     const overlay = document.getElementById("overlay");
 
     if (element && overlay) {
-      changeNotifications();
+      isSubscribed === true && changeNotifications();
       element.classList.add(style.close);
       overlay.classList.add(style.close);
       setTimeout(() => {
