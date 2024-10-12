@@ -82,7 +82,7 @@
 }
 .streamer_more {
   height: 57px;
-  width: 20%;
+  width: 100%;
   display: flex;
   background-color: #292929;
   justify-content: center;
