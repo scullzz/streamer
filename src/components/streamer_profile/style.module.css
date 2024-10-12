@@ -89,7 +89,7 @@
   align-items: center;
   flex-direction: column;
   border-radius: 13px;
-  gap: 13px;
+  gap: 12px;
 }
 .more {
   height: 10px;
@@ -157,6 +157,7 @@
   width: 20%;
   height: 57px;
   background-color: #292929;
+  border-radius: 13px;
 }
 
 .menu {
