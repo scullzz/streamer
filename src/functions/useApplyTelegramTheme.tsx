@@ -11,8 +11,8 @@ const useApplyTelegramTheme = () => {
       tg.expand();
       tg.disableVerticalSwipes();
       tg.enableClosingConfirmation();
-      tg.setHeaderColor("black");
-      tg.setBackgroundColor("black");
+      tg.setHeaderColor("#000000");
+      tg.setBackgroundColor("#000000");
     } catch (error) {
       console.log(error);
     }

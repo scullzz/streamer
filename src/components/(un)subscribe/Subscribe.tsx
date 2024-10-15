@@ -13,6 +13,7 @@ interface ISubscribe {
   streamerId: number;
   isSubscribed: boolean;
   onClose: () => void;
+  onCustomSubscribe?: () => void;
   name: string;
   imgUrl: string;
 }
@@ -20,6 +21,7 @@ interface ISubscribe {
 const Subscribe = ({
   isSubscribed,
   onClose,
+  onCustomSubscribe,
   streamerId,
   name,
   imgUrl,
@@ -89,6 +91,9 @@ const Subscribe = ({
 
   const SubscribeButton = async () => {
     try {
+      if (typeof onCustomSubscribe === "function") {
+        onCustomSubscribe();
+      }
       await fetch(
         `https://api.bigstreamerbot.io/subscriptions/${streamerId}/`,
         {

@@ -21,6 +21,7 @@ import { AppDispatch } from "../../store";
 import exit from "./image/exit.svg";
 import none from "./image/none.svg";
 import { tg } from "../../App";
+import SubscribeForm from "../(un)subscribe/Subscribe";
 
 interface Video {
   video_id: number;
@@ -92,12 +93,15 @@ const StreamerProfile = () => {
   const [number_of_sub, set_number_of_sub] = useState<number>();
   const [openSocial, setOpenSocial] = useState(false);
   const [role, setRole] = useState<string>();
-  const [image, setImage] = useState();
+  const [image, setImage] = useState<string>();
   const [conditions, setConditions] = useState<ConditionData[] | []>([]);
 
   const [allSocials, setAllSocials] = useState<ISocial[]>([]);
   const [allSocialsById, setAllSocialsById] = useState<ISocialById[]>([]);
   const [raffle, setRaffle] = useState<Raffle[]>([]);
+
+  const [isSubscribeModalOpen, setIsSubscribedModalOpen] =
+    useState<boolean>(false);
 
   const settings = {
     dots: false,
@@ -110,6 +114,9 @@ const StreamerProfile = () => {
 
   const nav = useNavigate();
 
+  const closeModal = () => {
+    setIsSubscribedModalOpen(false);
+  };
   // const backPage = () => {
   //   nav("/");
   // };
@@ -201,7 +208,9 @@ const StreamerProfile = () => {
         const res = await response.json();
         console.log(res);
         setData(res);
-        setImage(res.streamer.image);
+        if (res.streamer.image) {
+          setImage(res.streamer.image);
+        }
         set_sub_status(Boolean(res?.streamer.is_subscribed));
         set_number_of_sub(res?.streamer.count_sub);
       }
@@ -223,33 +232,13 @@ const StreamerProfile = () => {
 
   const Subscribe = async () => {
     try {
-      const response = await fetch(
-        `https://api.bigstreamerbot.io/subscriptions/${data?.streamer.id}/`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            "Telegram-User-ID":
-              tg.initDataUnsafe.user?.id !== undefined
-                ? tg.initDataUnsafe.user.id.toString()
-                : "error",
-            Auth: tg.initData,
-          },
-          body: JSON.stringify({
-            is_sub: true,
-          }),
-        }
-      );
-
       if (
-        response.ok &&
         typeof number_of_sub === "number" &&
         number_of_sub > -1 &&
         data
       ) {
         set_sub_status(true);
         set_number_of_sub(number_of_sub + 1);
-        dispatch(subscribeToStreamer(data.streamer.id));
       }
     } catch (err) {
       console.log(err);
@@ -413,7 +402,12 @@ const StreamerProfile = () => {
         </div>
 
         {sub_status === false ? (
-          <div onClick={() => Subscribe()} className={style.actionButtonSub}>
+          <div
+            onClick={() => {
+              setIsSubscribedModalOpen(true);
+            }}
+            className={style.actionButtonSub}
+          >
             <p className={style.sub_text}>Подписаться</p>
           </div>
         ) : null}
@@ -515,6 +509,17 @@ const StreamerProfile = () => {
           </div>
         )}
       </div>
+
+      {isSubscribeModalOpen && (
+        <SubscribeForm
+          isSubscribed={sub_status}
+          onClose={closeModal}
+          streamerId={data?.streamer.id ?? 0}
+          imgUrl={image ?? ""}
+          name={data?.streamer.name ?? ""}
+          onCustomSubscribe={Subscribe}
+        />
+      )}
     </div>
   );
 };
