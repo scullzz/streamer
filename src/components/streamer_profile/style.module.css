@@ -19,7 +19,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 60px;
+  height: 49px;
   border-radius: 14px;
   width: 100%;
   background-color: #007aff;
@@ -101,7 +101,8 @@
 }
 
 .online_streamers {
-  margin: 30px 0px;
+  margin-top: 30px;
+  margin-bottom: 20px;
 }
 .online_stream_title {
   font-size: 18px;
