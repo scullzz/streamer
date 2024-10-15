@@ -388,7 +388,7 @@ const StreamerProfile = () => {
                 })}
                 {sub_status === true ? (
                   <div
-                    onClick={() => UnSubscribe()}
+                    onClick={() => {setIsModalOpen(true)}}
                     className={style.flex_item1}
                   >
                     <span className={style.unsub_text}>Отписаться</span>
