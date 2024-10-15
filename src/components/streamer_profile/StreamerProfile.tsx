@@ -271,6 +271,8 @@ const StreamerProfile = () => {
         set_number_of_sub(number_of_sub - 1);
         dispatch(unsubscribeFromStreamer(data.streamer.id));
       }
+
+      setIsModalOpen(false)
     } catch (err) {
       console.log(err);
     }
