@@ -11,7 +11,6 @@ import StreamerVideo from "../streamer_video/StreamerVideo";
 import Prize from "../prize/Prize";
 import link from "./image/link.svg";
 import {
-  subscribeToStreamer,
   unsubscribeFromStreamer,
 } from "../../redux/streamer_list";
 import { useNavigate, useParams } from "react-router-dom";
