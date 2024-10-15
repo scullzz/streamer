@@ -10,9 +10,7 @@ import { StreamerPreview } from "../streamer_preview/StreamerPreview";
 import StreamerVideo from "../streamer_video/StreamerVideo";
 import Prize from "../prize/Prize";
 import link from "./image/link.svg";
-import {
-  unsubscribeFromStreamer,
-} from "../../redux/streamer_list";
+import { unsubscribeFromStreamer } from "../../redux/streamer_list";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -231,11 +229,7 @@ const StreamerProfile = () => {
 
   const Subscribe = async () => {
     try {
-      if (
-        typeof number_of_sub === "number" &&
-        number_of_sub > -1 &&
-        data
-      ) {
+      if (typeof number_of_sub === "number" && number_of_sub > -1 && data) {
         set_sub_status(true);
         set_number_of_sub(number_of_sub + 1);
       }
@@ -514,7 +508,7 @@ const StreamerProfile = () => {
           isSubscribed={sub_status}
           onClose={closeModal}
           streamerId={data?.streamer.id ?? 0}
-          imgUrl={image ?? ""}
+          imgUrl={"https://api.bigstreamerbot.io" + (image ?? "")}
           name={data?.streamer.name ?? ""}
           onCustomSubscribe={Subscribe}
         />
