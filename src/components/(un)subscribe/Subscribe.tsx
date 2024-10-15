@@ -139,10 +139,10 @@ const Subscribe = ({
           body: JSON.stringify({
             is_sub: false,
             date_unsubscribe: new Date(),
-            notification_youtube: youtubeNotification,
-            notification_twitch: twitchNotification,
-            notification_kick: kickNotification,
-            notification_raffle: raffleNotification,
+            notification_youtube: false,
+            notification_twitch: false,
+            notification_kick: false,
+            notification_raffle: false,
           }),
         }
       );

@@ -19,6 +19,7 @@ import exit from "./image/exit.svg";
 import none from "./image/none.svg";
 import { tg } from "../../App";
 import SubscribeForm from "../(un)subscribe/Subscribe";
+import SureModal from "../sure_to_unsub/MakeSure";
 
 interface Video {
   video_id: number;
@@ -96,6 +97,7 @@ const StreamerProfile = () => {
   const [allSocials, setAllSocials] = useState<ISocial[]>([]);
   const [allSocialsById, setAllSocialsById] = useState<ISocialById[]>([]);
   const [raffle, setRaffle] = useState<Raffle[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const [isSubscribeModalOpen, setIsSubscribedModalOpen] =
     useState<boolean>(false);
@@ -322,6 +324,10 @@ const StreamerProfile = () => {
     getAllConditions();
   }, []);
 
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div className={style.back}>
       {/* <SectionHeader
@@ -455,7 +461,7 @@ const StreamerProfile = () => {
           <>
             <div className={style.RaffleDiv}>
               <span className={style.RaffleDiv_title}>Розыгрыши</span>
-              <span className={style.RaffleDiv_numberOf}>Завершенные (12)</span>
+              <span className={style.RaffleDiv_numberOf}>Завершенные (0)</span>
             </div>
             <div>
               {raffle.map((item) => {
@@ -513,6 +519,13 @@ const StreamerProfile = () => {
           onCustomSubscribe={Subscribe}
         />
       )}
+      <SureModal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        approve={UnSubscribe}
+        id={id}
+        name={data?.streamer.name}
+      />
     </div>
   );
 };
