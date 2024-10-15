@@ -193,13 +193,7 @@
   gap: 50px;
 }
 .flex_item:last-child {
-  display: flex;
-  width: 100%;
-  padding: 10px;
-  justify-content: space-between;
-  align-items: center;
   border-bottom: none;
-  gap: 50px;
 }
 .flex_item1 {
   display: flex;
