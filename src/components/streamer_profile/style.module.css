@@ -1,7 +1,7 @@
 .back {
   width: 100%;
   overflow: scroll;
-  height: 100%;
+  height: 100vh;
   background-color: #131313;
 }
 .StreamerProfile {
@@ -12,6 +12,7 @@
   padding: 0px 16px;
   padding-bottom: 60px;
   overflow-y: auto;
+  overflow: scroll;
 }
 .actionButtonSub {
   margin-top: 20px;
