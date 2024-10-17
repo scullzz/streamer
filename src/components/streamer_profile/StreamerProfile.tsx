@@ -458,12 +458,15 @@ const StreamerProfile = () => {
           </div>
         ) : null}
 
+        <div className={style.RaffleDiv}>
+          <span className={style.RaffleDiv_title}>Розыгрыши</span>
+          <span className={style.RaffleDiv_numberOf}>
+            Завершенные ({raffle.length})
+          </span>
+        </div>
+
         {raffle.length > 0 ? (
           <>
-            <div className={style.RaffleDiv}>
-              <span className={style.RaffleDiv_title}>Розыгрыши</span>
-              <span className={style.RaffleDiv_numberOf}>Завершенные (0)</span>
-            </div>
             <div>
               {raffle.map((item) => {
                 return (
