@@ -410,53 +410,53 @@ const StreamerProfile = () => {
           </div>
         ) : null}
 
-        <div></div>
-
-        {(data?.kick?.length ?? 0) > 0 ||
-        (data?.youtube?.length ?? 0) > 0 ||
-        (data?.twitch?.length ?? 0) > 0 ? (
-          <div className={style.online_streamers}>
-            <p className={style.online_stream_title}>Стрим онлайн</p>
-            <Slider {...settings}>
-              {data?.youtube.map((item) => {
-                return (
-                  <StreamerVideo
-                    name={item.streamer_name}
-                    image={item.thumbnail}
-                    link={item.link}
-                    platform={item.platform}
-                    title={item.title}
-                    viewers={item.viewers}
-                  />
-                );
-              })}
-              {data?.twitch.map((item) => {
-                return (
-                  <StreamerVideo
-                    name={item.streamer_name}
-                    image={item.thumbnail}
-                    link={item.link}
-                    platform={item.platform}
-                    title={item.title}
-                    viewers={item.viewers}
-                  />
-                );
-              })}
-              {data?.kick.map((item) => {
-                return (
-                  <StreamerVideo
-                    name={item.streamer_name}
-                    image={item.thumbnail}
-                    link={item.link}
-                    platform={item.platform}
-                    title={item.title}
-                    viewers={item.viewers}
-                  />
-                );
-              })}
-            </Slider>
-          </div>
-        ) : null}
+        <div>
+          {(data?.kick?.length ?? 0) > 0 ||
+          (data?.youtube?.length ?? 0) > 0 ||
+          (data?.twitch?.length ?? 0) > 0 ? (
+            <div className={style.online_streamers}>
+              <p className={style.online_stream_title}>Стрим онлайн</p>
+              <Slider {...settings}>
+                {data?.youtube.map((item) => {
+                  return (
+                    <StreamerVideo
+                      name={item.streamer_name}
+                      image={item.thumbnail}
+                      link={item.link}
+                      platform={item.platform}
+                      title={item.title}
+                      viewers={item.viewers}
+                    />
+                  );
+                })}
+                {data?.twitch.map((item) => {
+                  return (
+                    <StreamerVideo
+                      name={item.streamer_name}
+                      image={item.thumbnail}
+                      link={item.link}
+                      platform={item.platform}
+                      title={item.title}
+                      viewers={item.viewers}
+                    />
+                  );
+                })}
+                {data?.kick.map((item) => {
+                  return (
+                    <StreamerVideo
+                      name={item.streamer_name}
+                      image={item.thumbnail}
+                      link={item.link}
+                      platform={item.platform}
+                      title={item.title}
+                      viewers={item.viewers}
+                    />
+                  );
+                })}
+              </Slider>
+            </div>
+          ) : null}
+        </div>
 
         <div className={style.RaffleDiv}>
           <span className={style.RaffleDiv_title}>Розыгрыши</span>
