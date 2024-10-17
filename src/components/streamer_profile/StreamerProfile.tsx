@@ -272,7 +272,7 @@ const StreamerProfile = () => {
         dispatch(unsubscribeFromStreamer(data.streamer.id));
       }
 
-      setIsModalOpen(false)
+      setIsModalOpen(false);
     } catch (err) {
       console.log(err);
     }
@@ -332,11 +332,6 @@ const StreamerProfile = () => {
 
   return (
     <div className={style.back}>
-      {/* <SectionHeader
-        left={<span onClick={() => backPage()}>Назад</span>}
-        center={<span style={{ color: "white" }}>Clash of Slots</span>}
-        right={<img src={reply} alt="#" />}
-      /> */}
       <div className={style.StreamerProfile}>
         <div className="mt" style={{ marginTop: "25px" }}></div>
         <StreamerPreview
@@ -390,7 +385,9 @@ const StreamerProfile = () => {
                 })}
                 {sub_status === true ? (
                   <div
-                    onClick={() => {setIsModalOpen(true)}}
+                    onClick={() => {
+                      setIsModalOpen(true);
+                    }}
                     className={style.flex_item1}
                   >
                     <span className={style.unsub_text}>Отписаться</span>
@@ -412,6 +409,8 @@ const StreamerProfile = () => {
             <p className={style.sub_text}>Подписаться</p>
           </div>
         ) : null}
+
+        <div></div>
 
         {(data?.kick?.length ?? 0) > 0 ||
         (data?.youtube?.length ?? 0) > 0 ||
