@@ -6,13 +6,10 @@
 }
 .StreamerProfile {
   width: 100%;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   padding: 0px 16px;
-  padding-bottom: 60px;
-  overflow-y: auto;
-  overflow: scroll;
+  padding-bottom: 120px;
 }
 .actionButtonSub {
   margin-top: 20px;
