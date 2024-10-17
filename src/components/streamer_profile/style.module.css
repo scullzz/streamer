@@ -126,6 +126,7 @@
   font-weight: 600;
   line-height: 20px;
   text-align: left;
+  color: white;
 }
 .RaffleDiv_numberOf {
   font-size: 14px;
@@ -244,7 +245,6 @@
   justify-content: center;
   align-items: center;
   border-radius: 14px;
-  margin-top: 20px;
 }
 .NoneDisplayBlock {
   display: flex;
