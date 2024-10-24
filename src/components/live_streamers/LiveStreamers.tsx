@@ -45,22 +45,15 @@ const LiveStreamers = () => {
       if (search === "") {
         setFilteredPlatforms(platforms);
       } else {
-        const filteredYoutube = platforms.youtube.filter((item) =>
-          item.streamer_name.toLowerCase().includes(search.toLowerCase())
-        );
-        const filteredTwitch = platforms.twitch.filter((item) =>
-          item.streamer_name.toLowerCase().includes(search.toLowerCase())
-        );
-        const filteredKick = platforms.kick.filter((item) =>
-          item.streamer_name.toLowerCase().includes(search.toLowerCase())
-        );
+        const filterStreamers = platforms.streamers.filter((item) => {
+          item.name.toLowerCase().includes(search.toLowerCase());
+        });
+
         const filteredRest = platforms.rest.filter((item) =>
           item.name.toLowerCase().includes(search.toLowerCase())
         );
         setFilteredPlatforms({
-          youtube: filteredYoutube,
-          twitch: filteredTwitch,
-          kick: filteredKick,
+          streamers: filterStreamers,
           rest: filteredRest,
         });
       }
@@ -99,46 +92,18 @@ const LiveStreamers = () => {
           <span className={style.StreamerText}>Стримеры</span>
         </div>
 
-        {filteredPlatforms?.youtube.map((item) => (
+        {filteredPlatforms?.streamers.map((item) => (
           <LiveStreamerItem
-            key={item.streamer_id}
-            streamer_id={item.streamer_id}
+            key={item.id}
+            streamer_id={item.id}
             is_subscribed={item.is_subscribed}
             imgUrl={"https://api.bigstreamerbot.io/" + item.image}
-            name={item.streamer_name}
-            subscriptions_count={item.subscriptions_count}
-            youtubeOnline={item.viewers}
-            scrollHandle={() =>
-              handleNavigate(item.streamer_id, item.is_subscribed)
-            }
-          />
-        ))}
-        {filteredPlatforms?.twitch.map((item) => (
-          <LiveStreamerItem
-            key={item.streamer_id}
-            streamer_id={item.streamer_id}
-            is_subscribed={item.is_subscribed}
-            imgUrl={"https://api.bigstreamerbot.io/" + item.image}
-            name={item.streamer_name}
-            subscriptions_count={item.subscriptions_count}
-            twitchOnline={item.viewers}
-            scrollHandle={() =>
-              handleNavigate(item.streamer_id, item.is_subscribed)
-            }
-          />
-        ))}
-        {filteredPlatforms?.kick.map((item) => (
-          <LiveStreamerItem
-            key={item.streamer_id}
-            streamer_id={item.streamer_id}
-            is_subscribed={item.is_subscribed}
-            imgUrl={"https://api.bigstreamerbot.io/" + item.image}
-            name={item.streamer_name}
-            subscriptions_count={item.subscriptions_count}
-            kickOnline={item.viewers}
-            scrollHandle={() =>
-              handleNavigate(item.streamer_id, item.is_subscribed)
-            }
+            name={item.name}
+            subscriptions_count={item.count_sub}
+            youtubeOnline={item.youtube}
+            twitchOnline={item.twitch}
+            kickOnline={item.kick}
+            scrollHandle={() => handleNavigate(item.id, item.is_subscribed)}
           />
         ))}
 

@@ -3,14 +3,15 @@ import { Avatar } from "../avatar/Avatar";
 import styles from "./style.module.css";
 import check from "./image/check.svg";
 import Subscribe from "../(un)subscribe/Subscribe";
+import { Video } from "../../redux/streamer_list";
 
 interface ILiveStreamerItemProps {
   streamer_id: number;
   imgUrl: string;
   name: string;
-  youtubeOnline?: number;
-  twitchOnline?: number;
-  kickOnline?: number;
+  youtubeOnline?: Video[];
+  twitchOnline?: Video[];
+  kickOnline?: Video[];
   is_subscribed: boolean;
   subscriptions_count: number;
   scrollHandle: () => any;
@@ -50,24 +51,29 @@ const LiveStreamerItem = ({
               {subscriptions_count} подписчиков
             </div>
             <div className={styles.online}>
-              {youtubeOnline ? (
-                <div>
-                  <span>Онлайн:</span>
-                  <span className={styles.redBadge}>{youtubeOnline}</span>
-                </div>
-              ) : null}
-              {twitchOnline ? (
-                <div>
-                  <span>Онлайн:</span>
-                  <span className={styles.purpleBadge}>{twitchOnline}</span>
-                </div>
-              ) : null}
-              {kickOnline ? (
-                <div>
-                  <span>Онлайн:</span>
-                  <span className={styles.greenBadge}>{kickOnline}</span>
-                </div>
-              ) : null}
+              {youtubeOnline &&
+                youtubeOnline.map((item) => (
+                  <div>
+                    <span>Онлайн:</span>
+                    <span className={styles.redBadge}>{item.viewers}</span>
+                  </div>
+                ))}
+
+              {twitchOnline &&
+                twitchOnline.map((item) => (
+                  <div>
+                    <span>Онлайн:</span>
+                    <span className={styles.redBadge}>{item.viewers}</span>
+                  </div>
+                ))}
+
+              {kickOnline &&
+                kickOnline.map((item) => (
+                  <div>
+                    <span>Онлайн:</span>
+                    <span className={styles.redBadge}>{item.viewers}</span>
+                  </div>
+                ))}
             </div>
           </div>
           {is_subscribed ? (

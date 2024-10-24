@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 import { tg } from "../App";
-interface Video {
+export interface Video {
   video_id: number;
   streamer_id: number;
   streamer_name: string;
@@ -22,10 +22,14 @@ interface IStreamer {
   is_subscribed: boolean;
 }
 
-export interface StreamingPlatforms {
+interface OverallStreamer extends IStreamer {
   youtube: Video[];
   twitch: Video[];
   kick: Video[];
+}
+
+export interface StreamingPlatforms {
+  streamers: OverallStreamer[];
   rest: IStreamer[];
 }
 
@@ -64,25 +68,25 @@ const updateSubscriptionStatus = (
   streamerId: number,
   isSubscribed: boolean
 ) => {
-  (["youtube", "twitch", "kick"] as Array<keyof StreamingPlatforms>).forEach(
-    (platform) => {
-      platforms[platform].forEach((streamer) => {
-        if (
-          (streamer as Video).streamer_id === streamerId &&
-          isSubscribed === true
-        ) {
-          (streamer as Video).is_subscribed = isSubscribed;
-          (streamer as Video).subscriptions_count++;
-        } else if (
-          (streamer as Video).streamer_id === streamerId &&
-          isSubscribed === false
-        ) {
-          (streamer as Video).is_subscribed = isSubscribed;
-          (streamer as Video).subscriptions_count--;
-        }
-      });
-    }
-  );
+  const platformNames: Array<keyof Omit<OverallStreamer, keyof IStreamer>> = [
+    "youtube",
+    "twitch",
+    "kick",
+  ];
+
+  platforms.streamers.forEach((overallStreamer) => {
+    platformNames.forEach((platform) => {
+      const videos = overallStreamer[platform];
+      if (Array.isArray(videos)) {
+        videos.forEach((video) => {
+          if (video.streamer_id === streamerId) {
+            video.is_subscribed = isSubscribed;
+            video.subscriptions_count += isSubscribed ? 1 : -1;
+          }
+        });
+      }
+    });
+  });
 
   platforms.rest.forEach((streamer) => {
     if (streamer.id === streamerId && isSubscribed === true) {
@@ -127,7 +131,6 @@ const liveStreamersSlice = createSlice({
   },
 });
 
-// Exporting the subscribe and unsubscribe actions
 export const { subscribeToStreamer, unsubscribeFromStreamer } =
   liveStreamersSlice.actions;
 
