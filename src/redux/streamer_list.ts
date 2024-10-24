@@ -81,6 +81,7 @@ const updateSubscriptionStatus = (
         videos.forEach((video) => {
           if (video.streamer_id === streamerId) {
             video.is_subscribed = isSubscribed;
+            overallStreamer.is_subscribed = isSubscribed;
             video.subscriptions_count += isSubscribed ? 1 : -1;
           }
         });

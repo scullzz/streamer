@@ -45,15 +45,16 @@ const LiveStreamers = () => {
       if (search === "") {
         setFilteredPlatforms(platforms);
       } else {
-        const filterStreamers = platforms.streamers.filter((item) => {
-          item.name.toLowerCase().includes(search.toLowerCase());
-        });
+        const filteredStream = platforms.streamers.filter((item) =>
+          item.name.toLowerCase().includes(search.toLowerCase())
+        );
 
         const filteredRest = platforms.rest.filter((item) =>
           item.name.toLowerCase().includes(search.toLowerCase())
         );
+
         setFilteredPlatforms({
-          streamers: filterStreamers,
+          streamers: filteredStream,
           rest: filteredRest,
         });
       }
