@@ -83,7 +83,8 @@
   width: 100%;
   display: flex;
   background-color: #292929;
-  justify-content: flex-end;
+  padding-top: 3px;
+  justify-content: center;
   align-items: center;
   flex-direction: column;
   border-radius: 13px;
