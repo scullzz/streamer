@@ -1,5 +1,4 @@
 import style from "./style.module.css";
-import { SectionHeader } from "../section_header/SectionHeader";
 import { useNavigate, useParams } from "react-router-dom";
 import copy from "./image/copy.svg";
 import row from "./image/row.svg";
@@ -18,13 +17,13 @@ import { useEffect, useState } from "react";
 import { StreamerResponse } from "../streamer_profile/StreamerProfile";
 import { tg } from "../../App";
 const StreamerExtraInfo = () => {
-  const { id, status } = useParams();
+  const { id } = useParams();
   const inputValue = `https://t.me/clashofslots_bot?start=refstr_${id}`;
   const [data, setData] = useState<StreamerResponse | null>(null);
   const nav = useNavigate();
-  const backPage = () => {
-    nav(`/streamer/${id}/${status}`);
-  };
+  // const backPage = () => {
+  //   nav(`/streamer/${id}/${status}`);
+  // };
 
   const moveToMessages = () => {
     nav(`/create-post/${id}`);
@@ -77,11 +76,6 @@ const StreamerExtraInfo = () => {
   };
   return (
     <div className={style.back}>
-      <SectionHeader
-        left={<span onClick={() => backPage()}>Назад</span>}
-        center={<span>Clash of Slots</span>}
-      />
-
       <div className={style.Stream}>
         <div className="mt" style={{ marginTop: "25px" }}></div>
 
@@ -101,6 +95,14 @@ const StreamerExtraInfo = () => {
               className={style.InputBlock_input}
               type="text"
             />
+          </div>
+          <div className={style.miniFlex}>
+            <button
+              onClick={() => shareWithOthers()}
+              className={style.ResendButton}
+            >
+              Поделиться
+            </button>
             <button
               onClick={() => copyToBuffer()}
               className={style.InputBlock_button}
@@ -108,12 +110,6 @@ const StreamerExtraInfo = () => {
               <img src={copy} alt="#" />
             </button>
           </div>
-          <button
-            onClick={() => shareWithOthers()}
-            className={style.ResendButton}
-          >
-            Поделиться
-          </button>
           <p className={style.description_text}>
             Поделитесь этой ссылкой с подписчиками, чтобы они, пользуясь ботом,
             видели только ваши реферальные ссылки на онлайн казино.
