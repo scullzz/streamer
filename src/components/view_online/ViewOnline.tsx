@@ -83,7 +83,10 @@ const ViewOnline = () => {
       </div> */}
 
         <div className={styles.ratingContainer}>
-          <h3 className={styles.p3_changed}>Рейтинг онлайн казино</h3>
+          <div className={styles.blockFlex}>
+            <h3 className={styles.p3_changed}>Рейтинг онлайн казино</h3>
+            <span className={styles.SeeAll}>Смотреть весь</span>
+          </div>
           <div className={styles.casinoList}>
             <div className={styles.casinoItem}>
               <div className={styles.miniFlex}>

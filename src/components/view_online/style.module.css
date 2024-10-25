@@ -207,3 +207,18 @@
   align-items: center;
   gap: 11px;
 }
+
+.SeeAll {
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 20px;
+  text-align: right;
+  color: #007aff;
+}
+
+.blockFlex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
