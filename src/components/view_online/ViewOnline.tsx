@@ -39,10 +39,6 @@ const ViewOnline = () => {
   }, []);
   return (
     <>
-      <SectionHeader
-        left={<span onClick={() => backPage()}>Назад</span>}
-        center={<span style={{ color: "white" }}>Clash of Slots</span>}
-      />
       <div className={styles.back}>
         <div className={styles.streamContainer}>
           <div className={styles.streamInfo}>
