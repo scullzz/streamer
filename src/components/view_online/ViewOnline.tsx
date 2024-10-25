@@ -1,14 +1,13 @@
 import { useLocation } from "react-router-dom";
-import { SectionHeader } from "../section_header/SectionHeader";
 import styles from "./style.module.css";
 import { useEffect, useState } from "react";
 import trash from "./image/trash.svg";
 const ViewOnline = () => {
   const location = useLocation();
   const { link, platform, viewers, title } = location.state;
-  const backPage = () => {
-    window.history.back();
-  };
+  // const backPage = () => {
+  //   window.history.back();
+  // };
 
   const [selectedStyle, setSelectedStyle] = useState<string>("number1");
   const getImage = () => {
