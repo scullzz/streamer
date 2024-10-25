@@ -83,7 +83,7 @@
   width: 100%;
   display: flex;
   background-color: #292929;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
   flex-direction: column;
   border-radius: 13px;

@@ -97,5 +97,42 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Full screen height to center vertically */
+  height: 100vh;
+}
+
+.endBlock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 19px;
+  margin-bottom: 19px;
+  width: 100%;
+}
+
+.v_text {
+  display: inline-block;
+  white-space: pre-wrap;
+  font-size: 18px;
+  letter-spacing: 2px;
+  line-height: 1.2;
+  transform: rotateX(0deg);
+  position: relative;
+}
+
+.v_text::after {
+  content: "";
+  display: block;
+  height: 1px;
+  width: 100%;
+  background: transparent;
+}
+
+.v_text span {
+  display: inline-block;
+  transform: scaleY(0.9);
+}
+
+.v_text {
+  transform-origin: center;
+  letter-spacing: calc(var(--index) * 1px); 
 }

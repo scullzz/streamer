@@ -119,6 +119,13 @@ const LiveStreamers = () => {
             scrollHandle={() => handleNavigate(item.id, item.is_subscribed)}
           />
         ))}
+
+        <div className={style.endBlock}>
+          <span className={style.v_text}>
+            Cтримеры и модераторы стримеров - обращайтесь к @SupportBot для
+            получения доступов к полному функционалу бота
+          </span>
+        </div>
       </div>
     </div>
   );
