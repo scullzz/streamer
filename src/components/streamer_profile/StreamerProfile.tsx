@@ -45,6 +45,7 @@ interface Raffle {
   see_winners?: boolean; // Необязательное поле, флаг для показа победителей
   date_create?: string; // Дата создания, read-only, автогенерируется (формат ISO)
 }
+//change
 
 interface Streamer {
   id: number;
