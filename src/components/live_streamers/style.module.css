@@ -110,31 +110,31 @@
 }
 
 .v_text {
-  width: 100%;
-  color: white;
   display: inline-block;
+  text-align: center;
   white-space: pre-wrap;
   font-size: 18px;
-  letter-spacing: 2px;
   line-height: 1.2;
-  transform: rotateX(0deg);
-  position: relative;
+  color: white;
 }
 
-.v_text::after {
-  content: "";
-  display: block;
-  height: 1px;
-  width: 100%;
-  background: transparent;
-}
-
-.v_text span {
+.line1 {
   display: inline-block;
-  transform: scaleY(0.9);
+  transform: scale(1); /* Самая широкая строка */
 }
 
-.v_text {
-  transform-origin: center;
-  letter-spacing: calc(var(--index) * 1px);
+.line2 {
+  display: inline-block;
+  transform: scale(0.9); /* Немного меньше */
 }
+
+.line3 {
+  display: inline-block;
+  transform: scale(0.8); /* Еще меньше */
+}
+
+.line4 {
+  display: inline-block;
+  transform: scale(0.7); /* Самая маленькая строка */
+}
+
