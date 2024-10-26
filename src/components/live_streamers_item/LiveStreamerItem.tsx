@@ -51,10 +51,12 @@ const LiveStreamerItem = ({
               {subscriptions_count} подписчиков
             </div>
             <div className={styles.online}>
+              <div>
+                <span>Онлайн:</span>
+              </div>
               {youtubeOnline &&
                 youtubeOnline.map((item) => (
                   <div>
-                    <span>Онлайн:</span>
                     <span className={styles.redBadge}>{item.viewers}</span>
                   </div>
                 ))}
