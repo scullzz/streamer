@@ -34,7 +34,7 @@ const ViewOnline = () => {
       const parts = url.split("/");
       return `https://player.twitch.tv/?channel=${
         parts[parts.length - 1]
-      }&parent=streamernews.example.com&muted=true`;
+      }&parent=bigstreamerbot.io&muted=true`;
     } else {
       return url;
     }
@@ -54,6 +54,7 @@ const ViewOnline = () => {
               src={embedLink}
               title={title}
               className={styles.streamThumbnail}
+              frameBorder="0"
               allowFullScreen
             ></iframe>
           </div>
