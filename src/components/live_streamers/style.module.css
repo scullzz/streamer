@@ -113,28 +113,10 @@
   display: inline-block;
   text-align: center;
   white-space: pre-wrap;
-  font-size: 18px;
-  line-height: 1.2;
-  color: white;
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.06px;
+  text-align: center;
+  color: #8a8a8e;
 }
-
-.line1 {
-  display: inline-block;
-  transform: scale(1); /* Самая широкая строка */
-}
-
-.line2 {
-  display: inline-block;
-  transform: scale(0.9); /* Немного меньше */
-}
-
-.line3 {
-  display: inline-block;
-  transform: scale(0.8); /* Еще меньше */
-}
-
-.line4 {
-  display: inline-block;
-  transform: scale(0.7); /* Самая маленькая строка */
-}
-
