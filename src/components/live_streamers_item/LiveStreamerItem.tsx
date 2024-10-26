@@ -62,7 +62,6 @@ const LiveStreamerItem = ({
               {twitchOnline &&
                 twitchOnline.map((item) => (
                   <div>
-                    <span>Онлайн:</span>
                     <span className={styles.purpleBadge}>{item.viewers}</span>
                   </div>
                 ))}
@@ -70,7 +69,6 @@ const LiveStreamerItem = ({
               {kickOnline &&
                 kickOnline.map((item) => (
                   <div>
-                    <span>Онлайн:</span>
                     <span className={styles.greenBadge}>{item.viewers}</span>
                   </div>
                 ))}

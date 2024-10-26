@@ -122,10 +122,12 @@ const LiveStreamers = () => {
 
         <div className={style.endBlock}>
           <span className={style.v_text}>
-            <span className={style.line1}>Стримеры и модераторы стримеров</span>
+            <span className={style.line1}>
+              Стримеры и модераторы стримеров - обращайтесь к
+            </span>
             <br />
             <span className={style.line2}>
-              обращайтесь к @SupportBot для получения доступов к полному
+              @SupportBot для получения доступов к полному
             </span>
             <br />
             <span className={style.line4}>функционалу бота</span>
