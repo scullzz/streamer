@@ -16,7 +16,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store";
 import exit from "./image/exit.svg";
-import none from "./image/none.svg";
+import none from "./image/none1.webp"
 import { tg } from "../../App";
 import SubscribeForm from "../(un)subscribe/Subscribe";
 import SureModal from "../sure_to_unsub/MakeSure";
