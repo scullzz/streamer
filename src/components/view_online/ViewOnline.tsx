@@ -20,21 +20,27 @@ const ViewOnline = () => {
       setSelectedStyle("number3");
     }
   };
-  function convertYouTubeUrlToEmbed(url: any) {
-    const videoIdMatch = url.match(
-      /(?:\?v=|&v=|\/embed\/|\/v\/|youtu\.be\/|\/watch\?v=)([a-zA-Z0-9_-]{11})/
-    );
+  function convertUrlToEmbed(url: any) {
+    if (platform === "YouTube") {
+      const videoIdMatch = url.match(
+        /(?:\?v=|&v=|\/embed\/|\/v\/|youtu\.be\/|\/watch\?v=)([a-zA-Z0-9_-]{11})/
+      );
 
-    if (videoIdMatch && videoIdMatch[1]) {
-      const videoId = videoIdMatch[1];
-      return `https://www.youtube.com/embed/${videoId}`;
+      if (videoIdMatch && videoIdMatch[1]) {
+        const videoId = videoIdMatch[1];
+        return `https://www.youtube.com/embed/${videoId}`;
+      }
+    } else if (platform === "Twitch") {
+      const parts = url.split("/");
+      return `https://player.twitch.tv/?channel=${
+        parts[parts.length - 1]
+      }&parent=streamernews.example.com&muted=true`;
+    } else {
+      return url;
     }
-
-    return url;
   }
-  const youtubeEmbedLink = convertYouTubeUrlToEmbed(link);
+  const embedLink = convertUrlToEmbed(link);
   useEffect(() => {
-    alert(link);
     getImage();
   }, []);
   return (
@@ -45,11 +51,9 @@ const ViewOnline = () => {
             <iframe
               width="100%"
               height="210px"
-              src={youtubeEmbedLink}
+              src={embedLink}
               title={title}
               className={styles.streamThumbnail}
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             ></iframe>
           </div>
