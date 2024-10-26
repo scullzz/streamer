@@ -110,6 +110,8 @@
 }
 
 .v_text {
+  width: 100%;
+  color: white;
   display: inline-block;
   white-space: pre-wrap;
   font-size: 18px;
@@ -134,5 +136,5 @@
 
 .v_text {
   transform-origin: center;
-  letter-spacing: calc(var(--index) * 1px); 
+  letter-spacing: calc(var(--index) * 1px);
 }
