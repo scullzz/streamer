@@ -51,9 +51,11 @@ const LiveStreamerItem = ({
               {subscriptions_count} подписчиков
             </div>
             <div className={styles.online}>
-              <div>
-                <span>Онлайн:</span>
-              </div>
+              {youtubeOnline || twitchOnline || kickOnline ? (
+                <div>
+                  <span>Онлайн:</span>
+                </div>
+              ) : null}
               {youtubeOnline &&
                 youtubeOnline.map((item) => (
                   <div>
