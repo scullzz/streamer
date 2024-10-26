@@ -34,6 +34,7 @@ const ViewOnline = () => {
   }
   const youtubeEmbedLink = convertYouTubeUrlToEmbed(link);
   useEffect(() => {
+    alert(link);
     getImage();
   }, []);
   return (
