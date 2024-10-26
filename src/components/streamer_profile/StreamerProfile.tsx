@@ -492,7 +492,7 @@ const StreamerProfile = () => {
         ) : (
           <div className={style.NoneRaffle}>
             <div className={style.NoneDisplayBlock}>
-              <img style={{width: "70px", height: "60px"}} src={none} alt="#" />
+              <img style={{width: "60px", height: "70px"}} src={none} alt="#" />
             </div>
             <div className={style.NoneDisplayBlock1}>
               <p className={style.firstPar}>Нет активных розыгрышей</p>
