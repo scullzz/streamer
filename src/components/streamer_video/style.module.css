@@ -11,6 +11,7 @@
 }
 
 .mainBlock {
+  width: 100%;
   padding: 12px;
 }
 .video_title {
@@ -21,7 +22,6 @@
 }
 
 .video_first_title {
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
