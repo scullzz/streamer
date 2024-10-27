@@ -3,7 +3,7 @@ import { formatRaffleDate } from "../../functions/formatRaffleData";
 import { NotAvailable } from "../not_available/NotAvailable";
 import { PrizeCondition } from "../prize_condition/PrizeCondition";
 import correct from "./image/correct.svg";
-import raffleIcon from "./image/raffleIcon.svg";
+import raffleIcon from "./image/raffleIcon.gif";
 import style from "./style.module.css";
 import coins from "./image/coins.svg";
 
