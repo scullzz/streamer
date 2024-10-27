@@ -97,21 +97,19 @@ const MainPage = () => {
       id: 1,
       text: "Стримы и стримеры",
       image: wave,
+      st: "iconStreams",
     },
     {
       id: 2,
       text: "Онлайн казино",
       image: cursor,
+      st: "iconCasino",
     },
     {
       id: 3,
       text: "Игры казино онлайн",
       image: slots,
-    },
-    {
-      id: 4,
-      text: "Друзья",
-      image: share,
+      st: "iconGames",
     },
   ];
 
@@ -120,16 +118,25 @@ const MainPage = () => {
       id: 1,
       text: "Играть",
       image: play,
+      st: "iconPlay",
     },
     {
       id: 2,
       text: "Заработать",
       image: lightning,
+      st: "iconEarn",
     },
     {
       id: 3,
       text: "Турниры",
       image: champ,
+      st: "iconTour",
+    },
+    {
+      id: 4,
+      text: "Друзья",
+      image: share,
+      st: "iconFriends",
     },
   ];
 
@@ -215,14 +222,15 @@ const MainPage = () => {
             key={item.id}
             className={style.ListOfMenuItems}
           >
-            <img src={item.image} alt="Wave Icon" />
+            <div className={style[item.st]}>
+              <img src={item.image} alt="Wave Icon" />
+            </div>
             <div className={style.innerFlexBlock}>
               <p className={style.menuItem_text}>{item.text}</p>
               <img src={row} alt="Row Icon" />
             </div>
           </div>
         ))}
-        <div className={style.line1}></div>
       </div>
 
       <p className={style.page_title_casino}>FREE CASINO</p>
@@ -230,7 +238,9 @@ const MainPage = () => {
       <div className={style.MainPageFlexItem}>
         {casinoItems.map((item) => (
           <div key={item.id} className={style.ListOfMenuItems}>
-            <img src={item.image} alt="Wave Icon" />
+            <div className={style[item.st]}>
+              <img src={item.image} alt="Wave Icon" />
+            </div>
             <div className={style.innerFlexBlock}>
               <p className={style.menuItem_text}>{item.text}</p>
               <img src={row} alt="Row Icon" />
