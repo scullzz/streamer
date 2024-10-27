@@ -10,7 +10,7 @@
   padding-right: 16px;
   padding-bottom: 58px;
   overflow-y: auto;
-  background-color: white;
+  background-color: #e3e3e4;
 }
 .MainPageFlexItem {
   display: flex;
@@ -18,15 +18,18 @@
   justify-content: center;
   flex-direction: column;
   width: 100%;
+  background-color: white;
   margin-bottom: 14px;
+  border-radius: 10px;
 }
 
 .page_title {
-  font-size: 14px;
-  color: #959595;
-  font-weight: 600;
-  line-height: 20px;
-  margin-bottom: 20px;
+  color: #6d6d71;
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  text-align: left;
 }
 .flexBlock {
   display: flex;
@@ -41,6 +44,8 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  background-color: white;
+  border-radius: 14px;
 }
 .MainPage_ItemTextBlock {
   display: flex;
@@ -70,15 +75,17 @@
 
 .ListOfMenuItems {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
+  padding: 10px;
   width: 100%;
+  gap: 13px;
 }
 .innerFlexBlock {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  gap: 13px;
+  border-bottom: 1px solid #e3e3e4;
 }
 .menuItem_text {
   font-size: 16px;

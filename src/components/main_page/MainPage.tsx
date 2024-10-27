@@ -155,7 +155,7 @@ const MainPage = () => {
   return (
     <div className={style.MainPageBlock}>
       <div className={style.MainPageFlexItem}>
-        <p className={style.page_title}>Ваш личный аккаунт</p>
+        <p className={style.page_title}>НАСТРОЙКИ ЛИЧНОГО АККАУНТА</p>
         <div className={style.flexBlock} onClick={() => handleClickMe()}>
           <div className={style.MainPage_Item}>
             <Avatar
@@ -174,12 +174,11 @@ const MainPage = () => {
             </div>
             <img src={row} alt="#" />
           </div>
-          <div className={style.line}></div>
         </div>
       </div>
 
       <div className={style.MainPageFlexItem}>
-        <p className={style.page_title}>Аккаунт аффилейта</p>
+        <p className={style.page_title}>НАСТРОЙКИ АККАУНТА АФФИЛЕЙТА</p>
         {admins.map((item) => {
           return (
             <div className={style.flexBlock}>
@@ -204,7 +203,6 @@ const MainPage = () => {
                 </div>
                 <img src={row} alt="#" />
               </div>
-              <div className={style.line}></div>
             </div>
           );
         })}
@@ -217,26 +215,26 @@ const MainPage = () => {
             key={item.id}
             className={style.ListOfMenuItems}
           >
+            <img src={item.image} alt="Wave Icon" />
             <div className={style.innerFlexBlock}>
-              <img src={item.image} alt="Wave Icon" />
               <p className={style.menuItem_text}>{item.text}</p>
+              <img src={row} alt="Row Icon" />
             </div>
-            <img src={row} alt="Row Icon" />
           </div>
         ))}
         <div className={style.line1}></div>
       </div>
 
-      <div className={style.MainPageFlexItem}>
-        <p className={style.page_title_casino}>Аккаунт аффилейта</p>
+      <p className={style.page_title_casino}>Аккаунт аффилейта</p>
 
+      <div className={style.MainPageFlexItem}>
         {casinoItems.map((item) => (
           <div key={item.id} className={style.ListOfMenuItems}>
+            <img src={item.image} alt="Wave Icon" />
             <div className={style.innerFlexBlock}>
-              <img src={item.image} alt="Wave Icon" />
               <p className={style.menuItem_text}>{item.text}</p>
+              <img src={row} alt="Row Icon" />
             </div>
-            <img src={row} alt="Row Icon" />
           </div>
         ))}
       </div>
