@@ -91,7 +91,6 @@
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  gap: 13px;
 }
 .innerFlexBlock {
   display: flex;
@@ -133,7 +132,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-
+  margin-right: 10px;
 }
 
 .iconCasino {
@@ -144,6 +143,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-right: 10px;
 }
 
 .iconGames {
@@ -154,6 +154,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-right: 10px;
 }
 
 .iconPlay {
@@ -164,6 +165,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-right: 10px;
 }
 
 .iconEarn {
@@ -174,6 +176,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-right: 10px;
 }
 
 .iconTour {
@@ -184,6 +187,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-right: 10px;
 }
 
 .iconFriends {
@@ -194,4 +198,5 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-right: 10px;
 }
