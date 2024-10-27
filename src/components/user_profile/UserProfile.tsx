@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import style from "./style.module.css";
 import { StreamerPreview } from "../streamer_preview/StreamerPreview";
 import { FormInput } from "../form_input/FormInput";
-import { useNavigate } from "react-router-dom";
 import { tg } from "../../App";
 interface GetUserProfile {
   id: number;
@@ -14,8 +13,6 @@ interface GetUserProfile {
 }
 
 const UserProfile = () => {
-  const nav = useNavigate();
-
   const [user, setUser] = useState<GetUserProfile | null>(null);
 
   const [trc, setTrc] = useState<string | null | undefined>(undefined);
