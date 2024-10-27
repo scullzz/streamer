@@ -154,8 +154,8 @@ const MainPage = () => {
 
   return (
     <div className={style.MainPageBlock}>
+      <p className={style.page_title}>НАСТРОЙКИ ЛИЧНОГО АККАУНТА</p>
       <div className={style.MainPageFlexItem}>
-        <p className={style.page_title}>НАСТРОЙКИ ЛИЧНОГО АККАУНТА</p>
         <div className={style.flexBlock} onClick={() => handleClickMe()}>
           <div className={style.MainPage_Item}>
             <Avatar
@@ -177,8 +177,8 @@ const MainPage = () => {
         </div>
       </div>
 
+      <p className={style.page_title}>НАСТРОЙКИ АККАУНТА АФФИЛЕЙТА</p>
       <div className={style.MainPageFlexItem}>
-        <p className={style.page_title}>НАСТРОЙКИ АККАУНТА АФФИЛЕЙТА</p>
         {admins.map((item) => {
           return (
             <div className={style.flexBlock}>
@@ -225,7 +225,7 @@ const MainPage = () => {
         <div className={style.line1}></div>
       </div>
 
-      <p className={style.page_title_casino}>Аккаунт аффилейта</p>
+      <p className={style.page_title_casino}>FREE CASINO</p>
 
       <div className={style.MainPageFlexItem}>
         {casinoItems.map((item) => (
