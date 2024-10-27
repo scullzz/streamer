@@ -364,7 +364,7 @@ const StreamerProfile = () => {
               }}
               className={style.streamer_more}
             >
-              <div style={{height: "15px"}}>
+              <div style={{height: "14px"}}>
                 <img src={dots} alt="#" />
               </div>
               <span className={style.more}>Еще</span>
