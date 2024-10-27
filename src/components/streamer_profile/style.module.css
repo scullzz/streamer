@@ -87,7 +87,7 @@
   align-items: center;
   flex-direction: column;
   border-radius: 13px;
-  gap: 5px;
+  gap: 9px;
 }
 .more {
   font-family: Roboto;
@@ -96,7 +96,6 @@
   line-height: 20px;
   text-align: center;
   color: #8a8a8e;
-  margin-top: 4px;
 }
 
 .online_streamers {
