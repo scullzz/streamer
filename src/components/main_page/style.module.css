@@ -89,12 +89,10 @@
   border-bottom: 1px solid #e3e3e4;
   width: 100%;
 }
-.innerFlexBlock:last-child {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
+.ListOfMenuItems:last-child .innerFlexBlock {
+  border-bottom: none;
 }
+
 .menuItem_text {
   font-size: 16px;
   line-height: 46px;
@@ -118,8 +116,8 @@
 
 .iconStreams {
   background-color: #35c759;
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   border-radius: 6px;
   margin-right: 10px;
   display: flex;
@@ -129,8 +127,8 @@
 
 .iconCasino {
   background-color: #af51de;
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   border-radius: 6px;
   margin-right: 10px;
   display: flex;
@@ -140,8 +138,8 @@
 
 .iconGames {
   background-color: #fe2c55;
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   border-radius: 6px;
   margin-right: 10px;
   display: flex;
@@ -151,8 +149,8 @@
 
 .iconPlay {
   background-color: #35c759;
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   border-radius: 6px;
   margin-right: 10px;
   display: flex;
@@ -162,8 +160,8 @@
 
 .iconEarn {
   background-color: #fe2c55;
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   border-radius: 6px;
   margin-right: 10px;
   display: flex;
@@ -173,8 +171,8 @@
 
 .iconTour {
   background-color: #5756d5;
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   border-radius: 6px;
   margin-right: 10px;
   display: flex;
@@ -184,8 +182,8 @@
 
 .iconFriends {
   background-color: #35a9db;
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   border-radius: 6px;
   margin-right: 10px;
   display: flex;
