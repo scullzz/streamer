@@ -6,7 +6,7 @@ import cursor from "./image/cursor.svg";
 import slots from "./image/slots.svg";
 import share from "./image/share.svg";
 import play from "./image/play.svg";
-import lightning from "./image/ligthning.svg";
+import lightning from "./image/lightning.svg";
 import champ from "./image/champ.svg";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
