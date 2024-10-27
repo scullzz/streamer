@@ -410,8 +410,6 @@ const StreamerProfile = () => {
           </div>
         ) : null}
 
-        <div></div>
-
         {(data?.kick?.length ?? 0) > 0 ||
         (data?.youtube?.length ?? 0) > 0 ||
         (data?.twitch?.length ?? 0) > 0 ? (
