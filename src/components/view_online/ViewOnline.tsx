@@ -49,7 +49,7 @@ const ViewOnline = () => {
         <div className={styles.streamContainer}>
           <div className={styles.streamInfo}>
             <iframe
-              width="100%"
+              width="100vw"
               height="210px"
               src={embedLink}
               title={title}
