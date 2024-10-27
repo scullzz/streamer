@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { SectionHeader } from "../section_header/SectionHeader";
 import style from "./style.module.css";
 import { StreamerPreview } from "../streamer_preview/StreamerPreview";
 import { FormInput } from "../form_input/FormInput";
@@ -24,9 +23,9 @@ const UserProfile = () => {
   const [pstrx, setPstrx] = useState<string | null | undefined>(undefined);
   const [email, setEmail] = useState<string>("");
 
-  const CloseHandle = () => {
-    nav("/menu");
-  };
+  // const CloseHandle = () => {
+  //   nav("/menu");
+  // };
 
   const getUser = async () => {
     try {
