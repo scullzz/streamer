@@ -16,7 +16,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store";
 import exit from "./image/exit.svg";
-import none from "./image/none1.gif"
+import none from "./image/none1.gif";
 import { tg } from "../../App";
 import SubscribeForm from "../(un)subscribe/Subscribe";
 import SureModal from "../sure_to_unsub/MakeSure";
@@ -364,7 +364,7 @@ const StreamerProfile = () => {
               }}
               className={style.streamer_more}
             >
-              <img src={dots} alt="#" />
+              <img style={{ height: "15px" }} src={dots} alt="#" />
               <span className={style.more}>Еще</span>
             </div>
 
@@ -490,7 +490,11 @@ const StreamerProfile = () => {
         ) : (
           <div className={style.NoneRaffle}>
             <div className={style.NoneDisplayBlock}>
-              <img style={{width: "70px", height: "65px"}} src={none} alt="#" />
+              <img
+                style={{ width: "70px", height: "65px" }}
+                src={none}
+                alt="#"
+              />
             </div>
             <div className={style.NoneDisplayBlock1}>
               <p className={style.firstPar}>Нет активных розыгрышей</p>
