@@ -175,8 +175,8 @@ const MainPage = () => {
                 {user?.first_name + (user?.last_name || "")}
               </p>
               <p className={style.item_text}>
-                Профиль, статистика, безопасность, платежная информация,
-                кошелек, история ставок...
+                Общая информация, статистика, платежная информация, кошельки,
+                история ставок...
               </p>
             </div>
             <img src={row} alt="#" />
@@ -204,7 +204,7 @@ const MainPage = () => {
                 <div className={style.MainPage_ItemTextBlock}>
                   <p className={style.item_title}>{item.streamer_info.name}</p>
                   <p className={style.item_text}>
-                    Настройки стримов, розыгрыши, подписчики, рейтинг казино,
+                    Стримы, розыгрыши, подписчики, ваш рейтинг казино,
                     реферальные ссылки...
                   </p>
                 </div>
