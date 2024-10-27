@@ -365,7 +365,7 @@ const StreamerProfile = () => {
               className={style.streamer_more}
             >
               <img src={dots} alt="#" />
-              <span className={style.more}>ЕЩЁ</span>
+              <span className={style.more}>Еще</span>
             </div>
 
             {openSocial && (
