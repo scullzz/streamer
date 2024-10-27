@@ -30,7 +30,7 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  height: 42px;
+  padding: 0 14px;
 }
 
 .item_div {
@@ -47,6 +47,12 @@
 }
 .item:last-child .item_div1 {
   border-bottom: none;
+}
+.item_div1 span {
+  font-family: Roboto;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 46px;
 }
 
 .iconProfile {

@@ -154,6 +154,10 @@ const MainPage = () => {
     }
   };
 
+  const streamerHandleClick = (id: number, is_subscribed: string) => {
+    nav(`/streamer/${id}/${is_subscribed}`);
+  };
+
   useEffect(() => {
     getUser();
     getAdminsList();
@@ -188,7 +192,15 @@ const MainPage = () => {
       <div className={style.MainPageFlexItem}>
         {admins.map((item) => {
           return (
-            <div className={style.flexBlock}>
+            <div
+              onClick={() =>
+                streamerHandleClick(
+                  item.streamer,
+                  item.streamer_info.is_subscribed.toString()
+                )
+              }
+              className={style.flexBlock}
+            >
               <div
                 className={style.MainPage_Item}
                 onClick={() => handleClickStreamer()}
