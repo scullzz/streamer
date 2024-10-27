@@ -80,7 +80,11 @@ const StreamerExtraInfo = () => {
         <div className="mt" style={{ marginTop: "25px" }}></div>
 
         <StreamerPreview
-          headerStyles={{ marginTop: "15px", lineHeight: "23px" }}
+          headerStyles={{
+            marginTop: "15px",
+            lineHeight: "23px",
+            color: "black",
+          }}
           url={"https://api.bigstreamerbot.io/" + data?.streamer.image}
           name={String(data?.streamer.name)}
           isLive={false}
@@ -121,9 +125,11 @@ const StreamerExtraInfo = () => {
                 <span className={style.iconProfile}>
                   <img src={user} alt="" />
                 </span>
-                <span>Профиль аффилeйта</span>
               </div>
-              <img src={row} alt="#" />
+              <div className={style.item_div1}>
+                <span>Профиль аффилeйта</span>
+                <img src={row} alt="#" />
+              </div>
             </div>
           </div>
 
@@ -133,10 +139,9 @@ const StreamerExtraInfo = () => {
                 <span className={style.iconAdmin}>
                   <img src={admin} alt="" />
                 </span>
-                <span>Администраторы</span>
               </div>
               <div className={style.item_div1}>
-                {/* <span className={style.count}>2</span> */}
+                <span>Администраторы</span>
                 <img src={row} alt="#" />
               </div>
             </div>
@@ -145,10 +150,9 @@ const StreamerExtraInfo = () => {
                 <span className={style.iconSubscribers}>
                   <img src={subs} alt="" />
                 </span>
-                <span>Подписчики</span>
               </div>
               <div className={style.item_div1}>
-                {/* <span className={style.count}>125</span> */}
+                <span>Подписчики</span>
                 <img src={row} alt="#" />
               </div>
             </div>
@@ -157,10 +161,9 @@ const StreamerExtraInfo = () => {
                 <span className={style.iconReferrals}>
                   <img src={refs} alt="" />
                 </span>
-                <span>Рефералы</span>
               </div>
               <div className={style.item_div1}>
-                {/* <span className={style.count}>125</span> */}
+                <span>Рефералы</span>
                 <img src={row} alt="#" />
               </div>
             </div>
@@ -172,9 +175,11 @@ const StreamerExtraInfo = () => {
                 <span className={style.iconRaffle}>
                   <img src={ruf} alt="" />
                 </span>
-                <span>Розыгрыши</span>
               </div>
-              <img src={row} alt="#" />
+              <div className={style.item_div1}>
+                <span>Розыгрыши</span>
+                <img src={row} alt="#" />
+              </div>
             </div>
             <div
               onClick={() => {
@@ -186,9 +191,11 @@ const StreamerExtraInfo = () => {
                 <span className={style.iconMessages}>
                   <img src={mes} alt="" />
                 </span>
-                <span>Сообщения</span>
               </div>
-              <img src={row} alt="#" />
+              <div className={style.item_div1}>
+                <span>Сообщения</span>
+                <img src={row} alt="#" />
+              </div>
             </div>
             {/* <div className={style.item}>
               <div className={style.item_div}>
@@ -207,9 +214,11 @@ const StreamerExtraInfo = () => {
                 <span className={style.iconSocialLinks}>
                   <img src={draw} alt="" />
                 </span>
-                <span>Соц. сети и ссылки</span>
               </div>
-              <img src={row} alt="#" />
+              <div className={style.item_div1}>
+                <span>Соц. сети и ссылки</span>
+                <img src={row} alt="#" />
+              </div>
             </div>
             {/* <div className={style.item}>
               <div className={style.item_div}>
@@ -228,9 +237,11 @@ const StreamerExtraInfo = () => {
                 <span className={style.iconTopWins}>
                   <img src={seven} alt="" />
                 </span>
-                <span>Топ заносы</span>
               </div>
-              <img src={row} alt="#" />
+              <div className={style.item_div1}>
+                <span>Топ заносы</span>
+                <img src={row} alt="#" />
+              </div>
             </div>
           </div>
         </div>

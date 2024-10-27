@@ -38,17 +38,29 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  border-bottom: 1px solid #e3e3e4;
+  width: 100%;
 }
 
-.item:last-child {
+.item_div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.item_div1 {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e3e3e4;
+}
+.item .item_div1:last-child {
   border-bottom: none;
 }
 
 .iconProfile {
-  background-color: red;
-  width: 26px;
-  height: 26px;
+  background-color: #fe2c55;
+  width: 28px;
+  height: 28px;
   border-radius: 6px;
   margin-right: 10px;
   display: flex;
@@ -58,8 +70,8 @@
 
 .iconAdmin {
   background-color: green;
-  width: 26px;
-  height: 26px;
+  width: 28px;
+  height: 28px;
   border-radius: 6px;
   margin-right: 10px;
   display: flex;
@@ -68,9 +80,9 @@
 }
 
 .iconSubscribers {
-  background-color: blue;
-  width: 26px;
-  height: 26px;
+  background-color: #27a1da;
+  width: 28px;
+  height: 28px;
   border-radius: 6px;
   margin-right: 10px;
   display: flex;
@@ -79,9 +91,9 @@
 }
 
 .iconReferrals {
-  background-color: purple;
-  width: 26px;
-  height: 26px;
+  background-color: #5756d5;
+  width: 28px;
+  height: 28px;
   border-radius: 6px;
   margin-right: 10px;
   display: flex;
@@ -90,9 +102,9 @@
 }
 
 .iconRaffle {
-  background-color: lightgreen;
-  width: 26px;
-  height: 26px;
+  background-color: #35c759;
+  width: 28px;
+  height: 28px;
   border-radius: 6px;
   margin-right: 10px;
   display: flex;
@@ -101,9 +113,9 @@
 }
 
 .iconMessages {
-  background-color: skyblue;
-  width: 26px;
-  height: 26px;
+  background-color: #35a9db;
+  width: 28px;
+  height: 28px;
   border-radius: 6px;
   margin-right: 10px;
   display: flex;
@@ -112,9 +124,9 @@
 }
 
 .iconNews {
-  background-color: teal;
-  width: 26px;
-  height: 26px;
+  background-color: #35a9db;
+  width: 28px;
+  height: 28px;
   border-radius: 6px;
   margin-right: 10px;
   display: flex;
@@ -123,9 +135,9 @@
 }
 
 .iconSocialLinks {
-  background-color: orange;
-  width: 26px;
-  height: 26px;
+  background-color: #ff9400;
+  width: 28px;
+  height: 28px;
   border-radius: 6px;
   margin-right: 10px;
   display: flex;
@@ -134,9 +146,9 @@
 }
 
 .iconCasinoRating {
-  background-color: red;
-  width: 26px;
-  height: 26px;
+  background-color: #fe2c55;
+  width: 28px;
+  height: 28px;
   border-radius: 6px;
   margin-right: 10px;
   display: flex;
@@ -145,9 +157,9 @@
 }
 
 .iconTopWins {
-  background-color: violet;
-  width: 26px;
-  height: 26px;
+  background-color: #af51de;
+  width: 28px;
+  height: 28px;
   border-radius: 6px;
   margin-right: 10px;
   display: flex;
@@ -157,18 +169,6 @@
 
 .count {
   font-weight: bold;
-}
-
-.item_div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.item_div1 {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
 }
 
 .sub_title {
@@ -188,6 +188,7 @@
   justify-content: center;
   align-items: center;
   gap: 5px;
+  margin-top: 14px;
 }
 
 .InputBlock {
@@ -213,8 +214,8 @@
   padding: 0px 15px;
 }
 .InputBlock_button {
-  width: 50px;
-  height: 50px;
+  width: 49px;
+  height: 49px;
   border-radius: 13px;
   border: none;
   outline: none;
@@ -232,7 +233,6 @@
   background-color: #007aff;
   color: white;
   border: none;
-  margin-top: 14px;
 }
 
 .description_text {

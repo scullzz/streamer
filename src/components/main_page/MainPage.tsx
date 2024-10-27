@@ -222,9 +222,9 @@ const MainPage = () => {
             key={item.id}
             className={style.ListOfMenuItems}
           >
-            <div className={style[item.st]}>
+            <span className={style[item.st]}>
               <img src={item.image} alt="Wave Icon" />
-            </div>
+            </span>
             <div className={style.innerFlexBlock}>
               <p className={style.menuItem_text}>{item.text}</p>
               <img src={row} alt="Row Icon" />
@@ -238,9 +238,9 @@ const MainPage = () => {
       <div className={style.MainPageFlexItem1}>
         {casinoItems.map((item) => (
           <div key={item.id} className={style.ListOfMenuItems}>
-            <div className={style[item.st]}>
+            <span className={style[item.st]}>
               <img src={item.image} alt="Wave Icon" />
-            </div>
+            </span>
             <div className={style.innerFlexBlock}>
               <p className={style.menuItem_text}>{item.text}</p>
               <img src={row} alt="Row Icon" />

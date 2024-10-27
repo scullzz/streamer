@@ -56,14 +56,9 @@ const UserProfile = () => {
   }, []);
   return (
     <div className={`${style.userProfile} section`}>
-      <SectionHeader
-        left={<span onClick={() => CloseHandle()}>Закрыть</span>}
-        center={<span>Профиль</span>}
-        right={<span>Готово</span>}
-      ></SectionHeader>
       <div className="mt" style={{ marginTop: "25px" }}></div>
       <StreamerPreview
-        headerStyles={{ marginTop: "15px", lineHeight: "23px" }}
+        headerStyles={{ marginTop: "15px", lineHeight: "23px", color: "black" }}
         url={"https://api.bigstreamerbot.io/" + String(user?.image)}
         name={`${user?.first_name ? user.first_name : ""} ${
           user?.last_name ? user.last_name : ""
