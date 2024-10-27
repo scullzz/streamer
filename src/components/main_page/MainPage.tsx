@@ -215,7 +215,7 @@ const MainPage = () => {
         })}
       </div>
 
-      <div className={style.MainPageFlexItem}>
+      <div className={style.MainPageFlexItem1}>
         {menuItems.map((item) => (
           <div
             onClick={() => HandleListItem(item.id)}
@@ -235,7 +235,7 @@ const MainPage = () => {
 
       <p className={style.page_title_casino}>FREE CASINO</p>
 
-      <div className={style.MainPageFlexItem}>
+      <div className={style.MainPageFlexItem1}>
         {casinoItems.map((item) => (
           <div key={item.id} className={style.ListOfMenuItems}>
             <div className={style[item.st]}>
