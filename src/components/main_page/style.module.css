@@ -167,7 +167,11 @@
   align-items: center;
   margin-right: 10px;
 }
-
+.iconBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 .iconEarn {
   background-color: #fe2c55;
   width: 28px;

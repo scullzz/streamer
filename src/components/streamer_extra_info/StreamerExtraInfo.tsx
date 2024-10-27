@@ -120,7 +120,7 @@ const StreamerExtraInfo = () => {
           </p>
 
           <div className={style.section}>
-            <div className={style.profileItem}>
+            <div className={style.item}>
               <div className={style.item_div}>
                 <span className={style.iconProfile}>
                   <img src={user} alt="" />

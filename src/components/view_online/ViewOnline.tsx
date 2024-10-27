@@ -45,21 +45,20 @@ const ViewOnline = () => {
   }, []);
   return (
     <>
-      <div className={styles.back}>
-        <div className={styles.streamContainer}>
-          <div className={styles.streamInfo}>
-            <iframe
-              width="100vw"
-              height="210px"
-              src={embedLink}
-              title={title}
-              className={styles.streamThumbnail}
-              frameBorder="0"
-              allowFullScreen
-            ></iframe>
-          </div>
+      <div className={styles.streamContainer}>
+        <div className={styles.streamInfo}>
+          <iframe
+            width="100vw"
+            height="210px"
+            src={embedLink}
+            title={title}
+            className={styles.streamThumbnail}
+            frameBorder="0"
+            allowFullScreen
+          ></iframe>
         </div>
-
+      </div>
+      <div className={styles.back}>
         <div className={styles.buttonGroup}>
           <button
             onClick={() => {
