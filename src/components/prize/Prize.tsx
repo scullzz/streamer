@@ -86,7 +86,11 @@ const Prize = ({
   return (
     <div className={style.MainPrizeBlock}>
       <div className={style.PrizeDescription}>
-        <img src={raffleIcon} alt="$" />
+        <img
+          style={{ width: "70px", height: "60px" }}
+          src={raffleIcon}
+          alt="$"
+        />
         <p className={style.PrizeDescription_title}>{title}</p>
         <p className={style.PrizeDescription_description}>{description}</p>
       </div>
