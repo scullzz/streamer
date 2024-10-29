@@ -44,6 +44,11 @@ const MainPage = () => {
   const [user, setUser] = useState<GetUserProfile | null>(null);
   const [admins, setAdmins] = useState<StreamerAdmin[] | []>([]);
 
+  useEffect(() => {
+    tg.setHeaderColor("#FF0000");
+    tg.setBackgroundColor("#FF0000");
+  }, []);
+
   const getUser = async () => {
     try {
       const response = await fetch("https://api.bigstreamerbot.io/users/1/", {
