@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { tg } from "../../App";
 
-interface GetUserProfile {
+export interface GetUserProfile {
   id: number;
   tgid: string;
   email: string | null;
@@ -44,10 +44,10 @@ const MainPage = () => {
   const [user, setUser] = useState<GetUserProfile | null>(null);
   const [admins, setAdmins] = useState<StreamerAdmin[] | []>([]);
 
-  useEffect(() => {
-    tg.setHeaderColor("#FF0000");
-    tg.setBackgroundColor("#FF0000");
-  }, []);
+  // useEffect(() => {
+  //   tg.setHeaderColor("#FF0000");
+  //   tg.setBackgroundColor("#FF0000");
+  // }, []);
 
   const getUser = async () => {
     try {
