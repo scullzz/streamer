@@ -92,6 +92,8 @@
   text-align: left;
   background-color: #292929;
   outline: none;
+  color: white;
+  border: none;
 }
 
 .ratingContainer {
