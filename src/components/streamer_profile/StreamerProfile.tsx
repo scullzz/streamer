@@ -178,12 +178,12 @@ const StreamerProfile = () => {
     }
   };
 
+  const getSocialLinks = () => {
+    setOpenSocial(!openSocial);
+  };
+
   const moveToSettings = () => {
-    if (role === "user") {
-      setOpenSocial(!openSocial);
-    } else {
-      nav(`/streamer-extra-info/${id}/${sub_status}`);
-    }
+    nav(`/streamer-extra-info/${id}/${sub_status}`);
   };
 
   const getStreamerData = async () => {
@@ -317,6 +317,14 @@ const StreamerProfile = () => {
     }
   };
 
+  const moveToSubscriberPage = (id: any) => {
+    nav(`/streamer/subscribers/${id}`);
+  };
+
+  const moveToReferralPage = (id: any) => {
+    nav(`/streamer/referrals/${id}`);
+  };
+
   useEffect(() => {
     getStreamerData(); // Дожидаемся загрузки данных стримера
     getRole(); // Дожидаемся загрузки роли
@@ -340,17 +348,25 @@ const StreamerProfile = () => {
           name={String(data?.streamer.name)}
           details="Профиль аффилейта"
           isLive={checkStatus()}
+          role={role}
+          move={moveToSettings}
         />
 
         <div className={style.streamer_stats}>
-          <div className={style.streamer_subs}>
+          <div
+            onClick={() => moveToSubscriberPage(data?.streamer.id)}
+            className={style.streamer_subs}
+          >
             <span className={style.streamer_number}>{number_of_sub}</span>
             <span className={style.streamer_last_info}>
               Подписчиков
               <img src={next_arrow} alt="#" />
             </span>
           </div>
-          <div className={style.streamer_refs}>
+          <div
+            onClick={() => moveToReferralPage(data?.streamer.id)}
+            className={style.streamer_refs}
+          >
             <span className={style.streamer_number}>0</span>
             <span className={style.streamer_last_info}>
               Рефералов
@@ -360,11 +376,11 @@ const StreamerProfile = () => {
           <div className={style.container}>
             <div
               onClick={() => {
-                moveToSettings();
+                getSocialLinks();
               }}
               className={style.streamer_more}
             >
-              <div style={{height: "14px"}}>
+              <div style={{ height: "14px" }}>
                 <img src={dots} alt="#" />
               </div>
               <span className={style.more}>Еще</span>

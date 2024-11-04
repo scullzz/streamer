@@ -27,3 +27,25 @@
   margin-top: 11px;
   color: white;
 }
+
+.changeBlock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: center;
+  color: white;
+  width: 64px;
+  height: 30px;
+  position: absolute;
+  right: 16px;
+}
+.block{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
