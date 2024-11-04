@@ -19,7 +19,7 @@ export const StreamerPreview = ({
   img,
   role,
   move,
-  hidden_status = false,
+  hidden_status = true,
   ...rest
 }: IStreamerPreviewProps) => {
   return (
