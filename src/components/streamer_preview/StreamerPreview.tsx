@@ -19,18 +19,20 @@ export const StreamerPreview = ({
   img,
   role,
   move,
-  hidden_status = true,
+  hidden_status = false,
   ...rest
 }: IStreamerPreviewProps) => {
   return (
     <div className={style.streamer__info}>
       <div className={style.block}>
         <Avatar url={img} {...rest} isLive={isLive}></Avatar>
-        {role === "user" && hidden_status === true ? null : (
-          <div onClick={() => move && move()} className={style.changeBlock}>
-            Изм.
-          </div>
-        )}
+        {hidden_status === true ? (
+          role === "user" ? null : (
+            <div onClick={() => move && move()} className={style.changeBlock}>
+              Изм.
+            </div>
+          )
+        ) : null}
       </div>
       <span className={style.header_text} style={headerStyles}>
         {name}

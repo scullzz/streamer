@@ -350,7 +350,7 @@ const StreamerProfile = () => {
           isLive={checkStatus()}
           role={role}
           move={moveToSettings}
-          hidden_status={false}
+          hidden_status={true}
         />
 
         <div className={style.streamer_stats}>
