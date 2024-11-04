@@ -116,9 +116,6 @@ const StreamerProfile = () => {
   const closeModal = () => {
     setIsSubscribedModalOpen(false);
   };
-  // const backPage = () => {
-  //   nav("/");
-  // };
 
   const getRole = async () => {
     try {
@@ -326,10 +323,10 @@ const StreamerProfile = () => {
   };
 
   useEffect(() => {
-    getStreamerData(); // Дожидаемся загрузки данных стримера
-    getRole(); // Дожидаемся загрузки роли
-    getAllSocials(); // Дожидаемся загрузки всех соцсетей
-    getSocialsByStreamer(); // Дожидаемся загрузки соцсетей стримера
+    getStreamerData();
+    getRole();
+    getAllSocials(); 
+    getSocialsByStreamer(); 
     getRaffle();
     getAllConditions();
   }, []);
