@@ -523,7 +523,9 @@ const StreamerProfile = () => {
             </div>
             {sub_status === false ? (
               <div
-                onClick={() => Subscribe()}
+                onClick={() => {
+                  setIsSubscribedModalOpen(true);
+                }}
                 className={style.actionButtonSub}
               >
                 <p className={style.sub_text}>Подписаться</p>
