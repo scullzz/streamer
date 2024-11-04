@@ -8,6 +8,7 @@ interface IStreamerPreviewProps extends AvatarProps {
   img?: string | undefined;
   role?: string;
   move?: () => void;
+  hidden_status?: boolean;
 }
 
 export const StreamerPreview = ({
@@ -18,13 +19,14 @@ export const StreamerPreview = ({
   img,
   role,
   move,
+  hidden_status = false,
   ...rest
 }: IStreamerPreviewProps) => {
   return (
     <div className={style.streamer__info}>
       <div className={style.block}>
         <Avatar url={img} {...rest} isLive={isLive}></Avatar>
-        {role === "user" ? null : (
+        {role === "user" && hidden_status === true ? null : (
           <div onClick={() => move && move()} className={style.changeBlock}>
             Изм.
           </div>
