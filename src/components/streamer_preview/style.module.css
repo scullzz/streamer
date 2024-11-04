@@ -43,6 +43,7 @@
   height: 30px;
   position: absolute;
   right: 16px;
+  background-color: #292929;
 }
 .block{
   display: flex;
