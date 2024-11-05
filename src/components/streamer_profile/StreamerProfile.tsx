@@ -338,6 +338,8 @@ const StreamerProfile = () => {
       1
     ) {
       setSCH(1.2);
+    } else {
+      setSCH(1);
     }
   }, []);
 
