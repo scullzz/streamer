@@ -210,6 +210,17 @@ const StreamerProfile = () => {
         }
         set_sub_status(Boolean(res?.streamer.is_subscribed));
         set_number_of_sub(res?.streamer.count_sub);
+
+        alert(res?.twitch?.length);
+        const totalVideos =
+          (res?.kick?.length ?? 0) +
+          (res?.youtube?.length ?? 0) +
+          (res?.twitch?.length ?? 0);
+        if (totalVideos > 1) {
+          setSCH(1.2);
+        } else {
+          setSCH(1);
+        }
       }
     } catch (err) {
       console.log(err);
@@ -330,17 +341,6 @@ const StreamerProfile = () => {
     getSocialsByStreamer();
     getRaffle();
     getAllConditions();
-
-    alert(data?.twitch.length);
-    const totalVideos =
-      (data?.kick?.length ?? 0) +
-      (data?.youtube?.length ?? 0) +
-      (data?.twitch?.length ?? 0);
-    if (totalVideos > 1) {
-      setSCH(1.2);
-    } else {
-      setSCH(1);
-    }
   }, []);
 
   const handleCloseModal = () => {
