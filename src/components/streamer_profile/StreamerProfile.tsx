@@ -106,7 +106,7 @@ const StreamerProfile = () => {
     dots: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 1.1,
+    slidesToShow: 1.2,
     slidesToScroll: 1,
     arrows: false,
   };
