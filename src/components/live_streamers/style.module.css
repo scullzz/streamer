@@ -1,6 +1,5 @@
 .back {
   width: 100%;
-  overflow: scroll;
   height: 100vh;
   background-color: #131313;
 }
@@ -16,6 +15,7 @@
   padding-bottom: 60px;
   background-color: #131313;
   overflow-y: auto;
+  overflow: scroll;
 }
 
 .searchContainer {
