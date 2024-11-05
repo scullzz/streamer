@@ -211,7 +211,6 @@ const StreamerProfile = () => {
         set_sub_status(Boolean(res?.streamer.is_subscribed));
         set_number_of_sub(res?.streamer.count_sub);
 
-        alert(res?.twitch?.length);
         const totalVideos =
           (res?.kick?.length ?? 0) +
           (res?.youtube?.length ?? 0) +
