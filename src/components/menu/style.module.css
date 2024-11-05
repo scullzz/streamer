@@ -1,6 +1,7 @@
 .menu {
   display: flex;
   overflow-x: hidden;
+  overflow-y: hidden;
   width: 100%;
 }
 .footer {
@@ -9,6 +10,7 @@
   bottom: 0;
   width: 100%;
   z-index: 1000;
-  background-color: #1C1C1C;
+  background-color: #1c1c1c;
   height: 78px;
+  overflow-y: hidden;
 }
