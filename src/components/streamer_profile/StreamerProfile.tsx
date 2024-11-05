@@ -84,6 +84,7 @@ interface ConditionData {
 const StreamerProfile = () => {
   const { id, status } = useParams();
   const dispatch = useDispatch<AppDispatch>();
+  const [SCH, setSCH] = useState<number>(1.2);
   const [data, setData] = useState<StreamerResponse | null>(null);
   const [sub_status, set_sub_status] = useState<boolean>(
     status === "true" ? true : false
@@ -106,7 +107,7 @@ const StreamerProfile = () => {
     dots: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 1.2,
+    slidesToShow: SCH,
     slidesToScroll: 1,
     arrows: false,
   };
@@ -325,10 +326,19 @@ const StreamerProfile = () => {
   useEffect(() => {
     getStreamerData();
     getRole();
-    getAllSocials(); 
-    getSocialsByStreamer(); 
+    getAllSocials();
+    getSocialsByStreamer();
     getRaffle();
     getAllConditions();
+
+    if (
+      (data?.kick?.length ?? 0) +
+        (data?.youtube?.length ?? 0) +
+        (data?.twitch?.length ?? 0) >
+      1
+    ) {
+      setSCH(1.2);
+    }
   }, []);
 
   const handleCloseModal = () => {
