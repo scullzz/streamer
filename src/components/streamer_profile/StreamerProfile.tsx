@@ -331,12 +331,12 @@ const StreamerProfile = () => {
     getRaffle();
     getAllConditions();
 
-    if (
+    alert(data?.twitch.length);
+    const totalVideos =
       (data?.kick?.length ?? 0) +
-        (data?.youtube?.length ?? 0) +
-        (data?.twitch?.length ?? 0) >
-      1
-    ) {
+      (data?.youtube?.length ?? 0) +
+      (data?.twitch?.length ?? 0);
+    if (totalVideos > 1) {
       setSCH(1.2);
     } else {
       setSCH(1);
