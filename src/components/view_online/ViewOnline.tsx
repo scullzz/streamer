@@ -76,9 +76,25 @@ const ViewOnline = () => {
   };
 
   const [isChatVisible, setIsChatVisible] = useState(false);
+  const [isFullScreen, setIsFullScreen] = useState(false);
+  const [startY, setStartY] = useState(0);
 
   const toggleChat = (open: boolean) => () => {
     setIsChatVisible(open);
+    if (!open) setIsFullScreen(false);
+  };
+
+  const handleTouchStart = (e: any) => {
+    setStartY(e.touches[0].clientY);
+  };
+
+  const handleTouchEnd = (e: any) => {
+    const endY = e.changedTouches[0].clientY;
+    if (startY - endY > 50) {
+      setIsFullScreen(true);
+    } else if (endY - startY > 50) {
+      setIsFullScreen(false);
+    }
   };
   return (
     <>
@@ -167,10 +183,11 @@ const ViewOnline = () => {
           open={isChatVisible}
           onClose={toggleChat(false)}
           onOpen={toggleChat(true)}
-          disableSwipeToOpen={false} // Allow swipe gestures
+          disableSwipeToOpen={false}
           sx={{
             "& .MuiDrawer-paper": {
-              height: "50%", // Adjust as needed for how much of the screen the chat should take
+              height: isFullScreen ? "100%" : "50%",
+              transition: "height 0.3s ease",
               backgroundColor: "#000",
               color: "#fff",
             },
@@ -183,6 +200,8 @@ const ViewOnline = () => {
               height: "100%",
               overflow: "auto",
             }}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
           >
             <Box sx={{ padding: 2, backgroundColor: "#333" }}>
               <Typography variant="h6" align="center">
@@ -193,7 +212,7 @@ const ViewOnline = () => {
               {/* Example chat messages */}
               <Typography>User1: Hello!</Typography>
               <Typography>User2: How are you?</Typography>
-              {/* ... more chat messages */}
+              {/* Add more messages here */}
             </Box>
           </Box>
         </SwipeableDrawer>
