@@ -283,10 +283,6 @@
 }
 
 .stick {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   height: 3px;
   width: 55px;
   background-color: #292929;

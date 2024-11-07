@@ -215,7 +215,12 @@ const ViewOnline = () => {
             }}
           >
             <Box
-              sx={{ width: "100%" }}
+              sx={{
+                width: "100%",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
               onTouchStart={handleTouchStart}
               onTouchEnd={handleTouchEnd}
             >
