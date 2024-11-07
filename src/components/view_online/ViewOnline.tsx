@@ -6,12 +6,7 @@ import users from "./image/users.svg";
 import { GetUserProfile } from "../main_page/MainPage";
 import { tg } from "../../App";
 import { Avatar } from "../avatar/Avatar";
-import {
-  Box,
-  Typography,
-  TextField,
-  Drawer,
-} from "@mui/material";
+import { Box, Typography, TextField, Drawer } from "@mui/material";
 
 const ViewOnline = () => {
   const location = useLocation();
@@ -80,35 +75,60 @@ const ViewOnline = () => {
     }
   };
 
-  const [panelPosition, setPanelPosition] = useState("closed");
+  const [panelPosition, setPanelPosition] = useState<any>("closed");
   const [startY, setStartY] = useState(0);
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState();
+  const [currentHeight, setCurrentHeight] = useState<any>(0);
 
   const toggleChat = () => {
-    setPanelPosition((prev) => (prev === "closed" ? "half" : "closed"));
+    setPanelPosition((prev: any) => (prev === "closed" ? "half" : "closed"));
+    setCurrentHeight(panelPosition === "closed" ? "70vh" : "0vh");
   };
 
-  const handleTouchStart = (e: any) => {
+  const handleStickTouchStart = (e: any) => {
     setStartY(e.touches[0].clientY);
   };
 
-  const handleTouchEnd = (e: any) => {
-    const endY = e.changedTouches[0].clientY;
-    const swipeUp = startY - endY > 50;
-    const swipeDown = endY - startY > 50;
+  const handleStickTouchMove = (e: any) => {
+    const touchY = e.touches[0].clientY;
+    const deltaY = startY - touchY;
+    let newHeight = 0;
 
-    if (swipeUp && panelPosition === "half") {
-      setPanelPosition("full"); // Swipe up from half to full
-    } else if (swipeDown && panelPosition === "full") {
-      setPanelPosition("half"); // Swipe down from full to half
-    } else if (swipeDown && panelPosition === "half") {
+    if (panelPosition === "half" || panelPosition === "closed") {
+      newHeight = Math.min(
+        Math.max(50 + (deltaY / window.innerHeight) * 100, 0),
+        100
+      );
+    } else if (panelPosition === "full") {
+      newHeight = Math.min(
+        Math.max(100 + (deltaY / window.innerHeight) * 100, 50),
+        100
+      );
+    }
+
+    setCurrentHeight(`${newHeight}vh`);
+  };
+
+  const handleStickTouchEnd = () => {
+    const finalHeight = parseFloat(currentHeight);
+
+    // Snap to closest position
+    if (finalHeight > 75) {
+      setPanelPosition("full");
+      setCurrentHeight("100vh");
+    } else if (finalHeight > 25) {
+      setPanelPosition("half");
+      setCurrentHeight("70vh");
+    } else {
       setPanelPosition("closed");
+      setCurrentHeight("0vh");
     }
   };
 
-  const handleInputChange = (e: any) => {
-    setMessage(e.target.value);
+  const handleInputChange = (event: any) => {
+    setMessage(event.target.value);
   };
+
   return (
     <>
       <div className={styles.streamContainer}>
@@ -197,13 +217,11 @@ const ViewOnline = () => {
           onClose={() => setPanelPosition("closed")}
           sx={{
             "& .MuiDrawer-paper": {
-              height:
-                panelPosition === "full"
-                  ? "100%"
-                  : panelPosition === "half"
-                  ? "70%"
-                  : "0%",
-              transition: "height 1s ease",
+              height: currentHeight,
+              transition:
+                panelPosition === "half" || panelPosition === "full"
+                  ? "height 0.3s ease"
+                  : "none",
               backgroundColor: "#131313",
               color: "#fff",
             },
@@ -225,8 +243,9 @@ const ViewOnline = () => {
                 alignItems: "center",
                 padding: 1,
               }}
-              onTouchStart={handleTouchStart}
-              onTouchEnd={handleTouchEnd}
+              onTouchStart={handleStickTouchStart}
+              onTouchMove={handleStickTouchMove}
+              onTouchEnd={handleStickTouchEnd}
             >
               <div className={styles.stick}></div>
             </Box>
