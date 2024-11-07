@@ -6,7 +6,13 @@ import users from "./image/users.svg";
 import { GetUserProfile } from "../main_page/MainPage";
 import { tg } from "../../App";
 import { Avatar } from "../avatar/Avatar";
-import { SwipeableDrawer, Box, Typography, TextField } from "@mui/material";
+import {
+  SwipeableDrawer,
+  Box,
+  Typography,
+  TextField,
+  Drawer,
+} from "@mui/material";
 
 const ViewOnline = () => {
   const location = useLocation();
@@ -186,14 +192,10 @@ const ViewOnline = () => {
           </div>
         </div>
 
-        <SwipeableDrawer
+        <Drawer
           anchor="bottom"
           open={panelPosition !== "closed"}
           onClose={() => setPanelPosition("closed")}
-          onOpen={() => setPanelPosition("half")}
-          disableSwipeToOpen={true}
-          disableBackdropTransition
-          swipeAreaWidth={0}
           sx={{
             "& .MuiDrawer-paper": {
               height:
@@ -267,7 +269,7 @@ const ViewOnline = () => {
               }}
             />
           </Box>
-        </SwipeableDrawer>
+        </Drawer>
       </div>
     </>
   );
