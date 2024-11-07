@@ -75,27 +75,31 @@ const ViewOnline = () => {
     }
   };
 
-  const [isChatVisible, setIsChatVisible] = useState(false);
-  const [isFullScreen, setIsFullScreen] = useState(false);
+  const [panelPosition, setPanelPosition] = useState("closed");
   const [startY, setStartY] = useState(0);
 
-  const toggleChat = (open: boolean) => () => {
-    setIsChatVisible(open);
-    if (!open) setIsFullScreen(false);
+  const toggleChat = () => {
+    setPanelPosition((prev) => (prev === "closed" ? "half" : "closed"));
   };
 
-  const handleTouchStart = (e: any) => {
+  const handleTouchStart = (e:any) => {
     setStartY(e.touches[0].clientY);
   };
 
-  const handleTouchEnd = (e: any) => {
+  const handleTouchEnd = (e:any) => {
     const endY = e.changedTouches[0].clientY;
-    if (startY - endY > 50) {
-      setIsFullScreen(true);
-    } else if (endY - startY > 50) {
-      setIsFullScreen(false);
+    const swipeUp = startY - endY > 50;
+    const swipeDown = endY - startY > 50;
+
+    if (swipeUp && panelPosition === "half") {
+      setPanelPosition("full"); // Swipe up from half to full
+    } else if (swipeDown && panelPosition === "full") {
+      setPanelPosition("half"); // Swipe down from full to half
+    } else if (swipeDown && panelPosition === "half") {
+      setPanelPosition("closed"); // Swipe down from half to closed
     }
   };
+
   return (
     <>
       <div className={styles.streamContainer}>
@@ -136,7 +140,7 @@ const ViewOnline = () => {
           </button>
         </div>
 
-        <div onClick={toggleChat(true)} className={styles.chatContainer}>
+        <div onClick={toggleChat} className={styles.chatContainer}>
           <div className={styles.chatHeader}>
             <span className={styles.chatHeader_text1}>Чат</span>
             <span className={styles.chatHeader_text2}>
@@ -180,13 +184,18 @@ const ViewOnline = () => {
 
         <SwipeableDrawer
           anchor="bottom"
-          open={isChatVisible}
-          onClose={toggleChat(false)}
-          onOpen={toggleChat(true)}
+          open={panelPosition !== "closed"}
+          onClose={() => setPanelPosition("closed")}
+          onOpen={() => setPanelPosition("half")}
           disableSwipeToOpen={false}
           sx={{
             "& .MuiDrawer-paper": {
-              height: isFullScreen ? "100%" : "50%",
+              height:
+                panelPosition === "full"
+                  ? "100%"
+                  : panelPosition === "half"
+                  ? "50%"
+                  : "0%",
               transition: "height 0.3s ease",
               backgroundColor: "#000",
               color: "#fff",
