@@ -89,8 +89,8 @@ const ViewOnline = () => {
 
   const handleTouchEnd = (e: any) => {
     const endY = e.changedTouches[0].clientY;
-    const swipeUp = startY - endY > 50;
-    const swipeDown = endY - startY > 50;
+    const swipeUp = startY - endY > 100;
+    const swipeDown = endY - startY > 100;
 
     if (swipeUp && panelPosition === "half") {
       setPanelPosition("full"); // Swipe up from half to full
@@ -198,7 +198,7 @@ const ViewOnline = () => {
                 panelPosition === "full"
                   ? "100%"
                   : panelPosition === "half"
-                  ? "50%"
+                  ? "70%"
                   : "0%",
               transition: "height 0.3s ease",
               backgroundColor: "#131313",
