@@ -96,12 +96,12 @@ const ViewOnline = () => {
 
     if (panelPosition === "half" || panelPosition === "closed") {
       newHeight = Math.min(
-        Math.max(50 + (deltaY / window.innerHeight) * 100, 0),
+        Math.max(70 + (deltaY / window.innerHeight) * 100, 0),
         100
       );
     } else if (panelPosition === "full") {
       newHeight = Math.min(
-        Math.max(100 + (deltaY / window.innerHeight) * 100, 50),
+        Math.max(100 + (deltaY / window.innerHeight) * 100, 70),
         100
       );
     }
