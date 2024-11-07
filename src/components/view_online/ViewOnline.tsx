@@ -191,7 +191,7 @@ const ViewOnline = () => {
           open={panelPosition !== "closed"}
           onClose={() => setPanelPosition("closed")}
           onOpen={() => setPanelPosition("half")}
-          disableSwipeToOpen={false}
+          disableSwipeToOpen={true}
           sx={{
             "& .MuiDrawer-paper": {
               height:
@@ -201,7 +201,7 @@ const ViewOnline = () => {
                   ? "50%"
                   : "0%",
               transition: "height 0.3s ease",
-              backgroundColor: "#000",
+              backgroundColor: "#131313",
               color: "#fff",
             },
           }}
