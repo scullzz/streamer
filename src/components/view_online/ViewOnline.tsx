@@ -220,6 +220,7 @@ const ViewOnline = () => {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
+                padding: 1,
               }}
               onTouchStart={handleTouchStart}
               onTouchEnd={handleTouchEnd}
