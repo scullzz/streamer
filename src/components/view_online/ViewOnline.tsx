@@ -6,7 +6,7 @@ import users from "./image/users.svg";
 import { GetUserProfile } from "../main_page/MainPage";
 import { tg } from "../../App";
 import { Avatar } from "../avatar/Avatar";
-import { SwipeableDrawer, Box, Typography } from "@mui/material";
+import { SwipeableDrawer, Box, Typography, TextField } from "@mui/material";
 
 const ViewOnline = () => {
   const location = useLocation();
@@ -77,16 +77,17 @@ const ViewOnline = () => {
 
   const [panelPosition, setPanelPosition] = useState("closed");
   const [startY, setStartY] = useState(0);
+  const [message, setMessage] = useState("");
 
   const toggleChat = () => {
     setPanelPosition((prev) => (prev === "closed" ? "half" : "closed"));
   };
 
-  const handleTouchStart = (e:any) => {
+  const handleTouchStart = (e: any) => {
     setStartY(e.touches[0].clientY);
   };
 
-  const handleTouchEnd = (e:any) => {
+  const handleTouchEnd = (e: any) => {
     const endY = e.changedTouches[0].clientY;
     const swipeUp = startY - endY > 50;
     const swipeDown = endY - startY > 50;
@@ -96,10 +97,13 @@ const ViewOnline = () => {
     } else if (swipeDown && panelPosition === "full") {
       setPanelPosition("half"); // Swipe down from full to half
     } else if (swipeDown && panelPosition === "half") {
-      setPanelPosition("closed"); // Swipe down from half to closed
+      setPanelPosition("closed");
     }
   };
 
+  const handleInputChange = (e: any) => {
+    setMessage(e.target.value);
+  };
   return (
     <>
       <div className={styles.streamContainer}>
@@ -209,18 +213,47 @@ const ViewOnline = () => {
               height: "100%",
               overflow: "auto",
             }}
-            onTouchStart={handleTouchStart}
-            onTouchEnd={handleTouchEnd}
           >
-            <Box sx={{ padding: 2, backgroundColor: "#333" }}>
-              <Typography variant="h6" align="center">
-                Chat
-              </Typography>
+            <Box onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+              <div className={styles.stick}></div>
             </Box>
             <Box sx={{ flex: 1, padding: 2 }}>
               <Typography>User1: Hello!</Typography>
               <Typography>User2: How are you?</Typography>
             </Box>
+          </Box>
+          <Box
+            sx={{
+              padding: 1,
+              borderTop: "1px solid #555",
+              backgroundColor: "#222",
+              display: "flex",
+              alignItems: "center",
+            }}
+          >
+            <TextField
+              fullWidth
+              variant="outlined"
+              placeholder="Отправить сообщение..."
+              value={message}
+              onChange={handleInputChange}
+              InputProps={{
+                style: { color: "#fff" },
+              }}
+              sx={{
+                "& .MuiOutlinedInput-root": {
+                  "& fieldset": {
+                    borderColor: "#555",
+                  },
+                  "&:hover fieldset": {
+                    borderColor: "#888",
+                  },
+                  "&.Mui-focused fieldset": {
+                    borderColor: "#aaa",
+                  },
+                },
+              }}
+            />
           </Box>
         </SwipeableDrawer>
       </div>
