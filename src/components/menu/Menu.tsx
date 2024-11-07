@@ -46,7 +46,7 @@ const Menu = () => {
           label="Играть"
           icon={play}
           onIcon={play_active}
-          onClick={() => navigate("/play")}
+          onClick={() => navigate("https://clash-of-slots.unmake.space/")}
         ></MenuItem>
         <MenuItem
           active={location.pathname == "/tournament"}
