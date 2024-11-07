@@ -209,10 +209,8 @@ const ViewOnline = () => {
               </Typography>
             </Box>
             <Box sx={{ flex: 1, padding: 2 }}>
-              {/* Example chat messages */}
               <Typography>User1: Hello!</Typography>
               <Typography>User2: How are you?</Typography>
-              {/* Add more messages here */}
             </Box>
           </Box>
         </SwipeableDrawer>
