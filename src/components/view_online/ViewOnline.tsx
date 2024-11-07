@@ -214,7 +214,11 @@ const ViewOnline = () => {
               overflow: "auto",
             }}
           >
-            <Box onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd}>
+            <Box
+              sx={{ width: "100%" }}
+              onTouchStart={handleTouchStart}
+              onTouchEnd={handleTouchEnd}
+            >
               <div className={styles.stick}></div>
             </Box>
             <Box sx={{ flex: 1, padding: 2 }}>
