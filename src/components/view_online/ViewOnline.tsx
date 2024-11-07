@@ -6,6 +6,7 @@ import users from "./image/users.svg";
 import { GetUserProfile } from "../main_page/MainPage";
 import { tg } from "../../App";
 import { Avatar } from "../avatar/Avatar";
+import { SwipeableDrawer, Box, Typography } from "@mui/material";
 
 const ViewOnline = () => {
   const location = useLocation();
@@ -74,6 +75,11 @@ const ViewOnline = () => {
     }
   };
 
+  const [isChatVisible, setIsChatVisible] = useState(false);
+
+  const toggleChat = (open: boolean) => () => {
+    setIsChatVisible(open);
+  };
   return (
     <>
       <div className={styles.streamContainer}>
@@ -114,7 +120,7 @@ const ViewOnline = () => {
           </button>
         </div>
 
-        <div className={styles.chatContainer}>
+        <div onClick={toggleChat(true)} className={styles.chatContainer}>
           <div className={styles.chatHeader}>
             <span className={styles.chatHeader_text1}>Чат</span>
             <span className={styles.chatHeader_text2}>
@@ -155,6 +161,42 @@ const ViewOnline = () => {
             </div>
           </div>
         </div>
+
+        <SwipeableDrawer
+          anchor="bottom"
+          open={isChatVisible}
+          onClose={toggleChat(false)}
+          onOpen={toggleChat(true)}
+          disableSwipeToOpen={false} // Allow swipe gestures
+          sx={{
+            "& .MuiDrawer-paper": {
+              height: "50%", // Adjust as needed for how much of the screen the chat should take
+              backgroundColor: "#000",
+              color: "#fff",
+            },
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              height: "100%",
+              overflow: "auto",
+            }}
+          >
+            <Box sx={{ padding: 2, backgroundColor: "#333" }}>
+              <Typography variant="h6" align="center">
+                Chat
+              </Typography>
+            </Box>
+            <Box sx={{ flex: 1, padding: 2 }}>
+              {/* Example chat messages */}
+              <Typography>User1: Hello!</Typography>
+              <Typography>User2: How are you?</Typography>
+              {/* ... more chat messages */}
+            </Box>
+          </Box>
+        </SwipeableDrawer>
       </div>
     </>
   );
