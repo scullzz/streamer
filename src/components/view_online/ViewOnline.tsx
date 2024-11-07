@@ -7,7 +7,6 @@ import { GetUserProfile } from "../main_page/MainPage";
 import { tg } from "../../App";
 import { Avatar } from "../avatar/Avatar";
 import {
-  SwipeableDrawer,
   Box,
   Typography,
   TextField,
