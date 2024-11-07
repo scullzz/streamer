@@ -192,6 +192,7 @@ const ViewOnline = () => {
           onClose={() => setPanelPosition("closed")}
           onOpen={() => setPanelPosition("half")}
           disableSwipeToOpen={true}
+          disableBackdropTransition
           swipeAreaWidth={0}
           sx={{
             "& .MuiDrawer-paper": {
