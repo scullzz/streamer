@@ -30,10 +30,16 @@ const Menu = () => {
         bottom: 0,
         width: "100%",
         backgroundColor: "#1C1C1C",
+        zIndex: 1000,
       }}
       value={location.pathname}
     >
       <BottomNavigationAction
+        sx={
+          location.pathname === "/menu"
+            ? { color: "white" }
+            : { color: "#B3B3B3" }
+        }
         label="Меню"
         icon={
           <img
@@ -46,6 +52,11 @@ const Menu = () => {
         }
       />
       <BottomNavigationAction
+        sx={
+          location.pathname === "/energy"
+            ? { color: "white" }
+            : { color: "#B3B3B3" }
+        }
         label="Заработать"
         icon={
           <img
@@ -56,6 +67,11 @@ const Menu = () => {
         onClick={() => handleNavigation("/energy")}
       />
       <BottomNavigationAction
+        sx={
+          location.pathname === "/play"
+            ? { color: "white" }
+            : { color: "#B3B3B3" }
+        }
         label="Играть"
         icon={
           <img
@@ -66,6 +82,11 @@ const Menu = () => {
         onClick={() => handleNavigation("/play")}
       />
       <BottomNavigationAction
+        sx={
+          location.pathname === "/tournament"
+            ? { color: "white" }
+            : { color: "#B3B3B3" }
+        }
         label="Турниры"
         icon={
           <img
@@ -76,6 +97,11 @@ const Menu = () => {
         onClick={() => handleNavigation("/tournament")}
       />
       <BottomNavigationAction
+        sx={
+          location.pathname === "/friends"
+            ? { color: "white" }
+            : { color: "#B3B3B3" }
+        }
         label="Друзья"
         icon={
           <img
