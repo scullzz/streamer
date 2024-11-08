@@ -1,4 +1,3 @@
-import React from "react";
 import { BottomNavigation, BottomNavigationAction } from "@mui/material";
 import { useNavigate, useLocation } from "react-router-dom";
 import champ from "./image/bt_champ.svg";
