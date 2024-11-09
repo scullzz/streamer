@@ -26,6 +26,7 @@ const Menu = () => {
     <BottomNavigation
       showLabels
       sx={{
+        height: "50px",
         position: "fixed",
         bottom: 0,
         width: "100%",
