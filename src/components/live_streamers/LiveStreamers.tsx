@@ -120,7 +120,7 @@ const LiveStreamers = () => {
           />
         ))}
 
-        <div className={style.endBlock}>
+        {/* <div className={style.endBlock}>
           <span className={style.v_text}>
             <span className={style.line1}>
               Стримеры и модераторы стримеров - обращайтесь к
@@ -132,7 +132,7 @@ const LiveStreamers = () => {
             <br />
             <span className={style.line4}>функционалу бота</span>
           </span>
-        </div>
+        </div> */}
       </div>
     </div>
   );
