@@ -322,7 +322,6 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 19px;
 }
 
 .mainChatButton {
@@ -349,14 +348,14 @@
   width: 100%;
   overflow: scroll;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
   gap: 18px;
 }
 .messageText {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 6px;
   width: 100%;
