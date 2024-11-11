@@ -380,24 +380,14 @@ const ViewOnline = () => {
                 style: { color: "#fff", paddingLeft: "15px" }, // Adjust text color and padding
               }}
               sx={{
+                height: "34px",
                 backgroundColor: "#131313",
-                borderRadius: "20px", // Rounded TextField similar to the design
-                "& .MuiOutlinedInput-root": {
-                  "& fieldset": {
-                    borderColor: "#555",
-                    borderRadius: "20px", // Match the rounded style for fieldset
-                  },
-                  "&:hover fieldset": {
-                    borderColor: "#888",
-                  },
-                  "&.Mui-focused fieldset": {
-                    borderColor: "#aaa",
-                  },
-                },
+                borderRadius: "20px",
+                border: "none",
               }}
             />
             <Box sx={{ marginLeft: 1 }}>
-              {message && message.length === 0 ? (
+              {message.length === 0 ? (
                 <img
                   src={blackB}
                   alt="Send"
