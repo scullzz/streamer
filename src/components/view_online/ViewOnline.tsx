@@ -11,7 +11,7 @@ import userI from "./image/user.svg";
 import settings from "./image/settings.svg";
 import close from "./image/close.svg";
 import blackB from "./image/blackB.svg";
-import blueB from "./image/blutB.svg"
+import blueB from "./image/blutB.svg";
 import youtube from "./image/youtube.svg";
 import kick from "./image/kick.svg";
 import twitch from "./image/twitch.svg";
@@ -321,7 +321,7 @@ const ViewOnline = () => {
             >
               <div className={styles.stick}></div>
             </Box>
-            <Box sx={{ flex: 1, padding: 1 }}>
+            <Box sx={{ flex: 1, padding: 1, overflow: "hidden" }}>
               <div className={styles.chatHeaderBlock}>
                 <div className={styles.chatHeaderBlock1}>
                   <span className={styles.chatHeaderBlock1}>Чат</span>
@@ -361,6 +361,7 @@ const ViewOnline = () => {
               </div>
             </Box>
           </Box>
+
           <Box
             sx={{
               padding: 1,

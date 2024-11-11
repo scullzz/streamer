@@ -347,7 +347,7 @@
 .messageListBox {
   height: 340px;
   width: 100%;
-  overflow: scroll;
+  overflow-y: auto; /* Enable vertical scrolling only */
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
