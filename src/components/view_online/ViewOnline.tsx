@@ -317,7 +317,7 @@ const ViewOnline = () => {
             >
               <div className={styles.stick}></div>
             </Box>
-            <Box sx={{ flex: 1, padding: 2 }}>
+            <Box sx={{ flex: 1, padding: 1 }}>
               <div className={styles.chatHeaderBlock}>
                 <div className={styles.chatHeaderBlock1}>
                   <span className={styles.chatHeaderBlock1}>Чат</span>
