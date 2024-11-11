@@ -345,7 +345,7 @@
   color: white;
 }
 .messageListBox {
-  height: 240px;
+  height: 300px;
   width: 100%;
   overflow-y: auto; /* Enable vertical scrolling only */
   display: flex;

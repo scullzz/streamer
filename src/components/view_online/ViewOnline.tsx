@@ -389,20 +389,51 @@ const ViewOnline = () => {
               }}
             />
 
-            <Box sx={{ marginLeft: 1 }}>
-              {message && message.length === 0 ? (
-                <img
-                  src={blackB}
-                  alt="Send"
-                  style={{ width: "34px", height: "34px" }}
-                />
-              ) : (
-                <img
-                  src={blueB}
-                  alt="Send"
-                  style={{ width: "34px", height: "34px" }}
-                />
-              )}
+            <Box
+              sx={{
+                padding: 1,
+                backgroundColor: "#1C1C1C",
+                display: "flex",
+                alignItems: "center",
+              }}
+            >
+              <TextField
+                fullWidth
+                variant="outlined"
+                placeholder="Отправить сообщение..."
+                value={message || ""} // Ensure message is an empty string if undefined
+                onChange={handleInputChange}
+                InputProps={{
+                  style: { color: "#fff", padding: "8px 15px" }, // Adjust text color and padding for centering
+                }}
+                sx={{
+                  display: "flex",
+                  alignItems: "center", // Align content in the center
+                  backgroundColor: "#131313",
+                  borderRadius: "23px", // Rounded TextField similar to the design
+                  "& .MuiOutlinedInput-root": {
+                    "& fieldset": {
+                      border: "none", // Remove the default border
+                    },
+                  },
+                }}
+              />
+
+              <Box sx={{ marginLeft: 1 }}>
+                {(message || "").length === 0 ? ( // Treat message as empty string if undefined
+                  <img
+                    src={blackB}
+                    alt="Send"
+                    style={{ width: "34px", height: "34px" }}
+                  />
+                ) : (
+                  <img
+                    src={blueB}
+                    alt="Send"
+                    style={{ width: "34px", height: "34px" }}
+                  />
+                )}
+              </Box>
             </Box>
           </Box>
         </Drawer>
