@@ -160,10 +160,6 @@
   border-radius: 13px;
 }
 
-.backG {
-  width: 100%;
-  height: 100vh;
-}
 .menu {
   position: absolute;
   top: 100%; /* Меню будет появляться над кнопкой */

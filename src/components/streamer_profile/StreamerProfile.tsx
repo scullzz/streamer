@@ -12,7 +12,7 @@ import Prize from "../prize/Prize";
 import link from "./image/link.svg";
 import { unsubscribeFromStreamer } from "../../redux/streamer_list";
 import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store";
 import exit from "./image/exit.svg";
@@ -117,6 +117,29 @@ const StreamerProfile = () => {
   const closeModal = () => {
     setIsSubscribedModalOpen(false);
   };
+
+  const modalRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    // Function to close modal when clicking outside of it
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        modalRef.current &&
+        !modalRef.current.contains(event.target as Node)
+      ) {
+        setOpenSocial(false);
+      }
+    };
+
+    if (openSocial) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    // Cleanup the event listener when the modal is closed or component is unmounted
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [openSocial]);
 
   const getRole = async () => {
     try {
@@ -396,33 +419,31 @@ const StreamerProfile = () => {
             </div>
 
             {openSocial && (
-              <div onClick={() => getSocialLinks()} className={style.backG}>
-                <div className={style.menu}>
-                  {allSocialsById.map((item) => {
-                    return (
-                      <div className={style.flex_item}>
-                        <a href={item.url}>
-                          {
-                            allSocials.filter((el) => el.id === item.social)[0]
-                              .name
-                          }
-                        </a>
-                        <img className={style.img_block} src={link} alt="" />
-                      </div>
-                    );
-                  })}
-                  {sub_status === true ? (
-                    <div
-                      onClick={() => {
-                        setIsModalOpen(true);
-                      }}
-                      className={style.flex_item1}
-                    >
-                      <span className={style.unsub_text}>Отписаться</span>
-                      <img src={exit} alt="#" />
+              <div ref={modalRef} className={style.menu}>
+                {allSocialsById.map((item) => {
+                  return (
+                    <div className={style.flex_item}>
+                      <a href={item.url}>
+                        {
+                          allSocials.filter((el) => el.id === item.social)[0]
+                            .name
+                        }
+                      </a>
+                      <img className={style.img_block} src={link} alt="" />
                     </div>
-                  ) : null}
-                </div>
+                  );
+                })}
+                {sub_status === true ? (
+                  <div
+                    onClick={() => {
+                      setIsModalOpen(true);
+                    }}
+                    className={style.flex_item1}
+                  >
+                    <span className={style.unsub_text}>Отписаться</span>
+                    <img src={exit} alt="#" />
+                  </div>
+                ) : null}
               </div>
             )}
           </div>
