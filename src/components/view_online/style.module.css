@@ -339,6 +339,9 @@
   line-height: 20px;
   text-align: center;
   color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .messageListBox {
   height: 340px;
@@ -347,9 +350,14 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  flex-direction: column;
   gap: 18px;
 }
 .messageText {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
   width: 100%;
 }
 .messageT {
