@@ -368,25 +368,35 @@ const ViewOnline = () => {
               backgroundColor: "#1C1C1C",
               display: "flex",
               alignItems: "center",
-              height: "85px"
+              height: "85px",
             }}
           >
             <TextField
               fullWidth
               variant="outlined"
               placeholder="Отправить сообщение..."
-              value={message}
+              value={message || ""} // Default to empty string if undefined
               onChange={handleInputChange}
               InputProps={{
-                style: { color: "#fff", paddingLeft: "15px" }, // Adjust text color and padding
+                style: {
+                  color: "#fff",
+                  padding: "6px 15px", // Adjust padding to center text vertically
+                },
               }}
               sx={{
                 display: "flex",
                 alignItems: "center",
-                height: "34px",
                 backgroundColor: "#131313",
                 borderRadius: "23px", // Rounded TextField similar to the design
-                border: "none",
+                "& .MuiOutlinedInput-root": {
+                  height: "34px", // Control the overall height here
+                  "& fieldset": {
+                    border: "none", // Remove the default border
+                  },
+                  "&.Mui-focused fieldset": {
+                    border: "none", // Remove the focus border color
+                  },
+                },
               }}
             />
 
