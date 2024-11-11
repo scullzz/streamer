@@ -396,31 +396,33 @@ const StreamerProfile = () => {
             </div>
 
             {openSocial && (
-              <div className={style.menu}>
-                {allSocialsById.map((item) => {
-                  return (
-                    <div className={style.flex_item}>
-                      <a href={item.url}>
-                        {
-                          allSocials.filter((el) => el.id === item.social)[0]
-                            .name
-                        }
-                      </a>
-                      <img className={style.img_block} src={link} alt="" />
+              <div onClick={() => getSocialLinks()} className={style.backG}>
+                <div className={style.menu}>
+                  {allSocialsById.map((item) => {
+                    return (
+                      <div className={style.flex_item}>
+                        <a href={item.url}>
+                          {
+                            allSocials.filter((el) => el.id === item.social)[0]
+                              .name
+                          }
+                        </a>
+                        <img className={style.img_block} src={link} alt="" />
+                      </div>
+                    );
+                  })}
+                  {sub_status === true ? (
+                    <div
+                      onClick={() => {
+                        setIsModalOpen(true);
+                      }}
+                      className={style.flex_item1}
+                    >
+                      <span className={style.unsub_text}>Отписаться</span>
+                      <img src={exit} alt="#" />
                     </div>
-                  );
-                })}
-                {sub_status === true ? (
-                  <div
-                    onClick={() => {
-                      setIsModalOpen(true);
-                    }}
-                    className={style.flex_item1}
-                  >
-                    <span className={style.unsub_text}>Отписаться</span>
-                    <img src={exit} alt="#" />
-                  </div>
-                ) : null}
+                  ) : null}
+                </div>
               </div>
             )}
           </div>
