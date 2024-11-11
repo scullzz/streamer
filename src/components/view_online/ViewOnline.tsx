@@ -6,9 +6,56 @@ import users from "./image/users.svg";
 import { GetUserProfile } from "../main_page/MainPage";
 import { tg } from "../../App";
 import { Avatar } from "../avatar/Avatar";
-import { Box, Typography, TextField, Drawer } from "@mui/material";
+import { Box, TextField, Drawer } from "@mui/material";
+import userI from "./image/user.svg";
+import settings from "./image/settings.svg";
+import close from "./image/close.svg";
+import blackB from "./image/blackB.svg";
 
 const ViewOnline = () => {
+  const arr = [
+    {
+      type: "YouTube",
+      name: "First",
+      message: "first message",
+    },
+    {
+      type: "Kick",
+      name: "Second",
+      message: "kick message",
+    },
+    {
+      type: "Twitch",
+      name: "Third",
+      message: "twitch message",
+    },
+    {
+      type: "Bot",
+      name: "Fourth",
+      message: "bot message",
+    },
+    {
+      type: "YouTube",
+      name: "Fifth",
+      message: "another YouTube message",
+    },
+    {
+      type: "Kick",
+      name: "Sixth",
+      message: "another Kick message",
+    },
+    {
+      type: "Twitch",
+      name: "Seventh",
+      message: "another Twitch message",
+    },
+    {
+      type: "Bot",
+      name: "Eighth",
+      message: "another bot message",
+    },
+  ];
+
   const location = useLocation();
   const [user, setUser] = useState<GetUserProfile | null>(null);
 
@@ -129,6 +176,27 @@ const ViewOnline = () => {
     setMessage(event.target.value);
   };
 
+  const selectAva = (avaA: string) => {
+    if (avaA == "YouTube") {
+      return blackB;
+    } else if (avaA == "Twitch") {
+      return blackB;
+    } else if (avaA == "Kick") {
+      return blackB;
+    }
+  };
+
+  const selectStyle = (styleT: string) => {
+    if (styleT == "YouTube") {
+      return "redText";
+    } else if (styleT == "Twitch") {
+      return "greenText";
+    } else if (styleT == "Kick") {
+      return "purpleText";
+    } else {
+      return "blueText";
+    }
+  };
   return (
     <>
       <div className={styles.streamContainer}>
@@ -250,8 +318,37 @@ const ViewOnline = () => {
               <div className={styles.stick}></div>
             </Box>
             <Box sx={{ flex: 1, padding: 2 }}>
-              <Typography>User1: Hello!</Typography>
-              <Typography>User2: How are you?</Typography>
+              <div className={styles.chatHeaderBlock}>
+                <div className={styles.chatHeaderBlock1}>
+                  <span className={styles.chatHeaderBlock1}>Чат</span>
+                  <div className={styles.miniChatHeaderBlock1}>
+                    <img src={userI} alt="$" />
+                    <span className={styles.chat_viewers}>{viewers}</span>
+                  </div>
+                </div>
+                <div className={styles.chatHeaderBlock2}>
+                  <img src={settings} alt="" />
+                  <img src={close} alt="" />
+                </div>
+              </div>
+              <div className={styles.mainChat}>
+                <div className={styles.mainChatButton}>
+                  <span className={styles.mainChatButtonText}>
+                    Показать чат предыдущего стрима
+                  </span>
+                </div>
+                <div className={styles.messageListBox}>
+                  {arr.map((item) => {
+                    return (
+                      <div className={styles.messageText}>
+                        <Avatar size={18} isLive={false} url={selectAva(item.type)} />
+                        <span className={styles[selectStyle(item.type)]}>{item.name + ":"}</span>
+                        <span className={styles.messageT}>{item.message}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
             </Box>
           </Box>
           <Box

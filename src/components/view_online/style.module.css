@@ -287,3 +287,109 @@
   width: 55px;
   background-color: #292929;
 }
+
+.chatHeaderBlock {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.chatHeaderBlock1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+}
+
+.miniChatHeaderBlock1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+}
+
+.chatHeaderBlock2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 22px;
+}
+
+.mainChat {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 19px;
+}
+
+.mainChatButton {
+  margin-top: 30px;
+  height: 42px;
+  width: 300px;
+  border-radius: 13px;
+  background-color: #1c1c1c;
+}
+
+.mainChatButtonText {
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  text-align: center;
+  color: white;
+}
+.messageListBox {
+  height: 340px;
+  width: 100%;
+  overflow: scroll;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 18px;
+}
+.messageText {
+  width: 100%;
+}
+.messageT {
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: left;
+  color: white;
+}
+
+.blueText {
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  text-align: left;
+  color: #72aced;
+}
+.redText {
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  text-align: left;
+  color: #ff0000;
+}
+.greenText {
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  text-align: left;
+  color: #53fc19;
+}
+.purpleText {
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+  text-align: left;
+  color: #9146ff;
+}
