@@ -11,6 +11,10 @@ import userI from "./image/user.svg";
 import settings from "./image/settings.svg";
 import close from "./image/close.svg";
 import blackB from "./image/blackB.svg";
+import blueB from "./image/blutB.svg";
+import youtube from "./image/youtube.svg";
+import kick from "./image/kick.svg";
+import twitch from "./image/twitch.svg";
 
 const ViewOnline = () => {
   const arr = [
@@ -124,7 +128,7 @@ const ViewOnline = () => {
 
   const [panelPosition, setPanelPosition] = useState<any>("closed");
   const [startY, setStartY] = useState(0);
-  const [message, setMessage] = useState();
+  const [message, setMessage] = useState<string>("");
   const [currentHeight, setCurrentHeight] = useState<any>(0);
 
   const toggleChat = () => {
@@ -178,11 +182,11 @@ const ViewOnline = () => {
 
   const selectAva = (avaA: string) => {
     if (avaA == "YouTube") {
-      return blackB;
+      return youtube;
     } else if (avaA == "Twitch") {
-      return blackB;
+      return twitch;
     } else if (avaA == "Kick") {
-      return blackB;
+      return kick;
     }
   };
 
@@ -300,7 +304,7 @@ const ViewOnline = () => {
               display: "flex",
               flexDirection: "column",
               height: "100%",
-              overflow: "auto",
+              padding: 1,
             }}
           >
             <Box
@@ -341,8 +345,14 @@ const ViewOnline = () => {
                   {arr.map((item) => {
                     return (
                       <div className={styles.messageText}>
-                        <Avatar size={18} isLive={false} url={selectAva(item.type)} />
-                        <span className={styles[selectStyle(item.type)]}>{item.name + ":"}</span>
+                        <Avatar
+                          size={18}
+                          isLive={false}
+                          url={selectAva(item.type)}
+                        />
+                        <span className={styles[selectStyle(item.type)]}>
+                          {item.name + ":"}
+                        </span>
                         <span className={styles.messageT}>{item.message}</span>
                       </div>
                     );
@@ -354,10 +364,10 @@ const ViewOnline = () => {
           <Box
             sx={{
               padding: 1,
-              borderTop: "1px solid #555",
-              backgroundColor: "#222",
+              backgroundColor: "#1C1C1C",
               display: "flex",
               alignItems: "center",
+              borderRadius: "25px", // Rounded container
             }}
           >
             <TextField
@@ -367,12 +377,15 @@ const ViewOnline = () => {
               value={message}
               onChange={handleInputChange}
               InputProps={{
-                style: { color: "#fff" },
+                style: { color: "#fff", paddingLeft: "15px" }, // Adjust text color and padding
               }}
               sx={{
+                backgroundColor: "#131313",
+                borderRadius: "20px", // Rounded TextField similar to the design
                 "& .MuiOutlinedInput-root": {
                   "& fieldset": {
                     borderColor: "#555",
+                    borderRadius: "20px", // Match the rounded style for fieldset
                   },
                   "&:hover fieldset": {
                     borderColor: "#888",
@@ -383,6 +396,21 @@ const ViewOnline = () => {
                 },
               }}
             />
+            <Box sx={{ marginLeft: 1 }}>
+              {message && message.length === 0 ? (
+                <img
+                  src={blackB}
+                  alt="Send"
+                  style={{ width: "34px", height: "34px" }}
+                />
+              ) : (
+                <img
+                  src={blueB}
+                  alt="Send"
+                  style={{ width: "34px", height: "34px" }}
+                />
+              )}
+            </Box>
           </Box>
         </Drawer>
       </div>
