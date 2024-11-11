@@ -11,7 +11,7 @@ import userI from "./image/user.svg";
 import settings from "./image/settings.svg";
 import close from "./image/close.svg";
 import blackB from "./image/blackB.svg";
-import blueB from "./image/blutB.svg";
+import blueB from "./image/blutB.svg"
 import youtube from "./image/youtube.svg";
 import kick from "./image/kick.svg";
 import twitch from "./image/twitch.svg";
@@ -128,7 +128,7 @@ const ViewOnline = () => {
 
   const [panelPosition, setPanelPosition] = useState<any>("closed");
   const [startY, setStartY] = useState(0);
-  const [message, setMessage] = useState<string>("");
+  const [message, setMessage] = useState<string>();
   const [currentHeight, setCurrentHeight] = useState<any>(0);
 
   const toggleChat = () => {
@@ -367,7 +367,6 @@ const ViewOnline = () => {
               backgroundColor: "#1C1C1C",
               display: "flex",
               alignItems: "center",
-              borderRadius: "25px", // Rounded container
             }}
           >
             <TextField
@@ -380,14 +379,14 @@ const ViewOnline = () => {
                 style: { color: "#fff", paddingLeft: "15px" }, // Adjust text color and padding
               }}
               sx={{
-                height: "34px",
                 backgroundColor: "#131313",
-                borderRadius: "20px",
+                borderRadius: "23px", // Rounded TextField similar to the design
                 border: "none",
               }}
             />
+
             <Box sx={{ marginLeft: 1 }}>
-              {message.length === 0 ? (
+              {message?.length === 0 ? (
                 <img
                   src={blackB}
                   alt="Send"
