@@ -380,6 +380,9 @@ const ViewOnline = () => {
                 style: { color: "#fff", paddingLeft: "15px" }, // Adjust text color and padding
               }}
               sx={{
+                display: "flex",
+                alignContent: "center",
+                height: "34px",
                 backgroundColor: "#131313",
                 borderRadius: "23px", // Rounded TextField similar to the design
                 border: "none",
@@ -387,7 +390,7 @@ const ViewOnline = () => {
             />
 
             <Box sx={{ marginLeft: 1 }}>
-              {message?.length === 0 ? (
+              {message && message.length === 0 ? (
                 <img
                   src={blackB}
                   alt="Send"
