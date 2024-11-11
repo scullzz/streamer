@@ -368,6 +368,7 @@ const ViewOnline = () => {
               backgroundColor: "#1C1C1C",
               display: "flex",
               alignItems: "center",
+              height: "85px"
             }}
           >
             <TextField
@@ -381,7 +382,7 @@ const ViewOnline = () => {
               }}
               sx={{
                 display: "flex",
-                alignItemsg: "center",
+                alignItems: "center",
                 height: "34px",
                 backgroundColor: "#131313",
                 borderRadius: "23px", // Rounded TextField similar to the design
