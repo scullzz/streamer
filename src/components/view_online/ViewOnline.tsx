@@ -237,11 +237,8 @@ const ViewOnline = () => {
     const { scrollTop, scrollHeight, clientHeight } = messageListRef.current;
     const isAtBottom = scrollTop + clientHeight >= scrollHeight - 10;
 
-    if (isAtBottom) {
-      setShowScrollToEnd(false);
-    } else {
-      setShowScrollToEnd(true);
-    }
+    // Show button only if not at the bottom
+    setShowScrollToEnd(!isAtBottom);
   };
 
   const scrollToEnd = () => {
@@ -250,7 +247,7 @@ const ViewOnline = () => {
         top: messageListRef.current.scrollHeight,
         behavior: "smooth",
       });
-      setShowScrollToEnd(false);
+      setShowScrollToEnd(false); // Hide the button when scrolled to the end
     }
   };
 
@@ -261,6 +258,7 @@ const ViewOnline = () => {
       return () => ref.removeEventListener("scroll", handleScroll);
     }
   }, []);
+
   return (
     <>
       <div className={styles.streamContainer}>
@@ -401,10 +399,7 @@ const ViewOnline = () => {
                     Показать чат предыдущего стрима
                   </span>
                 </div>
-                <div
-                  className={styles.messageListBox}
-                  ref={messageListRef}
-                >
+                <div className={styles.messageListBox} ref={messageListRef}>
                   {arr.map((item) => {
                     return (
                       <div className={styles.messageText}>
