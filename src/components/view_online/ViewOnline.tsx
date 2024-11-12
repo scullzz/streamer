@@ -222,10 +222,11 @@ const ViewOnline = () => {
   const [isButtonVisible, setIsButtonVisible] = useState(false);
 
   useEffect(() => {
+    alert(scrollRef.current);
     const handleScroll = () => {
       if (scrollRef.current) {
         const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;
-        alert(scrollTop + clientHeight < scrollHeight);
+        // alert(scrollTop + clientHeight < scrollHeight);
         setIsButtonVisible(scrollTop + clientHeight < scrollHeight);
       }
     };
