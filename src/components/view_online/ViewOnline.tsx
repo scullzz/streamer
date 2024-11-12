@@ -225,7 +225,7 @@ const ViewOnline = () => {
     const handleScroll = () => {
       if (scrollRef.current) {
         const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;
-        setIsButtonVisible(scrollTop < scrollHeight - clientHeight);
+        setIsButtonVisible(scrollTop + clientHeight < scrollHeight);
       }
     };
 
