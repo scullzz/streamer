@@ -220,6 +220,7 @@ const ViewOnline = () => {
 
   const messageListRef = useRef<HTMLDivElement | null>(null);
   const [showScrollToEnd, setShowScrollToEnd] = useState(false);
+  alert(showScrollToEnd);
 
   // Initial scroll to bottom when component mounts
   useEffect(() => {
@@ -418,12 +419,12 @@ const ViewOnline = () => {
                     );
                   })}
                   {/* {showScrollToEnd && ( */}
-                    <button
-                      className={styles.scrollToEndButton}
-                      onClick={scrollToEnd}
-                    >
-                      Чат приостановлен
-                    </button>
+                  <button
+                    className={styles.scrollToEndButton}
+                    onClick={scrollToEnd}
+                  >
+                    Чат приостановлен
+                  </button>
                   {/* )} */}
                 </div>
               </div>
