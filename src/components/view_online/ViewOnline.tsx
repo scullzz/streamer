@@ -254,7 +254,6 @@ const ViewOnline = () => {
     }
   };
 
-  // Attach scroll event listener
   useEffect(() => {
     const ref = messageListRef.current;
     if (ref) {
@@ -418,14 +417,14 @@ const ViewOnline = () => {
                       </div>
                     );
                   })}
-                  {showScrollToEnd && (
+                  {/* {showScrollToEnd && ( */}
                     <button
                       className={styles.scrollToEndButton}
                       onClick={scrollToEnd}
                     >
                       Чат приостановлен
                     </button>
-                  )}
+                  {/* )} */}
                 </div>
               </div>
             </Box>
