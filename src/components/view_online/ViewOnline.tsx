@@ -219,7 +219,7 @@ const ViewOnline = () => {
   };
 
   const messageListRef = useRef<HTMLDivElement | null>(null);
-  const [showScrollToEnd, setShowScrollToEnd] = useState(false);
+  const [showScrollToEnd, setShowScrollToEnd] = useState(true);
 
   // Initial scroll to bottom when component mounts
   useEffect(() => {
