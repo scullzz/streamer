@@ -221,6 +221,16 @@ const ViewOnline = () => {
   const messageListRef = useRef<HTMLDivElement | null>(null);
   const [showScrollToEnd, setShowScrollToEnd] = useState(false);
 
+  // Initial scroll to bottom when component mounts
+  useEffect(() => {
+    if (messageListRef.current) {
+      messageListRef.current.scrollTo({
+        top: messageListRef.current.scrollHeight,
+        behavior: "smooth",
+      });
+    }
+  }, []); // Empty dependency array to run only once on mount
+
   const handleScroll = () => {
     if (!messageListRef.current) return;
 
@@ -244,6 +254,7 @@ const ViewOnline = () => {
     }
   };
 
+  // Attach scroll event listener
   useEffect(() => {
     const ref = messageListRef.current;
     if (ref) {
@@ -251,7 +262,6 @@ const ViewOnline = () => {
       return () => ref.removeEventListener("scroll", handleScroll);
     }
   }, []);
-
   return (
     <>
       <div className={styles.streamContainer}>
