@@ -402,3 +402,22 @@
   text-align: left;
   color: #9146ff;
 }
+.scrollToEndButton {
+  position: fixed;
+  bottom: 20px; /* Position slightly above the bottom edge */
+  right: 50%; /* Center horizontally */
+  transform: translateX(50%); /* Adjust position to the center */
+  padding: 8px 12px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  z-index: 100;
+  transition: background-color 0.2s ease;
+}
+
+.scrollToEndButton:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}

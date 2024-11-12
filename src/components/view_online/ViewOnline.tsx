@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 import styles from "./style.module.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import trash from "./image/trash.svg";
 import users from "./image/users.svg";
 import { GetUserProfile } from "../main_page/MainPage";
@@ -58,15 +58,32 @@ const ViewOnline = () => {
       name: "Eighth",
       message: "another bot message",
     },
+    {
+      type: "Kick",
+      name: "Second",
+      message: "kick message",
+    },
+    {
+      type: "Twitch",
+      name: "Third",
+      message: "twitch message",
+    },
+    {
+      type: "Bot",
+      name: "Fourth",
+      message: "bot message",
+    },
+    {
+      type: "YouTube",
+      name: "Fifth",
+      message: "another YouTube message",
+    },
   ];
 
   const location = useLocation();
   const [user, setUser] = useState<GetUserProfile | null>(null);
 
   const { link, platform, viewers, title } = location.state;
-  // const backPage = () => {
-  //   window.history.back();
-  // };
 
   const [selectedStyle, setSelectedStyle] = useState<string>("number1");
   const getImage = () => {
@@ -163,7 +180,6 @@ const ViewOnline = () => {
   const handleStickTouchEnd = () => {
     const finalHeight = parseFloat(currentHeight);
 
-    // Snap to closest position
     if (finalHeight > 75) {
       setPanelPosition("full");
       setCurrentHeight("100vh");
@@ -201,6 +217,41 @@ const ViewOnline = () => {
       return "blueText";
     }
   };
+
+  const messageListRef = useRef<HTMLDivElement | null>(null);
+  const [showScrollToEnd, setShowScrollToEnd] = useState(false);
+
+  const handleScroll = () => {
+    if (!messageListRef.current) return;
+
+    const { scrollTop, scrollHeight, clientHeight } = messageListRef.current;
+    const isAtBottom = scrollTop + clientHeight >= scrollHeight - 10;
+
+    if (isAtBottom) {
+      setShowScrollToEnd(false);
+    } else {
+      setShowScrollToEnd(true);
+    }
+  };
+
+  const scrollToEnd = () => {
+    if (messageListRef.current) {
+      messageListRef.current.scrollTo({
+        top: messageListRef.current.scrollHeight,
+        behavior: "smooth",
+      });
+      setShowScrollToEnd(false);
+    }
+  };
+
+  useEffect(() => {
+    const ref = messageListRef.current;
+    if (ref) {
+      ref.addEventListener("scroll", handleScroll);
+      return () => ref.removeEventListener("scroll", handleScroll);
+    }
+  }, []);
+
   return (
     <>
       <div className={styles.streamContainer}>
@@ -341,7 +392,7 @@ const ViewOnline = () => {
                     Показать чат предыдущего стрима
                   </span>
                 </div>
-                <div className={styles.messageListBox}>
+                <div className={styles.messageListBox} ref={messageListRef}>
                   {arr.map((item) => {
                     return (
                       <div className={styles.messageText}>
@@ -357,6 +408,14 @@ const ViewOnline = () => {
                       </div>
                     );
                   })}
+                  {showScrollToEnd && (
+                    <button
+                      className={styles.scrollToEndButton}
+                      onClick={scrollToEnd}
+                    >
+                      Чат приостановлен
+                    </button>
+                  )}
                 </div>
               </div>
             </Box>
@@ -375,33 +434,33 @@ const ViewOnline = () => {
               fullWidth
               variant="outlined"
               placeholder="Отправить сообщение..."
-              value={message || ""} // Default to empty string if undefined
+              value={message || ""}
               onChange={handleInputChange}
               InputProps={{
                 style: {
                   color: "#fff",
-                  padding: "6px 15px", // Adjust padding to center text vertically
+                  padding: "6px 15px",
                 },
               }}
               sx={{
                 display: "flex",
                 alignItems: "center",
                 backgroundColor: "#131313",
-                borderRadius: "23px", // Rounded TextField similar to the design
+                borderRadius: "23px",
                 "& .MuiOutlinedInput-root": {
-                  height: "34px", // Control the overall height here
+                  height: "34px",
                   "& fieldset": {
-                    border: "none", // Remove the default border
+                    border: "none",
                   },
                   "&.Mui-focused fieldset": {
-                    border: "none", // Remove the focus border color
+                    border: "none",
                   },
                 },
               }}
             />
 
             <Box sx={{ marginLeft: 1 }}>
-              {(message || "").length === 0 ? ( // Treat message as empty string if undefined
+              {(message || "").length === 0 ? (
                 <img
                   src={blackB}
                   alt="Send"
