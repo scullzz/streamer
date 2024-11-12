@@ -402,7 +402,11 @@ const ViewOnline = () => {
                     Показать чат предыдущего стрима
                   </span>
                 </div>
-                <div className={styles.messageListBox} ref={messageListRef}>
+                <div
+                  className={styles.messageListBox}
+                  ref={messageListRef}
+                  style={{ maxHeight: "70vh", overflowY: "auto" }}
+                >
                   {arr.map((item) => {
                     return (
                       <div className={styles.messageText}>
