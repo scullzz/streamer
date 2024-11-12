@@ -218,46 +218,33 @@ const ViewOnline = () => {
     }
   };
 
-  const messageListRef = useRef<HTMLDivElement | null>(null);
-  const [showScrollToEnd, setShowScrollToEnd] = useState(true);
-
-  // Initial scroll to bottom when component mounts
-  useEffect(() => {
-    if (messageListRef.current) {
-      messageListRef.current.scrollTo({
-        top: messageListRef.current.scrollHeight,
-        behavior: "smooth",
-      });
-    }
-  }, [arr.length]); // Empty dependency array to run only once on mount
-
-  const handleScroll = () => {
-    if (!messageListRef.current) return;
-
-    const { scrollTop, scrollHeight, clientHeight } = messageListRef.current;
-    const isAtBottom = scrollTop + clientHeight >= scrollHeight - 10;
-
-    // Show button only if not at the bottom
-    setShowScrollToEnd(!isAtBottom);
-  };
-
-  const scrollToEnd = () => {
-    if (messageListRef.current) {
-      messageListRef.current.scrollTo({
-        top: messageListRef.current.scrollHeight,
-        behavior: "smooth",
-      });
-      setShowScrollToEnd(false); // Hide the button when scrolled to the end
-    }
-  };
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [isButtonVisible, setIsButtonVisible] = useState(false);
 
   useEffect(() => {
-    const ref = messageListRef.current;
-    if (ref) {
-      ref.addEventListener("scroll", handleScroll);
-      return () => ref.removeEventListener("scroll", handleScroll);
-    }
+    const handleScroll = () => {
+      if (scrollRef.current) {
+        const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;
+        setIsButtonVisible(scrollTop < scrollHeight - clientHeight);
+      }
+    };
+
+    const currentRef = scrollRef.current;
+    currentRef?.addEventListener("scroll", handleScroll);
+
+    return () => {
+      currentRef?.removeEventListener("scroll", handleScroll);
+    };
   }, []);
+
+  const scrollToBottom = () => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTo({
+        top: scrollRef.current.scrollHeight,
+        behavior: "smooth",
+      });
+    }
+  };
 
   return (
     <>
@@ -399,7 +386,7 @@ const ViewOnline = () => {
                     Показать чат предыдущего стрима
                   </span>
                 </div>
-                <div className={styles.messageListBox} ref={messageListRef}>
+                <div className={styles.messageListBox} ref={scrollRef}>
                   {arr.map((item) => {
                     return (
                       <div className={styles.messageText}>
@@ -415,10 +402,10 @@ const ViewOnline = () => {
                       </div>
                     );
                   })}
-                  {showScrollToEnd && (
+                  {isButtonVisible && (
                     <button
                       className={styles.scrollToEndButton}
-                      onClick={scrollToEnd}
+                      onClick={scrollToBottom}
                     >
                       Чат приостановлен
                     </button>
