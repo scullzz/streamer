@@ -229,7 +229,7 @@ const ViewOnline = () => {
         behavior: "smooth",
       });
     }
-  }, []); // Empty dependency array to run only once on mount
+  }, [arr.length]); // Empty dependency array to run only once on mount
 
   const handleScroll = () => {
     if (!messageListRef.current) return;
