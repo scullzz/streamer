@@ -7,6 +7,7 @@ import admin from "./image/admin.svg";
 import subs from "./image/subs.svg";
 import refs from "./image/refs.svg";
 import ruf from "./image/ruffers.svg";
+import { toast } from "react-hot-toast";
 import mes from "./image/message.svg";
 // import edit from "./image/edit.svg";
 import draw from "./image/draw.svg";
@@ -68,6 +69,12 @@ const StreamerExtraInfo = () => {
 
   const copyToBuffer = async () => {
     await navigator.clipboard.writeText(inputValue);
+    toast.success("Link copied to clipboard!", {
+      style: {
+        background: "green",
+        color: "white",
+      },
+    });
   };
   const shareWithOthers = async () => {
     tg.openTelegramLink(
@@ -134,8 +141,8 @@ const StreamerExtraInfo = () => {
           </div>
 
           <div className={style.section}>
-            <div className={style.item}>
-              <div onClick={() => movetoAdmins()} className={style.item_div}>
+            <div onClick={() => movetoAdmins()} className={style.item}>
+              <div className={style.item_div}>
                 <span className={style.iconAdmin}>
                   <img src={admin} alt="" />
                 </span>
