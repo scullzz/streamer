@@ -44,10 +44,10 @@ const MainPage = () => {
   const [user, setUser] = useState<GetUserProfile | null>(null);
   const [admins, setAdmins] = useState<StreamerAdmin[] | []>([]);
 
-  // useEffect(() => {
-  //   tg.setHeaderColor("#FF0000");
-  //   tg.setBackgroundColor("#FF0000");
-  // }, []);
+  useEffect(() => {
+    tg.setHeaderColor("#efeff3");
+    tg.setBackgroundColor("#efeff3");
+  }, []);
 
   const getUser = async () => {
     try {

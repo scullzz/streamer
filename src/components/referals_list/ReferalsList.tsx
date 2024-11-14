@@ -62,7 +62,11 @@ interface MainInterface {
 const ReferalList = () => {
   const { id } = useParams();
   const [listSubs, setListSubs] = useState<MainInterface[] | []>([]);
-
+  
+  useEffect(() => {
+    tg.setHeaderColor("#efeff3");
+    tg.setBackgroundColor("#efeff3");
+  }, []);
   const getAllReferrals = async () => {
     try {
       const response = await fetch(

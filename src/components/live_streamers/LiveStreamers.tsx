@@ -9,6 +9,7 @@ import { AppDispatch, RootState } from "../../store";
 import LiveStreamerItem from "../live_streamers_item/LiveStreamerItem";
 import searchIcon from "./image/search.svg";
 import style from "./style.module.css";
+import { tg } from "../../App";
 
 const LiveStreamers = () => {
   const [search, setSearch] = useState<string>("");
@@ -18,6 +19,11 @@ const LiveStreamers = () => {
   const { platforms, status } = useSelector(
     (state: RootState) => state.liveStreamers
   );
+
+  useEffect(() => {
+    tg.setHeaderColor("#131313");
+    tg.setBackgroundColor("#131313");
+  }, []);
 
   const scrollPositionRef = useRef<number>(0);
   const navigate = useNavigate();

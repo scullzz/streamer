@@ -48,6 +48,11 @@ const UserProfile = () => {
   };
 
   useEffect(() => {
+    tg.setHeaderColor("#efeff3");
+    tg.setBackgroundColor("#efeff3");
+  }, []);
+
+  useEffect(() => {
     getUser();
   }, []);
   return (

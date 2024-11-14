@@ -79,6 +79,11 @@ const ViewOnline = () => {
       message: "another YouTube message",
     },
   ];
+  
+  useEffect(() => {
+    tg.setHeaderColor("#131313");
+    tg.setBackgroundColor("#131313");
+  }, []);
 
   const location = useLocation();
   const [user, setUser] = useState<GetUserProfile | null>(null);

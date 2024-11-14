@@ -12,6 +12,11 @@ const Post = () => {
   const { id } = useParams();
   const nav = useNavigate();
 
+  useEffect(() => {
+    tg.setHeaderColor("#efeff3");
+    tg.setBackgroundColor("#efeff3");
+  }, []);
+
   const [selectedFile, setSelectedFile] = useState<File | null>(File);
   const [message, setPostMessage] = useMemoryState<string | undefined>(
     "",

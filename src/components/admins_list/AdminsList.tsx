@@ -75,6 +75,10 @@ interface StreamData {
 const AdminsList = () => {
   const { id } = useParams();
   const [listSubs, setListSubs] = useState<StreamData[] | []>([]);
+  useEffect(() => {
+    tg.setHeaderColor("#efeff3");
+    tg.setBackgroundColor("#efeff3");
+  }, []);
   const getAllSubscribers = async () => {
     try {
       const response = await fetch(

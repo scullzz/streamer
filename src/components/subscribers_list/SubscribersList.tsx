@@ -72,6 +72,10 @@ const SubscribersList = () => {
   const [listExtraInfoSubs, setExtraInfoSubs] = useState<Subscription[] | []>(
     []
   );
+  useEffect(() => {
+    tg.setHeaderColor("#efeff3");
+    tg.setBackgroundColor("#efeff3");
+  }, []);
   const getAllSubscribers = async () => {
     try {
       const response = await fetch(

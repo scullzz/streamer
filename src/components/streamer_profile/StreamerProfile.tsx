@@ -103,6 +103,11 @@ const StreamerProfile = () => {
   const [isSubscribeModalOpen, setIsSubscribedModalOpen] =
     useState<boolean>(false);
 
+  useEffect(() => {
+    tg.setHeaderColor("#131313");
+    tg.setBackgroundColor("#131313");
+  }, []);
+
   const settings = {
     dots: false,
     infinite: false,

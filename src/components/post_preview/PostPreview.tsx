@@ -3,11 +3,18 @@ import { useLocation } from "react-router-dom";
 import { FilePreview } from "../file_preview/FilePreview";
 import { SectionHeader } from "../section_header/SectionHeader";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { tg } from "../../App";
 
 const PostPreview = () => {
   const location = useLocation();
   const { file, id, text } = location.state;
   const nav = useNavigate();
+
+  useEffect(() => {
+    tg.setHeaderColor("#efeff3");
+    tg.setBackgroundColor("#efeff3");
+  }, []);
 
   const backPage = () => {
     nav(`/create-post/${id}`);
