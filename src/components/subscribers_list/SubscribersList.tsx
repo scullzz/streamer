@@ -1,6 +1,5 @@
 import styles from "./style.module.css";
 import SubscriberRow from "./SubscribeRow";
-import { SectionHeader } from "../section_header/SectionHeader";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { tg } from "../../App";
@@ -114,18 +113,6 @@ const SubscribersList = () => {
 
   return (
     <div className={styles.subscribers_list}>
-      <SectionHeader
-        left={
-          <span
-            onClick={() => {
-              window.history.back();
-            }}
-          >
-            Назад
-          </span>
-        }
-        center={<span>Clash of Slots</span>}
-      />
       <div className={styles.container}>
         <h2 className={styles.title}>Подписчики Casino_Malaya</h2>
         <p className={styles.description}>

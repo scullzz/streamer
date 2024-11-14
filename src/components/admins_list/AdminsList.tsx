@@ -1,6 +1,5 @@
 import styles from "./style.module.css";
 import AdminsRow from "./AdminsRow";
-import { SectionHeader } from "../section_header/SectionHeader";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import add from "./image/add.svg";
@@ -102,20 +101,8 @@ const AdminsList = () => {
 
   return (
     <div className={styles.subscribers_list}>
-      <SectionHeader
-        left={
-          <span
-            onClick={() => {
-              window.history.back();
-            }}
-          >
-            Назад
-          </span>
-        }
-        center={<span>Clash of Slots</span>}
-      />
       <div className={styles.container}>
-        <h2 className={styles.title}>Администраторы</h2>
+        <h2 className={styles.title}>АДМИНИСТРАТОРЫ</h2>
         <div className={styles.listContainer}>
           <button
             // onClick={() => {
