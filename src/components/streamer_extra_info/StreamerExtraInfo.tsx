@@ -81,6 +81,11 @@ const StreamerExtraInfo = () => {
       `https://t.me/share/url?url=${inputValue}&text=Подписывайся братишка`
     );
   };
+
+  useEffect(() => {
+    tg.setHeaderColor("#efeff3");
+    tg.setBackgroundColor("#efeff3");
+  }, []);
   return (
     <div className={style.back}>
       <div className={style.Stream}>
