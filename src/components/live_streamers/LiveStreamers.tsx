@@ -33,6 +33,28 @@ const LiveStreamers = () => {
     dispatch(fetchListOfLiveStreamers());
   }, [dispatch, location]);
 
+  const [stableHeight, setStableHeight] = useState(0);
+
+  useEffect(() => {
+    const handleViewportChange = () => {
+      if (tg.viewportStableHeight > 0) {
+        setStableHeight(tg.viewportStableHeight);
+      }
+    };
+
+    tg.onEvent("viewportChanged", handleViewportChange);
+
+    return () => {
+      tg.offEvent("viewportChanged", handleViewportChange);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (stableHeight > 0) {
+      dispatch(fetchListOfLiveStreamers());
+    }
+  }, [stableHeight]);
+
   useEffect(() => {
     if (platforms) {
       setFilteredPlatforms(platforms);
