@@ -99,6 +99,7 @@ const StreamerProfile = () => {
   const [allSocialsById, setAllSocialsById] = useState<ISocialById[]>([]);
   const [raffle, setRaffle] = useState<Raffle[]>([]);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const [loading, setLoading] = useState(true);
 
   const [isSubscribeModalOpen, setIsSubscribedModalOpen] =
     useState<boolean>(false);
@@ -167,6 +168,8 @@ const StreamerProfile = () => {
       setRole(res.role);
     } catch (err) {
       console.log(err);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -386,7 +389,7 @@ const StreamerProfile = () => {
           isLive={checkStatus()}
           role={role}
           move={moveToSettings}
-          hidden_status={true}
+          hidden_status={loading ? false : true}
         />
 
         <div className={style.streamer_stats}>

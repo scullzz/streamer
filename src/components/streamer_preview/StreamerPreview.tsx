@@ -26,12 +26,10 @@ export const StreamerPreview = ({
     <div className={style.streamer__info}>
       <div className={style.block}>
         <Avatar url={img} {...rest} isLive={isLive}></Avatar>
-        {hidden_status === true ? (
-          role !== "user" ? (
-            <div onClick={() => move && move()} className={style.changeBlock}>
-              Изм.
-            </div>
-          ) : null
+        {!hidden_status && role !== "user" ? (
+          <div onClick={() => move && move()} className={style.changeBlock}>
+            Изм.
+          </div>
         ) : null}
       </div>
       <span className={style.header_text} style={headerStyles}>
