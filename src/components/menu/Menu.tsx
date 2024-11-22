@@ -18,8 +18,7 @@ const Menu = () => {
   const handleNavigation = (path: any) => {
     navigate(path);
     if (path === "/play") {
-      window.location.href =
-        "https//t.me/clashofslotsdev_bot/clash_of_slota_dev_bot";
+      window.location.href = "https://bigstreamerbot.io/webapp";
     }
   };
 
