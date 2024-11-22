@@ -244,14 +244,22 @@
 }
 
 .modalBlockTrue {
-  position: absolute;
+  position: fixed; /* Fixed positioning for staying at the top */
   display: flex;
   justify-content: space-between;
   align-items: center;
   height: 52px;
-  width: 100%;
+  width: 300px; /* Fixed width to ensure proper centering */
   opacity: 1;
   transition: opacity 0.3s ease-in-out;
+  z-index: 1000;
+  background-color: white;
+  top: 10px; /* Position it slightly below the top edge */
+  left: 50%; /* Center horizontally */
+  transform: translateX(-50%); /* Offset by half the modal's width */
+  border-radius: 8px; /* Optional: Rounded corners for aesthetics */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Add shadow */
+  padding: 16px; /* Optional: Internal padding for spacing */
 }
 
 .modalBlockFalse {

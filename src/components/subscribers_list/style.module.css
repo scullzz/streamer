@@ -86,11 +86,6 @@
   gap: 3px;
 }
 
-.info:last-child {
-  padding-bottom: 0;
-  border-bottom: none;
-}
-
 .name {
   font-family: Roboto;
   font-size: 16px;
@@ -99,5 +94,5 @@
 .date {
   font-family: Roboto;
   font-size: 14px;
-  color: #e6f1ff;
+  color: #8E8E92;
 }

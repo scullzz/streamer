@@ -97,11 +97,6 @@
   border-bottom: 1px solid #e3e3e4;
 }
 
-.info:last-child {
-  padding-bottom: 0; /* Remove padding */
-  border-bottom: none; /* Remove border */
-}
-
 .name {
   font-family: Roboto;
   font-size: 16px;
