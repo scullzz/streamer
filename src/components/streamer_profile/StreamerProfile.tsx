@@ -362,8 +362,8 @@ const StreamerProfile = () => {
   };
 
   useEffect(() => {
-    getStreamerData();
     getRole();
+    getStreamerData();
     getAllSocials();
     getSocialsByStreamer();
     getRaffle();

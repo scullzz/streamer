@@ -6,6 +6,8 @@ import user from "./image/user.svg";
 import admin from "./image/admin.svg";
 import subs from "./image/subs.svg";
 import refs from "./image/refs.svg";
+import close from "./image/close.svg";
+import checkTrue from "./image/checkTrue.svg";
 import ruf from "./image/ruffers.svg";
 import { toast } from "react-hot-toast";
 import mes from "./image/message.svg";
@@ -17,10 +19,12 @@ import { StreamerPreview } from "../streamer_preview/StreamerPreview";
 import { useEffect, useState } from "react";
 import { StreamerResponse } from "../streamer_profile/StreamerProfile";
 import { tg } from "../../App";
+
 const StreamerExtraInfo = () => {
   const { id } = useParams();
   const inputValue = `https://t.me/clashofslots_bot?start=refstr_${id}`;
   const [data, setData] = useState<StreamerResponse | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
   const nav = useNavigate();
   // const backPage = () => {
   //   nav(`/streamer/${id}/${status}`);
@@ -42,6 +46,13 @@ const StreamerExtraInfo = () => {
   useEffect(() => {
     getStreamerData();
   }, []);
+
+  const showModal = () => {
+    setIsVisible(true);
+    setTimeout(() => {
+      setIsVisible(false);
+    }, 3000);
+  };
 
   const getStreamerData = async () => {
     try {
@@ -69,26 +80,38 @@ const StreamerExtraInfo = () => {
 
   const copyToBuffer = async () => {
     await navigator.clipboard.writeText(inputValue);
-    toast.success("Link copied to clipboard!", {
-      style: {
-        background: "green",
-        color: "white",
-      },
-    });
+    showModal();
   };
+
   const shareWithOthers = async () => {
     tg.openTelegramLink(
       `https://t.me/share/url?url=${inputValue}&text=Подписывайся братишка`
     );
   };
 
+  const hideModal = () => {
+    setIsVisible(false);
+  };
+
   useEffect(() => {
     tg.setHeaderColor("#efeff3");
     tg.setBackgroundColor("#efeff3");
   }, []);
+  
   return (
     <div className={style.back}>
       <div className={style.Stream}>
+        <div
+          className={isVisible ? style.modalBlockTrue : style.modalBlockFalse}
+        >
+          <div className={style.modal1Block}>
+            <img src={checkTrue} alt="" />
+            <span className={style.modalText}>Ссылка скопирована</span>
+          </div>
+          <div className={style.modal2Block} onClick={hideModal}>
+            <img src={close} alt="Close" />
+          </div>
+        </div>
         <div className="mt" style={{ marginTop: "25px" }}></div>
 
         <StreamerPreview

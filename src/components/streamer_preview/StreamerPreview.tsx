@@ -27,11 +27,11 @@ export const StreamerPreview = ({
       <div className={style.block}>
         <Avatar url={img} {...rest} isLive={isLive}></Avatar>
         {hidden_status === true ? (
-          role === "user" ? null : (
+          role !== "user" ? (
             <div onClick={() => move && move()} className={style.changeBlock}>
               Изм.
             </div>
-          )
+          ) : null
         ) : null}
       </div>
       <span className={style.header_text} style={headerStyles}>
