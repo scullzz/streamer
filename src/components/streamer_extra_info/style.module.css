@@ -263,10 +263,11 @@
 }
 
 .modalBlockFalse {
-  display: flex;
-  opacity: 0;
-  transition: opacity 0.3s ease-in-out;
-  pointer-events: none;
+  opacity: 0; /* Fully transparent */
+  visibility: hidden; /* Completely hide it from view */
+  transition: opacity 0.3s ease-in-out; /* Smooth fade-out */
+  pointer-events: none; /* Disable interaction */
+  position: absolute; /* Ensure no layout disruption */
 }
 
 .modal1Block {
