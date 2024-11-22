@@ -249,7 +249,7 @@
   justify-content: space-between;
   align-items: center;
   height: 52px;
-  width: 300px; /* Fixed width to ensure proper centering */
+  width: 100%;
   opacity: 1;
   transition: opacity 0.3s ease-in-out;
   z-index: 1000;
@@ -280,4 +280,5 @@
   font-size: 16px;
   font-family: Roboto;
   color: black;
+  font-weight: bold;
 }
