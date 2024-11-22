@@ -9,7 +9,6 @@ import refs from "./image/refs.svg";
 import close from "./image/close.svg";
 import checkTrue from "./image/checkTrue.svg";
 import ruf from "./image/ruffers.svg";
-import { toast } from "react-hot-toast";
 import mes from "./image/message.svg";
 // import edit from "./image/edit.svg";
 import draw from "./image/draw.svg";
