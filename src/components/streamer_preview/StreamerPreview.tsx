@@ -10,7 +10,7 @@ interface IStreamerPreviewProps extends AvatarProps {
   move?: () => void;
   hidden_status?: boolean;
 }
-
+//check
 export const StreamerPreview = ({
   name,
   details,
