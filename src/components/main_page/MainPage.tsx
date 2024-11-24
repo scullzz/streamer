@@ -8,7 +8,7 @@ import share from "./image/share.svg";
 import play from "./image/play.svg";
 import lightning from "./image/lightning.svg";
 import champ from "./image/champ.svg";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { tg } from "../../App";
 
@@ -40,11 +40,13 @@ interface StreamerAdmin {
 }
 const MainPage = () => {
   const nav = useNavigate();
+  const location = useLocation();
 
   const [user, setUser] = useState<GetUserProfile | null>(null);
   const [admins, setAdmins] = useState<StreamerAdmin[] | []>([]);
 
   useEffect(() => {
+    alert(location.pathname);
     tg.setHeaderColor("#efeff3");
     tg.setBackgroundColor("#efeff3");
   }, []);
