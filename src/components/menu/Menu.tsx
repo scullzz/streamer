@@ -19,6 +19,12 @@ const Menu = () => {
     navigate(path);
     if (path === "/play") {
       window.location.href = "https://bigstreamerbot.io/webapp";
+    } else if (path === "/energy") {
+      window.location.href = "https://bigstreamerbot.io/webapp/income";
+    } else if (path === "/tournament") {
+      window.location.href = "https://bigstreamerbot.io/webapp/tournaments";
+    } else if (path === "/friends") {
+      window.location.href = "https://bigstreamerbot.io/webapp/friends";
     }
   };
 
