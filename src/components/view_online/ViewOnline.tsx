@@ -79,7 +79,7 @@ const ViewOnline = () => {
       message: "another YouTube message",
     },
   ];
-  
+
   useEffect(() => {
     tg.setHeaderColor("#131313");
     tg.setBackgroundColor("#131313");
@@ -226,23 +226,12 @@ const ViewOnline = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isButtonVisible, setIsButtonVisible] = useState(false);
 
-  useEffect(() => {
-    alert(scrollRef.current);
-    const handleScroll = () => {
-      if (scrollRef.current) {
-        const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;
-        alert(scrollTop + clientHeight < scrollHeight);
-        setIsButtonVisible(scrollTop + clientHeight < scrollHeight);
-      }
-    };
-
-    const currentRef = scrollRef.current;
-    currentRef?.addEventListener("scroll", handleScroll);
-
-    return () => {
-      currentRef?.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  const handleScroll = () => {
+    if (scrollRef.current) {
+      const { scrollTop, scrollHeight, clientHeight } = scrollRef.current;
+      setIsButtonVisible(scrollTop + clientHeight < scrollHeight - 1);
+    }
+  };
 
   const scrollToBottom = () => {
     if (scrollRef.current) {
@@ -373,7 +362,14 @@ const ViewOnline = () => {
             >
               <div className={styles.stick}></div>
             </Box>
-            <Box sx={{ flex: 1, padding: 1, overflow: "hidden" }}>
+            <Box
+              sx={{
+                flex: 1,
+                display: "flex",
+                flexDirection: "column",
+                overflow: "hidden",
+              }}
+            >
               <div className={styles.chatHeaderBlock}>
                 <div className={styles.chatHeaderBlock1}>
                   <span className={styles.chatHeaderBlock1}>Чат</span>
@@ -393,7 +389,11 @@ const ViewOnline = () => {
                     Показать чат предыдущего стрима
                   </span>
                 </div>
-                <div className={styles.messageListBox} ref={scrollRef}>
+                <div
+                  className={styles.messageListBox}
+                  ref={scrollRef}
+                  onScroll={handleScroll}
+                >
                   {arr.map((item) => {
                     return (
                       <div className={styles.messageText}>
