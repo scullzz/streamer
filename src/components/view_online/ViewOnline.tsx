@@ -368,6 +368,7 @@ const ViewOnline = () => {
                 display: "flex",
                 flexDirection: "column",
                 overflow: "hidden",
+                padding: 1,
               }}
             >
               <div className={styles.chatHeaderBlock}>
