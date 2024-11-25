@@ -78,6 +78,36 @@ const ViewOnline = () => {
       name: "Fifth",
       message: "another YouTube message",
     },
+    {
+      type: "Twitch",
+      name: "Third",
+      message: "twitch message",
+    },
+    {
+      type: "Bot",
+      name: "Fourth",
+      message: "bot message",
+    },
+    {
+      type: "YouTube",
+      name: "Fifth",
+      message: "another YouTube message",
+    },
+    {
+      type: "Twitch",
+      name: "Third",
+      message: "twitch message",
+    },
+    {
+      type: "Bot",
+      name: "Fourth",
+      message: "bot message",
+    },
+    {
+      type: "YouTube",
+      name: "Fifth",
+      message: "another YouTube message",
+    },
   ];
 
   useEffect(() => {
@@ -90,7 +120,21 @@ const ViewOnline = () => {
 
   const { link, platform, viewers, title } = location.state;
 
+  const [panelPosition, setPanelPosition] = useState<any>("closed");
+  const [startY, setStartY] = useState(0);
+  const [message, setMessage] = useState<string>();
+  const [currentHeight, setCurrentHeight] = useState<any>(0);
   const [selectedStyle, setSelectedStyle] = useState<string>("number1");
+  const [messageListHeight, setMessageListHeight] = useState("auto");
+
+  useEffect(() => {
+    if (panelPosition === "half") {
+      setMessageListHeight("300px");
+    } else if (panelPosition === "full") {
+      setMessageListHeight("auto");
+    }
+  }, [panelPosition]);
+
   const getImage = () => {
     console.log(platform);
     if (platform === "Twitch") {
@@ -147,11 +191,6 @@ const ViewOnline = () => {
       console.log(err);
     }
   };
-
-  const [panelPosition, setPanelPosition] = useState<any>("closed");
-  const [startY, setStartY] = useState(0);
-  const [message, setMessage] = useState<string>();
-  const [currentHeight, setCurrentHeight] = useState<any>(0);
 
   const toggleChat = () => {
     setPanelPosition((prev: any) => (prev === "closed" ? "half" : "closed"));
@@ -394,6 +433,7 @@ const ViewOnline = () => {
                   className={styles.messageListBox}
                   ref={scrollRef}
                   onScroll={handleScroll}
+                  style={{ height: messageListHeight }}
                 >
                   {arr.map((item) => {
                     return (
