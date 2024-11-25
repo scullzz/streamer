@@ -131,7 +131,7 @@ const ViewOnline = () => {
     if (panelPosition === "half") {
       setMessageListHeight("300px");
     } else if (panelPosition === "full") {
-      setMessageListHeight("auto");
+      setMessageListHeight("700px");
     }
   }, [panelPosition]);
 
