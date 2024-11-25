@@ -404,7 +404,7 @@
 }
 .scrollToEndButton {
   position: fixed;
-  bottom: 20px; /* Position slightly above the bottom edge */
+  bottom: 90px; /* Position slightly above the bottom edge */
   right: 50%; /* Center horizontally */
   transform: translateX(50%); /* Adjust position to the center */
   padding: 8px 12px;
