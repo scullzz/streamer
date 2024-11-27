@@ -360,7 +360,7 @@ const ViewOnline = () => {
 
     socket.onerror = (error) => {
       console.error("WebSocket Error:", error);
-      alert("WebSocket connection error!");
+      alert(error);
     };
 
     socket.onclose = () => {
