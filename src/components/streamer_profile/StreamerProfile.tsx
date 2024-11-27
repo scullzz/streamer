@@ -99,7 +99,7 @@ const StreamerProfile = () => {
   const [allSocialsById, setAllSocialsById] = useState<ISocialById[]>([]);
   const [raffle, setRaffle] = useState<Raffle[]>([]);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-  
+
   const [isSubscribeModalOpen, setIsSubscribedModalOpen] =
     useState<boolean>(false);
 
@@ -126,7 +126,6 @@ const StreamerProfile = () => {
   const modalRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    // Function to close modal when clicking outside of it
     const handleClickOutside = (event: MouseEvent) => {
       if (
         modalRef.current &&
@@ -231,7 +230,6 @@ const StreamerProfile = () => {
 
       if (response.ok) {
         const res = await response.json();
-        console.log(res);
         setData(res);
         if (res.streamer.image) {
           setImage(res.streamer.image);
@@ -374,6 +372,8 @@ const StreamerProfile = () => {
     setIsModalOpen(false);
   };
 
+
+
   return (
     <div className={style.back}>
       <div className={style.StreamerProfile}>
@@ -473,6 +473,7 @@ const StreamerProfile = () => {
               {data?.youtube.map((item) => {
                 return (
                   <StreamerVideo
+                    streamer_id={item.streamer_id}
                     name={item.streamer_name}
                     image={item.thumbnail}
                     link={item.link}
@@ -485,6 +486,7 @@ const StreamerProfile = () => {
               {data?.twitch.map((item) => {
                 return (
                   <StreamerVideo
+                    streamer_id={item.streamer_id}
                     name={item.streamer_name}
                     image={item.thumbnail}
                     link={item.link}
@@ -497,6 +499,7 @@ const StreamerProfile = () => {
               {data?.kick.map((item) => {
                 return (
                   <StreamerVideo
+                    streamer_id={item.streamer_id}
                     name={item.streamer_name}
                     image={item.thumbnail}
                     link={item.link}

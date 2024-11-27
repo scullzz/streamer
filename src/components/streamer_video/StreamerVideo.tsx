@@ -6,6 +6,7 @@ import "./style.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 interface GetVideo {
+  streamer_id: number;
   name: string;
   image: string;
   link: string;
@@ -14,6 +15,7 @@ interface GetVideo {
   title: string;
 }
 const StreamerVideo = ({
+  streamer_id,
   name,
   image,
   link,
@@ -50,7 +52,7 @@ const StreamerVideo = ({
   };
   const moveToVideoWatch = () => {
     nav("/streamer/online", {
-      state: { image, link, platform, viewers, title },
+      state: { streamer_id, image, link, platform, viewers, title },
     });
   };
   useEffect(() => {

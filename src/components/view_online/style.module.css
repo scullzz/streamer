@@ -409,7 +409,6 @@
   transform: translateX(50%); /* Adjust position to the center */
   padding: 8px 12px;
   background-color: rgba(0, 0, 0, 0.6);
-  color: #fff;
   border: none;
   border-radius: 4px;
   cursor: pointer;
@@ -420,4 +419,18 @@
 
 .scrollToEndButton:hover {
   background-color: rgba(0, 0, 0, 0.8);
+}
+
+.pauseBlock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.pauseText{
+  color: white;
+  font-family: Roboto;
+  font-weight: bold;
+  font-size: 14px;
 }

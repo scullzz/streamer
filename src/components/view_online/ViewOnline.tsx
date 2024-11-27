@@ -15,6 +15,21 @@ import blueB from "./image/blutB.svg";
 import youtube from "./image/youtube.svg";
 import kick from "./image/kick.svg";
 import twitch from "./image/twitch.svg";
+import pause from "./image/pause.svg";
+
+interface ChatMessage {
+  id: number;
+  chat_room: number;
+  user: number;
+  text: string;
+  created_at: string;
+}
+
+interface ChatData {
+  id: number;
+  streamer: number;
+  messages: ChatMessage[];
+}
 
 const ViewOnline = () => {
   const arr = [
@@ -118,7 +133,7 @@ const ViewOnline = () => {
   const location = useLocation();
   const [user, setUser] = useState<GetUserProfile | null>(null);
 
-  const { link, platform, viewers, title } = location.state;
+  const { streamer_id, link, platform, viewers, title } = location.state;
 
   const [panelPosition, setPanelPosition] = useState<any>("closed");
   const [startY, setStartY] = useState(0);
@@ -127,6 +142,8 @@ const ViewOnline = () => {
   const [selectedStyle, setSelectedStyle] = useState<string>("number1");
   const [messageListHeight, setMessageListHeight] = useState("auto");
 
+  const [chatData, setChatData] = useState<ChatData | null>(null);
+
   useEffect(() => {
     if (panelPosition === "half") {
       setMessageListHeight("300px");
@@ -134,6 +151,34 @@ const ViewOnline = () => {
       setMessageListHeight("550px");
     }
   }, [panelPosition]);
+
+  const getChatRoomWithAllChats = async () => {
+    try {
+      const response = await fetch(
+        `https://api.bigstreamerbot.io/chat_rooms/100/`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Auth: tg.initData,
+          },
+        }
+      );
+
+      if (response.ok) {
+        const res = await response.json();
+        setChatData(res);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    console.log(streamer_id);
+    console.log(chatData);
+    getChatRoomWithAllChats();
+  }, []);
 
   const getImage = () => {
     console.log(platform);
@@ -280,6 +325,47 @@ const ViewOnline = () => {
       });
     }
   };
+
+  const [messages, setMessages] = useState([{}]);
+  console.log(messages);
+
+  useEffect(() => {
+    const wsUrl = `wss://api.bigstreamerbot.io/ws/chat/1/?auth=M1bCSx92W6&telegram_user_id=100`;
+    const socket = new WebSocket(wsUrl);
+
+    socket.onopen = () => {
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { user: "System", message: "Connected to the chat server!" },
+      ]);
+
+      for (let i = 1; i <= 200; i++) {
+        const payload = JSON.stringify({ message: `Test message ${i}` });
+        socket.send(payload);
+      }
+    };
+
+    socket.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { user: data.user, message: data.message },
+      ]);
+    };
+
+    socket.onclose = () => {
+      setMessages((prevMessages) => [
+        ...prevMessages,
+        { user: "System", message: "Disconnected from the chat server." },
+      ]);
+    };
+
+    return () => {
+      if (socket.readyState === WebSocket.OPEN) {
+        socket.close();
+      }
+    };
+  }, []);
 
   return (
     <>
@@ -455,7 +541,13 @@ const ViewOnline = () => {
                       className={styles.scrollToEndButton}
                       onClick={scrollToBottom}
                     >
-                      Чат приостановлен
+                      <div className={styles.pauseBlock}>
+                        <img src={pause} alt="" />
+                        <span className={styles.pauseText}>
+                          {" "}
+                          Чат приостановлен
+                        </span>
+                      </div>
                     </button>
                   )}
                 </div>
