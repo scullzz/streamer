@@ -334,6 +334,7 @@ const ViewOnline = () => {
     const socket = new WebSocket(wsUrl);
 
     socket.onopen = () => {
+      alert("Connect")
       setMessages((prevMessages) => [
         ...prevMessages,
         { user: "System", message: "Connected to the chat server!" },
