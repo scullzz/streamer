@@ -331,8 +331,9 @@ const ViewOnline = () => {
 
   useEffect(() => {
     console.log("useEffect triggered");
-
-    const wsUrl = `wss://api.bigstreamerbot.io/ws/chat/1/?auth=M1bCSx92W6&telegram_user_id=100`;
+    const authToken = "M1bCSx92W6";
+    const telegramUserId = "235519518";
+    const wsUrl = `wss://api.bigstreamerbot.io/ws/chat/1/?auth=${authToken}&telegram_user_id=${telegramUserId}`;
     const socket = new WebSocket(wsUrl);
 
     socket.onopen = () => {
