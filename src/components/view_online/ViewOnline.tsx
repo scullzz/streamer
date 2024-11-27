@@ -330,11 +330,14 @@ const ViewOnline = () => {
   console.log(messages);
 
   useEffect(() => {
+    console.log("useEffect triggered");
+
     const wsUrl = `wss://api.bigstreamerbot.io/ws/chat/1/?auth=M1bCSx92W6&telegram_user_id=100`;
     const socket = new WebSocket(wsUrl);
 
     socket.onopen = () => {
-      alert("Connect")
+      console.log("WebSocket Connected");
+      alert("Connect");
       setMessages((prevMessages) => [
         ...prevMessages,
         { user: "System", message: "Connected to the chat server!" },
@@ -348,13 +351,20 @@ const ViewOnline = () => {
 
     socket.onmessage = (event) => {
       const data = JSON.parse(event.data);
+      console.log("Received message:", data);
       setMessages((prevMessages) => [
         ...prevMessages,
         { user: data.user, message: data.message },
       ]);
     };
 
+    socket.onerror = (error) => {
+      console.error("WebSocket Error:", error);
+      alert("WebSocket connection error!");
+    };
+
     socket.onclose = () => {
+      console.log("WebSocket Closed");
       setMessages((prevMessages) => [
         ...prevMessages,
         { user: "System", message: "Disconnected from the chat server." },
@@ -363,6 +373,7 @@ const ViewOnline = () => {
 
     return () => {
       if (socket.readyState === WebSocket.OPEN) {
+        console.log("Closing WebSocket");
         socket.close();
       }
     };
